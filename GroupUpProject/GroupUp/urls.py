@@ -17,5 +17,9 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('front_page/', views.front_page, name='front_page'),
+    path('groups_overview/', views.groups_overview_page, name='groups_overview_page'),
+    path('groups/', views.groups_page, name='groups_page'),
+    path('login/', views.login_page, name='login_page'),
+    path('profile/', views.profile_page, name='profile_page'),
 ]
