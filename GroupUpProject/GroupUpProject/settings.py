@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'GroupUp.apps.GroupupConfig',
-    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
