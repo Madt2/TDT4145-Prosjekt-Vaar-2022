@@ -6,6 +6,18 @@
 </head>
 <body>
     <header>This is Frontpage</header>
+    {% extends 'GroupUp/base.html' %}
+    {% block title %}Home{% endblock %}
+
+    {% block content %}
+    {% if user.is_authenticated %}
+        Hi {{ user.username }}!
+        <p><a href="{% url 'logout' %}">Log Out</a></p>
+    {% else %}
+        <p>You are not logged in</p>
+        <a href="{% url 'login' %}">Log In</a>
+    {% endif %}
+    {% endblock %}
     <br>
     <br>
     <a href="http://127.0.0.1:8000/GroupUp/groups/">My Groups</a>
