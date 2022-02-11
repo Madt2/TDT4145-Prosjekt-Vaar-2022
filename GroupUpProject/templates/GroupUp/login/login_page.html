@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-
+    <link rel="stylesheet" type="text/css" href="login_style.css">
     <script src="login_script.js"></script>
 </head>
 <body>
     <header>
-        <img src="images/login_page_image.jpg" width="400" height="267" alt="Picture of friends hanging out.">
-        <h1>GroupUp</h1>
-        <h2>Just group up bruh!</h2>
+        <img id="front_page_image" src="images/login_page_image.jpg" alt="Picture of friends hanging out.">
+        <h1 id="login_main_title">GroupUp</h1>
+        <h2 id="login_sub_title">Just group up bruh!</h2>
     </header>
 
-    <div id="login">
+    <div id="page_container">
+        <div id="login">
         <h3>Login</h3>
         <form method="post">
             <label for="email"></label>
@@ -24,7 +25,6 @@
             <input type="button" onclick="show_register_overlay()" value="Register new user">
         </form>
     </div>
-    <br><br><br><br>
     <div id="register_user" style="display: none">
         <h3>Register User</h3>
         <form>
@@ -46,6 +46,7 @@
             <input type="button" onclick="" value="Register">
             <input type="button" onclick="show_login_overlay()" value="Back to login">
         </form>
+    </div>
     </div>
 
     <footer></footer>

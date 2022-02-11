@@ -1,0 +1,52 @@
+
+header, body {
+    margin: 0px;
+    padding: 0px;
+}
+
+header {
+
+}
+
+#front_page_image {
+    z-index: -1;
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+#login_main_title {
+    font-size: 10vw;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 10%;
+    text-align: center;
+    color: whitesmoke;
+}
+
+#login_sub_title {
+    position: absolute;
+    font-size: 3vw;
+    left: 0;
+    right: 0;
+    top: 69%;
+    text-align: center;
+    color: whitesmoke;
+}
+
+#login {
+    width: 15%;
+    margin: auto;
+    margin-top: 5%;
+}
+
+#register_user {
+    width: 15%;
+    margin: auto;
+    margin-top: 5%;
+}
+
+#page_container {
+    height: 50vh;
+}
