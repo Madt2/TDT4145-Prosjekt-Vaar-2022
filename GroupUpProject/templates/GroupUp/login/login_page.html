@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+    <script src="login_script.js"></script>
+</head>
+<body>
+    <header>
+        <img src="images/login_page_image.jpg" width="400" height="267" alt="Picture of friends hanging out.">
+        <h1>GroupUp</h1>
+        <h2>Just group up bruh!</h2>
+    </header>
+
+    <div id="login">
+        <h3>Login</h3>
+        <form method="post">
+            <label for="email"></label>
+            <input type="text" placeholder="Email address"/><br>
+            <label for="password"></label>
+            <input type="text" placeholder="Password"/><br>
+            <input type="button" onclick="" value="Login">
+            <input type="button" onclick="show_register_overlay()" value="Register new user">
+        </form>
+    </div>
+    <br><br><br><br>
+    <div id="register_user" style="display: none">
+        <h3>Register User</h3>
+        <form>
+            <label for="email">
+                <input type="text" placeholder="Email address"/>
+            </label><br>
+            <label for="first_name">
+                <input type="text" placeholder="First name"/>
+            </label><br>
+            <label for="last_name">
+                <input type="text" placeholder="Last name"/>
+            </label><br>
+            <label for="password">
+                <input type="text" placeholder="Password"/>
+            </label><br>
+            <label for="password_confirm">
+                <input type="text" placeholder="Confirm password"/>
+            </label><br>
+            <input type="button" onclick="" value="Register">
+            <input type="button" onclick="show_login_overlay()" value="Back to login">
+        </form>
+    </div>
+
+    <footer></footer>
+</body>
+</html>
