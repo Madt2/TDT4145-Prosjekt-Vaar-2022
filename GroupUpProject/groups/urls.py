@@ -18,10 +18,6 @@ from . import views
 from django.views.generic.base import TemplateView
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='GroupUp/front_page.html'), name='front_page'),
-    path('groups_overview/', views.groups_overview_page, name='groups_overview_page'),
-    path('groups/', views.groups_page, name='groups_page'),
-    path('profile/', views.profile_page, name='profile_page'),
-    path('signup/', views.signup, name='signup'),
-    path('', include('groups.urls')),
+    path('creategroup/', TemplateView.as_view(template_name='GroupUp/create_groups_page.html'), name='create_groups'),
+    
 ]
