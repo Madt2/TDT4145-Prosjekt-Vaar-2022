@@ -3,6 +3,9 @@ from django.contrib.auth import get_user_model
 
 class Member(models.Model):
     name = models.CharField(max_length=50)
+    
+    def __str__(self):
+        return self.name
 
 class Group(models.Model):
     group_name = models.CharField(max_length=30)
@@ -15,3 +18,6 @@ class Group(models.Model):
     activity_name = models.CharField(max_length=100)
     activity_date = models.DateField()
     description = models.TextField()
+    
+    def __str__(self):
+        return self.group_name
