@@ -22,4 +22,5 @@ urlpatterns = [
     path('groups_overview/', views.groups_overview_page, name='groups_overview_page'),
     path('groups/', views.groups_page, name='groups_page'),
     path('profile/', views.profile_page, name='profile_page'),
+    path('signup/', views.signup, name='signup'),
 ]

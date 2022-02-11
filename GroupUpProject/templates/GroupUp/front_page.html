@@ -4,12 +4,21 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body>¨
     <header>This is Frontpage</header>
     {% extends 'GroupUp/base.html' %}
     {% block title %}Home{% endblock %}
-
+    
     {% block content %}
+    <br>
+    <br>
+    <a href="http://127.0.0.1:8000/groups/">My Groups</a>
+    <br>
+    <a href="http://127.0.0.1:8000/groups_overview/">Find Groups</a>
+    <br>
+    <a href="http://127.0.0.1:8000/profile/">Profile</a>
+    <br>
+    <a href="http://127.0.0.1:8000/signup/">Signup</a>
     {% if user.is_authenticated %}
         Hi {{ user.username }}!
         <p><a href="{% url 'logout' %}">Log Out</a></p>
@@ -18,15 +27,5 @@
         <a href="{% url 'login' %}">Log In</a>
     {% endif %}
     {% endblock %}
-    <br>
-    <br>
-    <a href="http://127.0.0.1:8000/GroupUp/groups/">My Groups</a>
-    <br>
-    <a href="http://127.0.0.1:8000/GroupUp/groups_overview/">Find Groups</a>
-    <br>
-    <a href="http://127.0.0.1:8000/GroupUp/profile/">Profile</a>
-    <br>
-    <br>
-    <a href="http://127.0.0.1:8000/GroupUp/login/">Logout</a>
 </body>
 </html>
