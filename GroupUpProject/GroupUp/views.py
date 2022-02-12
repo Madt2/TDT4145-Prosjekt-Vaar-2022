@@ -21,3 +21,7 @@ def login_page(request):
 
 def profile_page(request):
     return render(request, "GroupUp/profile_page.html")
+
+
+def new_group(request):
+    return render(request, "GroupUp/new_group.html")

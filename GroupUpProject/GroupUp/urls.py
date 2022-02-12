@@ -22,4 +22,5 @@ urlpatterns = [
     path('groups/', views.groups_page, name='groups_page'),
     path('login/', views.login_page, name='login_page'),
     path('profile/', views.profile_page, name='profile_page'),
+    path('new_group/', views.new_group, name='new_group'),
 ]

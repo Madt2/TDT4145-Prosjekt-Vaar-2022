@@ -2,19 +2,89 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+    <title>GroupUp</title>
+    <style>
+
+    body {
+        background-color:
+        }
+    h1 {
+    text-align: center;
+    font-size: 90px;}
+
+    .block {
+        display: block;
+        width: 650px;
+        background-color: #04AA6D;
+        color: white;
+        padding: 40px 28px;
+        font-size: 25px;
+        cursor: pointer;
+        text-align: center;
+        margin-left: 30px;
+        margin-top: 10px;
+        border: 2px solid blue;
+        text-decoration:none;
+       }
+
+    .block:hover {
+        background-color: #ddd;
+        color: black;
+        }
+    #div1 { float:left}
+    #div2 { float:left}
+    #container1 { margin-left:auto;
+    margin-right:auto;
+        }
+    #div3 { float:left}
+    #div4 { float:left}
+    #container2 { margin-left:auto;
+    margin-right:auto;
+        }
+    br {
+        display: block; /* makes it have a width */
+        content: ""; /* clears default height */
+        margin-top: 50px; /* change this to whatever height you want it */
+    |   }
+    #logout{
+    font-size:20px;
+    margin-left: 30px;
+    }
+
+</style>
 </head>
+
 <body>
-    <header>This is Frontpage</header>
+    <header></header>
+    <h1>Group up</h1>
     <br>
+    <p> Her vil vi kanskje skrive noe om appen, og mulighetene man har for den.</p>
+    <div id="container1">
+        <div id="div1">
+    <a href="http://127.0.0.1:8000/GroupUp/new_group/" class= "block"> New Group</a>
     <br>
-    <a href="http://127.0.0.1:8000/GroupUp/groups/">My Groups</a>
+            </div>
+        <div id="div2">
+    <a href="http://127.0.0.1:8000/GroupUp/groups/" class= "block"> My Groups</a>
     <br>
-    <a href="http://127.0.0.1:8000/GroupUp/groups_overview/">Find Groups</a>
+            </div>
+    </div>
+
+    <div id="container2">
+        <div id="div3">
+    <a href="http://127.0.0.1:8000/GroupUp/groups_overview/" class="block">Find Groups</a>
     <br>
-    <a href="http://127.0.0.1:8000/GroupUp/profile/">Profile</a>
+            </div>
+        <div id="div4">
+    <a href="http://127.0.0.1:8000/GroupUp/profile/" class="block">Profile</a>
     <br>
+             </div>
+    </div>
     <br>
+    <div id="logout">
     <a href="http://127.0.0.1:8000/GroupUp/login/">Logout</a>
+    </div>
+
 </body>
 </html>
