@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from .forms import SignUpForm
+from .models import Profile
 
 
 # Create your views here.
@@ -24,16 +27,25 @@ def login_page(request):
 def profile_page(request):
     return render(request, "GroupUp/profile_page.html")
 
+
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
+            user, profile = form.save()
             login(request, user)
             return redirect('front_page')
     else:
         form = SignUpForm()
     return render(request, 'GroupUp/signup.html', {'form': form})
+
+
+def profiles(request):
+    profiles = Profile.objects.values().all()
+    for profile in profiles:
+        print(profile)
+    return render(request, "GroupUp/profiles_page.html", {'profiles': profiles})
+
+
+def create_group(request):
+    pass

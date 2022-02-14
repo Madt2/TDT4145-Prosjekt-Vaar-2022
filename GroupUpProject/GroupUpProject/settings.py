@@ -19,15 +19,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 ROOT_PATH = os.path.dirname(__file__)
 
 # Get secret database password
-with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
-    secrets = json.load(secrets_file)
+# with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
+#     secrets = json.load(secrets_file)
 
-def get_secret(setting, secrets=secrets):
-    """Get secret setting or fail with ImproperlyConfigured"""
-    try:
-        return secrets[setting]
-    except KeyError:
-        raise ImproperlyConfigured("Set the {} setting".format(setting))
+
+# def get_secret(setting, secrets=secrets):
+#     """Get secret setting or fail with ImproperlyConfigured"""
+#     try:
+#         return secrets[setting]
+#     except KeyError:
+#         raise ImproperlyConfigured("Set the {} setting".format(setting))
 
 
 # Quick-start development settings - unsuitable for production
@@ -52,7 +53,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'GroupUp.apps.GroupupConfig',
-    'groups.apps.GroupsConfig'
 ]
 
 MIDDLEWARE = [
@@ -70,8 +70,7 @@ ROOT_URLCONF = 'GroupUpProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -95,12 +94,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'emilpa_groupup_db1',
         'USER': 'emilpa_groupup_user',
-        'PASSWORD': get_secret('DB_PASSWORD'),
+        'PASSWORD': 'groupup',
         'HOST': 'mysql.stud.ntnu.no',
-        'PORT': '3306', 
-        'OPTIONS': {  
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
-        }    
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
     }
 }
 
@@ -148,4 +147,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'front_page'
-LOGOUT_REDIRECT_URL = 'front_page' 
+LOGOUT_REDIRECT_URL = 'front_page'
