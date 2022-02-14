@@ -51,8 +51,11 @@
 }
 
 .group_page {
+    position: relative;
     width: 70%;
     height: 80vh;
+    padding: 25px;
+    box-sizing: border-box;
 }
 
 .group_element {
@@ -66,6 +69,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.group_element.active {
+    background-color: deepskyblue;
 }
 
 .group_image {
@@ -85,4 +92,68 @@
     font-weight: lighter;
 }
 
+.group_info {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.group_info_left {
+    width: 33.3%;
+    height: 100%;
+    border: none gray;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.group_info_middle {
+    width: 33.3%;
+    height: 100%;
+    border: none gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.group_info_right {
+    width: 33.3%;
+    height: 100%;
+    border: none gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+#group_name {
+    font-size: 50px;
+    width: 100%;
+    text-align: center;
+    margin: 0px 0px 20px 0px;
+    border-bottom-style: solid;
+    border-width: thin;
+}
+
+#group_image {
+    width: 200px;
+    height: 200px;
+}
+
+#catchphrase {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+h4 {
+    margin: 20px 0px 10px 0px;
+}
+
+#group_members {
+
+}
 
