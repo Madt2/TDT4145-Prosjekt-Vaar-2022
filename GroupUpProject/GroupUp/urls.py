@@ -22,9 +22,9 @@ urlpatterns = [
         template_name='GroupUp/front_page.html'), name='front_page'),
     path('groups_overview/', views.groups_overview_page,
          name='groups_overview_page'),
-    path('groups/', views.groups_page, name='groups_page'),
+    path('groups/', views.GroupDetailView.as_view(), name='groups_page'),
     path('profile/', views.profile_page, name='profile_page'),
     path('signup/', views.signup, name='signup'),
-    path('create_group', views.create_group, name='create_group'),
+    path('create_group_page/', views.create_group, name='create_group_page'),
     path('profiles/', views.profiles, name='profiles')
 ]

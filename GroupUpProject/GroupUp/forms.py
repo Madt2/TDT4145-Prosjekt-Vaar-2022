@@ -32,16 +32,21 @@ class SignUpForm(UserCreationForm):
 class GroupForm(ModelForm):
     class Meta:
         model = Group
-        fields = ('name', 'activity_date', 'members', 'description')
+        fields = ('name', 'owner', 'activity_name', 'activity_date',
+                  'members', 'location', 'description')
         labels = {
             'name': '',
+            'activity_name': 'Activity',
             'activity_date': 'YYYY-MM-DD HH:MM:SS',
             'members': 'Members',
-            'description': '',
+            'location': 'Location',
+            'description': 'Group Description',
         }
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Group Name'}),
+            'activity_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Activity'}),
             'activity_date': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Activity Date'}),
             'members': forms.SelectMultiple(attrs={'class': 'form-control', 'placeholder': 'Members'}),
+            'location': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Trondheim'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description'}),
         }

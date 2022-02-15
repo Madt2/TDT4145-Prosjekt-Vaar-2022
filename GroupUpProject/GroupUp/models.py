@@ -39,6 +39,18 @@ class Group(models.Model):
     interests = models.ManyToManyField(Interest)
     image = models.CharField(max_length=100)
 
+    objects = models.Manager()
+
+    def __meta__(self):
+        db_table = 'GroupUp_group'
+
+    def get_owner_group(self):
+        all_entries = Group.objects.all()
+        return all_entries
+
+    def __str__(self):
+        return self.name
+
 
 class MemberOfGroup(models.Model):
     member = models.ForeignKey(Profile, on_delete=models.CASCADE)
