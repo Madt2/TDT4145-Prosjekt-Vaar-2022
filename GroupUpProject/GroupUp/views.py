@@ -41,9 +41,7 @@ def signup(request):
 
 
 def profiles(request):
-    profiles = Profile.objects.values().all()
-    for profile in profiles:
-        print(profile)
+    profiles = User.objects.values().all()
     return render(request, "GroupUp/profiles_page.html", {'profiles': profiles})
 
 
