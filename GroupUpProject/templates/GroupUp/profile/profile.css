@@ -26,7 +26,7 @@ body {
 .account-settings .user-profile h5.user-name {
     margin: 0 0 0.5rem 0;
 }
-.account-settings .user-profile h6.user-email {
+.account-settings .user-profile h6.user-email-and-years  {
     margin: 0;
     font-size: 0.8rem;
     font-weight: 400;
