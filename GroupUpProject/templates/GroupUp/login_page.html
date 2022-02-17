@@ -5,8 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-    <header>This is where you login</header>
+    <header>Log In</header>
     <br>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p }}
+        <button type="submit">Log In</button>
+    </form>
     <br>
     <a href="http://127.0.0.1:8000/GroupUp/front_page/">Login</a>
 </body>
