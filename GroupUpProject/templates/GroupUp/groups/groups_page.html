@@ -9,44 +9,43 @@
 </head>
 <body>
     <div class="page_container">
-        <section class="header"></section>
-        <section class="groups">
+        <!--- header --->
+        <header></header>
+        <!--- group page content (everything except header and footer) --->
+        <div class="groups">
+            <!--- list view of groups --->
             <div class="groups_list" id="groups_list"></div>
+            <!--- selected group's page --->
             <div class="group_page" id="group_page">
                 <h2 id="group_name"></h2>
                 <div class="group_info">
+                    <!--- plain info display on group's page, left, middle and right part --->
                     <div class="group_info_left">
                         <h4>Common-interest:</h4>
-                        <p id="group_interest">Football</p>
+                        <p id="group_interest"><span id="interest_var"></span></p>
                         <h4>Members age range:</h4>
-                        <p id="group_age_range">19-38</p>
+                        <p id="group_age_range"><span id="age_min_var"></span>-<span id="age_max_var"></span></p>
                         <h4>Contact information:</h4>
-                        <p id="contact_information">example.email@mail.com</p>
+                        <p id="contact_information"><span id="contact_var"></span></p>
                     </div>
                     <div class="group_info_middle">
                         <img id="group_image">
                         <h3 id="catchphrase">Nr 1 football gang dog >D</h3>
                     </div>
                     <div class="group_info_right">
-                        <h4 id="members_title">Members(5):</h4>
+                        <h4 id="members_title">Members(<span id="member_count"></span>):</h4>
                         <ul id="group_members"></ul>
                     </div>
                 </div>
-                <div class="group_content_header">
-                    <div class="group_header_box">
-
-                    </div>
-                    <div class="group_header_box">
-
-                    </div>
-                </div>
-                <div class="group_content_right">
-
-                </div>
+                <!--- groups matches section --->
+                <h4>Group Matches:</h4>
+                <div class="group_matches" id="match_list"></div>
             </div>
-        </section>
-        <section class="footer"></section>
+        </div>
+        <!--- footer --->
+        <footer></footer>
     </div>
+    <!--- init script function --->
     <script>init()</script>
 </body>
 </html>

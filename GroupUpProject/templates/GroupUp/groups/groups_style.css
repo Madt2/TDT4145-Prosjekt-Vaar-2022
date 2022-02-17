@@ -1,4 +1,6 @@
 
+/* global styling, this can be put into global css file: */
+
 * {
     margin: 0;
     padding: 0;
@@ -9,23 +11,27 @@
     min-height: 100vh;
 }
 
-.header {
+header {
     padding: 5vh 0;
     width: 100%;
     background: deepskyblue;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
-.footer {
+footer {
     padding: 5vh 0;
     width: 100%;
     background: lightgray;
 }
 
+
+/* displays list of groups and group's page side by side */
 .groups {
     display: flex;
     flex-direction: row;
 }
 
+/* Styling for group list */
 .groups_list {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
@@ -50,15 +56,7 @@
   display: none;
 }
 
-.group_page {
-    position: relative;
-    width: 70%;
-    height: 80vh;
-    padding: 25px;
-    box-sizing: border-box;
-}
-
-.group_element {
+.group_list_element {
     position: relative;
     border-style: solid;
     border-color: lightgray;
@@ -71,11 +69,11 @@
     align-items: center;
 }
 
-.group_element.active {
+.group_list_element.active {
     background-color: deepskyblue;
 }
 
-.group_image {
+.group_list_image {
     width: 50px;
     height: 50px;
     margin: 5px;
@@ -86,11 +84,22 @@
     border-radius:50%;
 }
 
-.group_title {
+.group_list_title {
     margin-left: 15px;
     font-size: 20px;
     font-weight: lighter;
 }
+
+/* styling for group's page */
+.group_page {
+    position: relative;
+    width: 70%;
+    height: 80vh;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+/* styling for group's page top part */
 
 .group_info {
     height: 50%;
@@ -131,8 +140,9 @@
 }
 
 #group_name {
-    font-size: 50px;
+    height: 10%;
     width: 100%;
+    font-size: xxx-large;
     text-align: center;
     margin: 0px 0px 20px 0px;
     border-bottom-style: solid;
@@ -142,6 +152,7 @@
 #group_image {
     width: 200px;
     height: 200px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
 #catchphrase {
@@ -153,7 +164,48 @@ h4 {
     margin: 20px 0px 10px 0px;
 }
 
-#group_members {
+/* styling group's page lower part */
 
+.group_matches {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+
+    height: 30%;
+    border-style: solid;
+    border-color: dimgray;
+    border-radius: 5px;
+    overflow: scroll;
+}
+
+.group_matches::-webkit-scrollbar {
+  display: none;
+}
+
+.match_element {
+    height: 25px;
+    width: 100%;
+    background: lightgray;
+    display: flex;
+    flex-direction: row;
+}
+.match_box {
+    width: 33.3%;
+    padding-left: 5%;
+    border-right-style: solid;
+    border-width: thin;
+}
+
+.match_box:last-child {
+    border-right-style: none;
+    border-right-width: thin;
+}
+
+.match_text {
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+.match_element:nth-child(even) {
+    background: whitesmoke;
 }
 
