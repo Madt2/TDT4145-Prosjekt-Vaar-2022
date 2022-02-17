@@ -24,6 +24,9 @@ footer {
     background: lightgray;
 }
 
+h4 {
+    margin: 20px 0px 10px 0px;
+}
 
 /* displays list of groups and group's page side by side */
 .groups {
@@ -158,10 +161,6 @@ footer {
 #catchphrase {
     margin-top: 20px;
     font-size: 20px;
-}
-
-h4 {
-    margin: 20px 0px 10px 0px;
 }
 
 /* styling group's page lower part */
