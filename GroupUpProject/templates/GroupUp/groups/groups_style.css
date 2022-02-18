@@ -8,24 +8,26 @@
 
 .page_container {
     position: relative;
-    min-height: 100vh;
-}
-
-header {
-    padding: 5vh 0;
-    width: 100%;
-    background: deepskyblue;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-}
-
-footer {
-    padding: 5vh 0;
-    width: 100%;
-    background: lightgray;
+    height: 100vh;
 }
 
 h4 {
     margin: 20px 0px 10px 0px;
+}
+
+.text_box {
+    padding: 14px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    margin: 5px 0px;
+    font-size: 13px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.back_home {
+    text-decoration: none;
+    color: dimgray;
 }
 
 /* displays list of groups and group's page side by side */
@@ -41,7 +43,7 @@ h4 {
 
     position: relative;
     width: 30%;
-    height: 80vh;
+    height: 100vh;
     left: 0;
     display: flex;
     flex-direction: column;
@@ -73,7 +75,7 @@ h4 {
 }
 
 .group_list_element.active {
-    background-color: deepskyblue;
+    background-color: dodgerblue;
 }
 
 .group_list_image {
@@ -94,15 +96,37 @@ h4 {
 }
 
 /* styling for group's page */
-.group_page {
+.page_content {
     position: relative;
     width: 70%;
-    height: 80vh;
+    height: 100vh;
     padding: 25px;
     box-sizing: border-box;
 }
 
+/* style for nav */
+
+nav {
+    height: 5vh;
+    width: 100%;
+    display: inline-block;
+
+}
+
+#edit_button {
+    float: right;
+}
+
 /* styling for group's page top part */
+
+#group_page {
+    height: 80vh;
+    width: 100%;
+}
+
+#group_page.active {
+    display: none;
+}
 
 .group_info {
     height: 50%;
@@ -117,8 +141,7 @@ h4 {
     border: none gray;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding-left: 10px;
+    align-items: center;
     box-sizing: border-box;
 }
 
@@ -148,19 +171,35 @@ h4 {
     font-size: xxx-large;
     text-align: center;
     margin: 0px 0px 20px 0px;
-    border-bottom-style: solid;
-    border-width: thin;
 }
 
 #group_image {
+    object-fit: cover;
     width: 200px;
     height: 200px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
-#catchphrase {
-    margin-top: 20px;
-    font-size: 20px;
+#group_members {
+    height: 50%;
+    width: 80%;
+    border-style: solid;
+    border-color: dimgray;
+    border-radius: 5px;
+    overflow: scroll;
+    text-align: center;
+}
+
+#group_members::-webkit-scrollbar {
+    display: none;
+}
+
+.member_element {
+    background: lightgray;
+}
+
+.member_element:nth-child(even) {
+    background: whitesmoke;
 }
 
 /* styling group's page lower part */
@@ -187,6 +226,7 @@ h4 {
     display: flex;
     flex-direction: row;
 }
+
 .match_box {
     width: 33.3%;
     padding-left: 5%;
@@ -208,3 +248,65 @@ h4 {
     background: whitesmoke;
 }
 
+#group_edit_page {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+#group_edit_page.active{
+    display: none;
+}
+
+#edit_group_members {
+    width: 100%;
+    height: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: row;
+}
+
+#edit_members_list {
+    height: 100%;
+    overflow: scroll;
+    border-style: solid;
+    border-color: dimgray;
+    border-radius: 5px;
+
+    text-align: center;
+}
+
+#edit_members_list::-webkit-scrollbar {
+  display: none;
+}
+
+.member_element.active {
+    background-color: dodgerblue;
+}
+
+.edit_member_box {
+    height: 100%;
+    width: 50%;
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
+#add_member_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#remove_member {
+    float: right;
+}
+
+#add_member {
+    width: 70%;
+    height: 20px;
+}

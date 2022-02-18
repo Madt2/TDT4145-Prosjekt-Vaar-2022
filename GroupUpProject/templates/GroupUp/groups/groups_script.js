@@ -2,12 +2,13 @@
 /* Variables */
 
 let activeGroup = null;
+let activeEditMember = null;
 let groupList = new Array();
 
 /* Mock variables */
-const groupAmount = 5;
-const memberAmount = 15;
-const matchAmount = 10;
+const groupAmount = 20;
+const memberAmount = 35;
+const matchAmount = 20;
 
 /* "Classes" */
 
@@ -29,6 +30,7 @@ function match(matchName, matchInterest, matchContact) {
 //Group "class", use this to create a group object with "new group(string name, string interest, string contactInfo, Array memberList, Array groupMatchList)".
 function group(groupName, groupInterest, contactInfo, memberList, groupMatchList) {
    this.name = groupName;
+   this.imageLink = null;
    this.interest = groupInterest;
    this.leader = null;
    this.minAge = null;
@@ -66,6 +68,7 @@ function initMockGroups() {
         }
         groupList.push(new group("group" + i, "An interest", "group" + i + "@mail.com", testMembers, matches));
     }
+    groupList[0].imageLink = "https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/2768983/2768983-1575334973329-68d1c3ac9b5de.jpg";
 }
 
 //helper method
@@ -76,9 +79,6 @@ function getId(id) {
 //function for adding html elements to display a list of the user's groups. This is displayed on the left of groups page.
 //groups input is a list of group objects.
 function addGroupsToList(groups) {
-    /* Some function to get list of groups from database */
-
-
     let element = getId("groups_list");
 
     for (let i = 0; i < groups.length; i++) {
@@ -89,6 +89,11 @@ function addGroupsToList(groups) {
 
         let groupPicture = document.createElement("img");
         groupPicture.setAttribute("class", "group_list_image");
+        if (groups[i].imageLink !== null) {
+            groupPicture.setAttribute("src", groups[i].imageLink);
+        } else {
+            groupPicture.setAttribute("src", "https://static.vecteezy.com/system/resources/thumbnails/000/550/535/small/user_icon_007.jpg");
+        }
         newGroupElement.appendChild(groupPicture);
 
         let groupTitle = document.createElement("p");
@@ -150,16 +155,30 @@ function changeGroupListElementColor(element) {
     if (activeGroup !== null) {
         activeGroup.classList.remove("active");
     }
-    element.classList.add("active");
     activeGroup = element;
+    element.classList.add("active");
+
+    let form = getId("edit_group_form").reset();
+    setViewToGroupPage();
+}
+
+function editActiveEditMember(member) {
+    let element = getId(member);
+    if (activeEditMember !== null) {
+        activeEditMember.classList.remove("active");
+    }
+    activeEditMember = element;
+    element.classList.add("active");
+    console.log(activeEditMember)
 }
 
 //Function to clear and display active groups member on members page.
 function refreshGroupMembers(members) {
     let memberCount = getId("member_count");
     memberCount.innerText = members.length;
-    //Removes members of previous group loaded from html
     let memberList = getId("group_members");
+
+    //Removes members of previous group loaded from html
     while (memberList.firstChild) {
         memberList.removeChild(memberList.firstChild);
     }
@@ -167,14 +186,37 @@ function refreshGroupMembers(members) {
     for (let i = 0; i < members.length; i++) {
         let groupMember = document.createElement("li");
         let text;
-
         if (members[i].isLeader) {
             text = document.createTextNode(members[i].name + " (Leader)");
         } else {
             text = document.createTextNode(members[i].name);
         }
         groupMember.appendChild(text);
+        groupMember.setAttribute("class", "member_element")
         memberList.appendChild(groupMember);
+    }
+}
+
+function refreshEditMembersList(members) {
+    let editMemberList = getId("edit_members_list");
+
+    while (editMemberList.firstChild) {
+        editMemberList.removeChild(editMemberList.firstChild);
+    }
+    //Adds members for selected group to html list
+    for (let i = 0; i < members.length; i++) {
+        let groupMember = document.createElement("li");
+        let text;
+        if (members[i].isLeader) {
+            text = document.createTextNode(members[i].name + " (Leader)");
+        } else {
+            text = document.createTextNode(members[i].name);
+        }
+        groupMember.appendChild(text);
+        groupMember.setAttribute("class", "member_element");
+        groupMember.setAttribute("id", "member_Edit_list_element_" + i.toString());
+        groupMember.setAttribute("onclick", "editActiveEditMember(\"member_Edit_list_element_" + i.toString() + "\")");
+        editMemberList.appendChild(groupMember);
     }
 }
 
@@ -182,6 +224,7 @@ function refreshGroupMembers(members) {
 function drawGroupPage(group_index) {
     let groupNr = group_index.valueOf();
     let groupElement = getId(group_index + "_group_list_element");
+    let groupImage = getId("group_image")
     changeGroupListElementColor(groupElement);
 
     getId("group_name").innerHTML = groupList[groupNr].name;
@@ -189,13 +232,38 @@ function drawGroupPage(group_index) {
     getId("age_min_var").innerHTML = groupList[groupNr].minAge;
     getId("age_max_var").innerHTML = groupList[groupNr].maxAge;
     getId("contact_var").innerHTML = groupList[groupNr].contact;
-    refreshGroupMembers(groupList[groupNr].members)
-    constructGroupMatchList(groupList[group_index].matchList)
+
+    if (groupList[groupNr].imageLink !== null) {
+            groupImage.setAttribute("src", groupList[groupNr].imageLink);
+        } else {
+            groupImage.setAttribute("src", "https://static.vecteezy.com/system/resources/thumbnails/000/550/535/small/user_icon_007.jpg");
+        }
+
+    refreshGroupMembers(groupList[groupNr].members);
+    refreshEditMembersList(groupList[groupNr].members);
+    constructGroupMatchList(groupList[group_index].matchList);
+}
+
+
+
+function toggleEditPage() {
+    const groupPage = getId("group_page");
+    const editPage = getId("group_edit_page");
+    groupPage.classList.toggle("active");
+    editPage.classList.toggle("active");
+}
+
+function setViewToGroupPage() {
+    const groupPage = getId("group_page");
+    const editPage = getId("group_edit_page");
+    groupPage.classList.remove("active");
+    editPage.classList.add("active");
 }
 
 //Initialization function, run this as late as possible in html file.
 function init() {
-    initMockGroups()
+    setViewToGroupPage();
+    initMockGroups();
     addGroupsToList(groupList);
     drawGroupPage("0");
 }
