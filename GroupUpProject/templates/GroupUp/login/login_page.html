@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="login_style.css">
+    <script src="login_script.js"></script>
+</head>
+<body>
+    <div id="page_container">
+        <section>
+            <div id="welcome">
+                <img id="front_page_image" src="images/login_page_image.jpg" alt="Picture of friends hanging out.">
+                <h1 id="login_main_title">GroupUp</h1>
+                <h2 id="login_sub_title">Just group up bruh!</h2>
+            </div>
+        </section>
+        <section id="login">
+            <div class="login_overlay" id="login_module">
+                <h3>Login</h3>
+                <form id="login_form" method="post">
+                    <div class="text_box_area">
+                        <input class="text_box" type="email" placeholder="Email address" autocomplete required/>
+                        <input class="text_box" type="password" maxlength="64" placeholder="Password" autocomplete required/>
+                    </div>
+                    <p class="feedback" id="feedback_reg" style="display: none"></p>
+                    <div class="button_area">
+                        <input class="button first_button" type="button" onclick="show_register_overlay()" value="Register new user">
+                        <input class="button last_button" type="submit" form="login_form" value="Login">
+                    </div>
+                </form>
+            </div>
+            <div class="login_overlay" id="register_module" style="display: none">
+                <h3>Register User</h3>
+                <form id="register_form">
+                    <div class="text_box_area">
+                        <input class="text_box" id="reg_email" type="email" placeholder="Email address" required/>
+                        <input class="text_box" id="fname" type="text" maxlength="64" placeholder="First name" autocomplete required/>
+                        <input class="text_box" id="lname" type="text" maxlength="64" placeholder="Last name" autocomplete required/>
+                        <input class="text_box" id="reg_password" type="password" minlength="8" maxlength="64" placeholder="Password" required/>
+                        <input class="text_box" id="confirm_password" type="password" minlength="8" maxlength="64" placeholder="Confirm password" required/>
+                    </div>
+                    <div class="checkbox_area">
+                        <div>
+                            <label for="date_of_birth">Date of birth:</label>
+                            <input type="date">
+                        </div>
+                        <div class="checkbox_element">
+                            <input class="checkbox" type="checkbox" required>
+                            <label for="terms_and_service">I agree with terms of service.</label>
+                        </div>
+                    </div>
+                    <p class="feedback" id="feedback_reg" style="display: none"></p>
+                    <div class="button_area">
+                        <input class="button first_button" type="submit" form="register_form" value="Register">
+                        <input class="button last_button" type="button" onclick="show_login_overlay()" value="Back to login">
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
