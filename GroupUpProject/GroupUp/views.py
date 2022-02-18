@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from GroupUpProject.GroupUp.models import Profile, Group
+from .models import Profile, Group
 
 
 # Create your views here.
