@@ -22,7 +22,7 @@ def groups_page(request):
 
 
 def login_page(request):
-    return render(request, "GroupUp/login_page.html")
+    return render(request, "GroupUp/login/login_page.html")
 
 
 def profile_page(request):
