@@ -14,10 +14,6 @@ class Profile(models.Model):
     def __meta__(self):
         db_table = 'GroupUp_profile'
 
-    def get_all_objects(self):
-        all_entries = Profile.objects.all()
-        return all_entries
-
     def __str__(self):
         return self.first_name + ' ' + self.last_name
 
@@ -37,16 +33,12 @@ class Group(models.Model):
         Profile, through="MemberOfGroup", blank=True)
     location = models.CharField(max_length=30)
     interests = models.ManyToManyField(Interest)
-    image = models.CharField(max_length=100)
+    image = models.FileField(upload_to='images/', null=True, verbose_name="")
 
     objects = models.Manager()
 
     def __meta__(self):
         db_table = 'GroupUp_group'
-
-    def get_owner_group(self):
-        all_entries = Group.objects.all()
-        return all_entries
 
     def __str__(self):
         return self.name

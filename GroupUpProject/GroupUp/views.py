@@ -18,9 +18,6 @@ class GroupDetailView(DetailView):
 
     def get(self, request, *args, **kwargs):
         groups = Group.objects.values().filter(owner_id=request.user.id)
-        print(request.user.id)
-        print(groups[0])
-        #group = get_object_or_404(Group, pk=kwargs['pk'])
         context = {'groups': groups}
         return render(request, 'GroupUp/groups_page.html', context)
 
@@ -62,7 +59,7 @@ def profiles(request):
 
 def create_group(request):
     if request.method == 'POST':
-        form = GroupForm(request.POST)
+        form = GroupForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('front_page')

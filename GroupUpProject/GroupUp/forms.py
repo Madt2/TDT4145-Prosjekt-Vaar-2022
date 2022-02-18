@@ -33,7 +33,7 @@ class GroupForm(ModelForm):
     class Meta:
         model = Group
         fields = ('name', 'owner', 'activity_name', 'activity_date',
-                  'members', 'location', 'description')
+                  'members', 'location', 'description', 'image')
         labels = {
             'name': '',
             'activity_name': 'Activity',
@@ -41,6 +41,7 @@ class GroupForm(ModelForm):
             'members': 'Members',
             'location': 'Location',
             'description': 'Group Description',
+            'image': 'Group Image'
         }
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Group Name'}),
