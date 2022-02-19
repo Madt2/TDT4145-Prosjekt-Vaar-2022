@@ -38,4 +38,8 @@ def login_page(request):
 
 
 def profile_page(request):
-    return render(request, "GroupUp/profile_page.html")
+    user = request.user
+    # Not sure how to send single object instead of list into a html file
+    # Seems as though the argument in render has to be a dict
+    users = [user]
+    return render(request, "GroupUp/profile_page.html", {'users': users})

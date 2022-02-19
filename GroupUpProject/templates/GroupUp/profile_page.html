@@ -2,12 +2,110 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'GroupUp/profile/profile.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>Title</title>
 </head>
 <body>
-    <header>This is the profile page for profile settings...</header>
-    <br>
-    <br>
+    <div class="container">
+<div class="row gutters">
+<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+<div class="card h-100">
+	<div class="card-body">
+		<div class="account-settings">
+			<div class="user-profile">
+				<div class="user-avatar">
+					<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+				</div>
+                {% for current_user in users %}
+				<h5 class="user-name">{{current_user.username}}</h5>
+				<h6 class="user-email-and-years">{{current_user.email}}
+					<br> 22 years</h6>
+                {% endfor %}
+			</div>
+			<div class="about">
+				<h5>Interests</h5>
+				<p>Football, volleyball. hiking</p>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+<div class="card h-100">
+	<div class="card-body">
+		<div class="row gutters">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+				<h6 class="mb-2 text-primary">Personal Details</h6>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					<label for="fullName">Full Name</label>
+					<input type="text" class="form-control" id="fullName" placeholder="Enter full name">
+				</div>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					<label for="eMail">Email</label>
+					<input type="email" class="form-control" id="eMail" placeholder="Enter email ID">
+				</div>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					<label for="phone">Phone</label>
+					<input type="text" class="form-control" id="phone" placeholder="Enter phone number">
+				</div>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					<label for="birthday">Date of birth</label>
+					<input type="date" class="form-control" id="birthday" >
+				</div>
+			</div>
+		</div>
+		<div class="row gutters">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+				<h6 class="mt-3 mb-2 text-primary">Address</h6>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					<label for="Street">Street</label>
+					<input type="name" class="form-control" id="Street" placeholder="Enter Street">
+				</div>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					<label for="ciTy">City</label>
+					<input type="name" class="form-control" id="ciTy" placeholder="Enter City">
+				</div>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					<label for="sTate">State</label>
+					<input type="text" class="form-control" id="sTate" placeholder="Enter State">
+				</div>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				<div class="form-group">
+					<label for="zIp">Zip Code</label>
+					<input type="text" class="form-control" id="zIp" placeholder="Zip Code">
+				</div>
+			</div>
+		</div>
+		<div class="row gutters">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+				<div class="text-right">
+					<button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
+					<button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
     <a href="http://127.0.0.1:8000/GroupUp/front_page/"><- Back</a>
 </body>
 </html>
