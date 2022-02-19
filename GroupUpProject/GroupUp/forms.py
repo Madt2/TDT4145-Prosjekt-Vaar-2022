@@ -2,9 +2,9 @@ from dataclasses import fields
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.forms import ModelForm
-from matplotlib import widgets
+from django.forms import ModelForm, widgets
 from .models import Group, Profile, GroupReport
+
 
 class SignUpForm(UserCreationForm):
     # first_name = forms.CharField(max_length=30, required=True)
@@ -15,14 +15,14 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email', 'password1', 'password2')
-        labels={
-            'first_name':'First Name',
+        labels = {
+            'first_name': 'First Name',
             'last_name': 'Last Name',
             'email': 'E-mail',
             'password1': 'Password',
             'password2': 'Repeat Password',
         }
-        widgets={
+        widgets = {
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'}),
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'E-mail'}),
@@ -37,7 +37,8 @@ class SignUpForm(UserCreationForm):
         user_profile = Profile(user=user, age=self.cleaned_data['age'])
         user_profile.save()
         return user, user_profile
-    
+
+    """
 class GroupForm(ModelForm):
     class Meta:
         model = Group
@@ -55,6 +56,8 @@ class GroupForm(ModelForm):
             'location': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Location'}),
             'interests': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Interests'}),
         }
+        """
+
 
 class ReportForm(ModelForm):
     class Meta:
@@ -65,6 +68,16 @@ class ReportForm(ModelForm):
             'description': 'Description',
         }
         widgets = {
-             'group': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Reported Group'}),
-             'description': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Description'})
+            'group': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Reported Group'}),
+            'description': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Description'})
+        }
+
+
+class LoginForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['email', 'password']
+        widgets = {
+            'email': forms.EmailInput(),
+            'password': forms.PasswordInput()
         }

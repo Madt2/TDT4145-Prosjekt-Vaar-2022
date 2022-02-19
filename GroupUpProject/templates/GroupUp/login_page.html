@@ -21,10 +21,22 @@
             <div class="login_overlay" id="login_module">
                 <h3>Login</h3>
                 <form id="login_form" method="post">
+
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <p>
+                        {{ field.label_tag }}<br>
+                        {{ field }}
+
+                            {% endfor %}
+
+                    <!--
                     <div class="text_box_area">
                         <input class="text_box" type="email" placeholder="Email address" autocomplete required/>
                         <input class="text_box" type="password" maxlength="64" placeholder="Password" autocomplete required/>
                     </div>
+                    -->
+
                     <p class="feedback" id="feedback_reg" style="display: none"></p>
                     <div class="button_area">
                         <input class="button first_button" type="button" onclick="show_register_overlay()" value="Register new user">
