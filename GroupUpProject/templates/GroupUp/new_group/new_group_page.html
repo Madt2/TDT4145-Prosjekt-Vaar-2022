@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Group</title>
+    <link rel="stylesheet" type="text/css" href="new_group_style.css">
+    <script src="new_group_script.js"></script>
+</head>
+<body>
+    <div class="page_container">
+        <div class="page_item_container" id="group_info_form_container">
+            <h2>Create A Group:</h2>
+            <form id="group_info_form" method="post">
+                <label>Group Title:</label><br>
+                <input class="text_box" id="group_title"><br>
+                <label>Group Description:</label><br>
+                <input class="text_box" id="group_description"><br>
+                <label>Group Interest:</label><br>
+                <input class="text_box" id="group_interest"><br>
+                <label>Location:</label><br>
+                <input class="text_box" id="location"><br>
+                <label>Contact Info:</label><br>
+                <input class="text_box" id="group_contact"><br>
+                <label>Image Link:</label><br>
+                <input class="text_box" id="image_link"><br>
+                <button type="button" onclick="loadAddMemberContainer()">Next</button>
+            </form>
+        </div>
+        <div class="page_item_container" id="group_member_form_container">
+            <div class="edit_member_box" id="add_member_content">
+                <form id="add_member_form">
+                    <label>Add Member (email):</label><br>
+                    <input type="email" id="add_member" class="text_box">
+                    <button type="button">Add</button>
+                    <label class="feedback_text" id="add_member_feedback"></label>
+                </form>
+            </div>
+            <button type="button" class="back_button" onclick="loadInfoContainer()">Back</button>
+            <button type="button" class="next_button" onclick="location.href='../front_page/front_page.html'">Done</button>
+        </div>
+    </div>
+    <script>init()</script>
+</body>
+</html>
