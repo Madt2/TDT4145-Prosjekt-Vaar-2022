@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Groups</title>
+    <link rel="stylesheet" type="text/css" href="groups_style.css">
+    <script src="groups_script.js"></script>
+</head>
+<body>
+    <div class="page_container">
+        <!--- group page content (everything except header and footer) --->
+        <div class="groups">
+            <!--- list view of groups --->
+            <div class="groups_list" id="groups_list"></div>
+            <!--- selected group's page --->
+
+            <div class="page_content">
+                <nav>
+                    <a href="url" class="back_home">&#8592; Back to Home page</a>
+                    <button id="edit_button" onclick="toggleEditPage()" type="button">Edit</button>
+                </nav>
+                <div id="group_edit_page">
+                    <form id="edit_group_form" method="post">
+                        <label>Group Title:</label><br>
+                        <input class="text_box" id="group_title"><br>
+                        <label>Group Description:</label><br>
+                        <input class="text_box" id="group_description"><br>
+                        <label>Group Interest:</label><br>
+                        <input class="text_box" id="group_interest"><br>
+                        <label>Location:</label><br>
+                        <input class="text_box" id="location"><br>
+                        <label>Contact Info:</label><br>
+                        <input class="text_box" id="group_contact"><br>
+                        <label>Image Link:</label><br>
+                        <input class="text_box" id="image_link"><br>
+                        <button type="button">Save</button>
+                    </form>
+                    <div id="edit_group_members">
+                        <div class="edit_member_box" id="add_member_content">
+                            <form id="add_member_form">
+                                <label>Add Member (email):</label><br>
+                                <input type="email" id="add_member" class="text_box">
+                                <button type="button">Add</button>
+                            </form>
+                        </div>
+                        <div class="edit_member_box">
+                            <label>Remove Member:</label><br>
+                            <ul id="edit_members_list"></ul>
+                            <button id="remove_member">Remove Member</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="group_page">
+                    <h2 id="group_name"></h2>
+                    <div class="group_info">
+                        <!--- plain info display on group's page, left, middle and right part --->
+                        <div class="group_info_left">
+                            <h4>Common-interest:</h4>
+                            <p id="group_interest"><span id="interest_var"></span></p>
+                            <h4>Members age range:</h4>
+                            <p id="group_age_range"><span id="age_min_var"></span>-<span id="age_max_var"></span></p>
+                            <h4>Contact information:</h4>
+                            <p id="contact_information"><span id="contact_var"></span></p>
+                            <h4>Location:</h4>
+                            <p id="location"><span id="location_var"></span></p>
+                        </div>
+                        <div class="group_info_middle">
+                            <img id="group_image">
+                            <h3 id="group_description"><span id="description_var"></span></h3>
+                        </div>
+                        <div class="group_info_right">
+                            <h4 id="members_title">Members(<span id="member_count"></span>):</h4>
+                            <ul id="group_members"></ul>
+                        </div>
+                    </div>
+                    <!--- groups matches section --->
+                    <h4>Group Matches:</h4>
+                    <div class="group_matches" id="match_list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--- init script function --->
+    <script>init()</script>
+</body>
+</html>
