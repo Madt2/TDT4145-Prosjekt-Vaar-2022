@@ -20,9 +20,10 @@ def groups_overview_page(request):
 
 
 def groups_page(request):
-    user_group = Group.objects.all()
-    user_group.filter(user_group.group_leader, request.user)
-    return render(request, "GroupUp/groups_page.html", {'group': user_group})
+    # Temporarily disabled logic
+    # user_group = Group.objects.all()
+    # user_group.filter(user_group.group_leader, request.user)
+    return render(request, "GroupUp/groups_page.html")
 
 
 def login_page(request):

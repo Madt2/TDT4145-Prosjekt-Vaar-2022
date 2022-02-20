@@ -1,0 +1,312 @@
+
+/* global styling, this can be put into global css file: */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.page_container {
+    position: relative;
+    height: 100vh;
+}
+
+h4 {
+    margin: 20px 0px 10px 0px;
+}
+
+.text_box {
+    padding: 14px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    margin: 5px 0px;
+    font-size: 13px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.back_home {
+    text-decoration: none;
+    color: dimgray;
+}
+
+/* displays list of groups and group's page side by side */
+.groups {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Styling for group list */
+.groups_list {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+
+    position: relative;
+    width: 30%;
+    height: 100vh;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    background: ghostwhite;
+    padding: 0 2px;
+    border-right: lightgray;
+    border-width: 1px;
+    border-right-style: solid;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    clip-path: inset(0px -15px 0px 0px);
+}
+
+.groups_list::-webkit-scrollbar {
+  display: none;
+}
+
+.group_list_element {
+    position: relative;
+    border-style: solid;
+    border-color: lightgray;
+    border-width: 1px;
+    border-radius: 4px;
+    padding: 5px 0;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.group_list_element.active {
+    background-color: dodgerblue;
+}
+
+.group_list_image {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    object-fit:cover;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    border-radius:50%;
+}
+
+.group_list_title {
+    margin-left: 15px;
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+/* styling for group's page */
+.page_content {
+    position: relative;
+    width: 70%;
+    height: 100vh;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+/* style for nav */
+
+nav {
+    height: 5vh;
+    width: 100%;
+    display: inline-block;
+
+}
+
+#edit_button {
+    float: right;
+}
+
+/* styling for group's page top part */
+
+#group_page {
+    height: 80vh;
+    width: 100%;
+}
+
+#group_page.active {
+    display: none;
+}
+
+.group_info {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.group_info_left {
+    width: 33.3%;
+    height: 100%;
+    border: none gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.group_info_middle {
+    width: 33.3%;
+    height: 100%;
+    border: none gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.group_info_right {
+    width: 33.3%;
+    height: 100%;
+    border: none gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+#group_name {
+    height: 10%;
+    width: 100%;
+    font-size: xxx-large;
+    text-align: center;
+    margin: 0px 0px 20px 0px;
+}
+
+#group_image {
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+#group_members {
+    height: 50%;
+    width: 80%;
+    border-style: solid;
+    border-color: dimgray;
+    border-radius: 5px;
+    overflow: scroll;
+    text-align: center;
+}
+
+#group_members::-webkit-scrollbar {
+    display: none;
+}
+
+.member_element {
+    background: lightgray;
+}
+
+.member_element:nth-child(even) {
+    background: whitesmoke;
+}
+
+/* styling group's page lower part */
+
+.group_matches {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+
+    height: 30%;
+    border-style: solid;
+    border-color: dimgray;
+    border-radius: 5px;
+    overflow: scroll;
+}
+
+.group_matches::-webkit-scrollbar {
+  display: none;
+}
+
+.match_element {
+    height: 25px;
+    width: 100%;
+    background: lightgray;
+    display: flex;
+    flex-direction: row;
+}
+
+.match_box {
+    width: 33.3%;
+    padding-left: 5%;
+    border-right-style: solid;
+    border-width: thin;
+}
+
+.match_box:last-child {
+    border-right-style: none;
+    border-right-width: thin;
+}
+
+.match_text {
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+.match_element:nth-child(even) {
+    background: whitesmoke;
+}
+
+#group_edit_page {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+#group_edit_page.active{
+    display: none;
+}
+
+#edit_group_members {
+    width: 100%;
+    height: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: row;
+}
+
+#edit_members_list {
+    height: 100%;
+    overflow: scroll;
+    border-style: solid;
+    border-color: dimgray;
+    border-radius: 5px;
+
+    text-align: center;
+}
+
+#edit_members_list::-webkit-scrollbar {
+  display: none;
+}
+
+.member_element.active {
+    background-color: dodgerblue;
+}
+
+.edit_member_box {
+    height: 100%;
+    width: 50%;
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
+#add_member_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#remove_member {
+    float: right;
+}
+
+#add_member {
+    width: 70%;
+    height: 20px;
+}
