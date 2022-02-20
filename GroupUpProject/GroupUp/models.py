@@ -16,7 +16,7 @@ class Profile(models.Model):
     def age(self):
         today = date.today()
         born = self.date_of_birth
-        return today.year-born.year-((today.month, today.day) < (born.month, born.day))
+        return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
     @property
     def name(self):
@@ -48,8 +48,8 @@ class Group(models.Model):
     members = models.ManyToManyField(
         Profile, through="MemberOfGroup", blank=True)
     location = models.CharField("Location", max_length=30)
-    interests = models.ManyToManyField(Interest, through="GroupHasInterest")
-    image = models.ImageField("GroupImage")
+    interests = models.ManyToManyField(Interest, through="GroupHasInterest", blank=True)
+    # image = models.ImageField("GroupImage")
 
     objects = models.Manager()
 
@@ -84,6 +84,5 @@ class GroupReport(models.Model):
 class MemberOfGroup(models.Model):
     member = models.ForeignKey(Profile, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
-
 
 # Create your models here.
