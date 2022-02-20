@@ -8,11 +8,11 @@ def front_page(request):
 
 
 def groups_overview_page(request):
-    return render(request, "GroupUp/groups_overview_page.html")
+    return render(request, "GroupUp/groups_overview/groups_overview_page.html")
 
 
 def groups_page(request):
-    return render(request, "GroupUp/groups_page.html")
+    return render(request, "GroupUp/groups/groups_page.html")
 
 
 def login_page(request):
