@@ -3,7 +3,7 @@
 
 let activeGroup = null;
 let activeEditMember = null;
-let groupList = new Array();
+let groupList = [];
 
 /* Mock variables */
 const groupAmount = 20;
@@ -13,7 +13,7 @@ const matchAmount = 20;
 /* "Classes" */
 
 //Member "class", use this to create a member object with "new member(string name, string id(email), int age, boolean isLeader)".
-function member(memberName, memberId, memberAge, isLeader) {
+function Member(memberName, memberId, memberAge, isLeader) {
     this.name = memberName;
     this.id = memberId;
     this.age = memberAge;
@@ -21,17 +21,19 @@ function member(memberName, memberId, memberAge, isLeader) {
 }
 
 //Match "class", use this to create a match object (which belongs to a group) with "new match(string name, string interest, string contactInfo)".
-function match(matchName, matchInterest, matchContact) {
+function Match(matchName, matchInterest, matchContact) {
     this.name = matchName;
     this.interest = matchInterest;
     this.contact = matchContact;
 }
 
 //Group "class", use this to create a group object with "new group(string name, string interest, string contactInfo, Array memberList, Array groupMatchList)".
-function group(groupName, groupInterest, contactInfo, memberList, groupMatchList) {
+function Group(groupName, description, groupInterest, contactInfo, location, memberList, groupMatchList) {
    this.name = groupName;
+   this.description = description;
    this.imageLink = null;
    this.interest = groupInterest;
+   this.location = location;
    this.leader = null;
    this.minAge = null;
    this.maxAge = null;
@@ -56,17 +58,17 @@ function group(groupName, groupInterest, contactInfo, memberList, groupMatchList
 //function for creating fake group items to test/demonstrate how the gui displays items:
 function initMockGroups() {
     for (let i = 0; i < groupAmount; i++) {
-        let testMembers = new Array();
+        let testMembers = [];
         for (let j = 0; j < memberAmount - 1; j++) {
-            testMembers.push(new member("member" + j, "member" + j + "@mail.com", 20 + j, false));
+            testMembers.push(new Member("member" + j, "member" + j + "@mail.com", 20 + j, false));
         }
-        testMembers.push(new member("testLeader", "leader@mail.com", 20, true));
+        testMembers.push(new Member("testLeader", "leader@mail.com", 20, true));
 
-        let matches = new Array();
+        let matches = [];
         for (let j = 0; j < matchAmount; j++) {
-            matches.push(new match("match" + j, "interest", "group" + j + "mail@mail.com"))
+            matches.push(new Match("match" + j, "interest", "group" + j + "mail@mail.com"))
         }
-        groupList.push(new group("group" + i, "An interest", "group" + i + "@mail.com", testMembers, matches));
+        groupList.push(new Group("group" + i, "We are the best group ever created!", "An interest", "group" + i + "@mail.com", "Bergen", testMembers, matches));
     }
     groupList[0].imageLink = "https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/2768983/2768983-1575334973329-68d1c3ac9b5de.jpg";
 }
@@ -228,10 +230,12 @@ function drawGroupPage(group_index) {
     changeGroupListElementColor(groupElement);
 
     getId("group_name").innerHTML = groupList[groupNr].name;
+    getId("description_var").innerHTML = groupList[groupNr].description;
     getId("interest_var").innerHTML = groupList[groupNr].interest;
     getId("age_min_var").innerHTML = groupList[groupNr].minAge;
     getId("age_max_var").innerHTML = groupList[groupNr].maxAge;
     getId("contact_var").innerHTML = groupList[groupNr].contact;
+    getId("location_var").innerHTML = groupList[groupNr].location;
 
     if (groupList[groupNr].imageLink !== null) {
             groupImage.setAttribute("src", groupList[groupNr].imageLink);
@@ -251,6 +255,13 @@ function toggleEditPage() {
     const editPage = getId("group_edit_page");
     groupPage.classList.toggle("active");
     editPage.classList.toggle("active");
+
+    let editButton = getId("edit_button");
+    if (editButton.innerHTML === "Edit") {
+        editButton.innerHTML = "Back";
+    } else {
+        editButton.innerHTML = "Edit";
+    }
 }
 
 function setViewToGroupPage() {
@@ -258,6 +269,8 @@ function setViewToGroupPage() {
     const editPage = getId("group_edit_page");
     groupPage.classList.remove("active");
     editPage.classList.add("active");
+    let editButton = getId("edit_button");
+    editButton.innerHTML = "Edit";
 }
 
 //Initialization function, run this as late as possible in html file.
