@@ -39,6 +39,20 @@ def groups_page(request):
     return render(request, "GroupUp/groups_page.html")
 
 
+def group_page(request):
+    # Temporarily disabled logic
+    # user_group = Group.objects.all()
+    # user_group.filter(user_group.group_leader, request.user)
+    return render(request, "GroupUp/group_page.html")
+
+
+def edit_group_page(request):
+    # Temporarily disabled logic
+    # user_group = Group.objects.all()
+    # user_group.filter(user_group.group_leader, request.user)
+    return render(request, "GroupUp/edit_group_page.html")
+
+
 def login_page(request):
     login_form = AuthenticationForm()
     signup_form = SignUpForm()
@@ -49,7 +63,7 @@ def login_page(request):
             login(request, user)
             return redirect('front_page')
 
-    return render(request, 'GroupUp/login_page.html', {'login_form': login_form, "signup_form" : signup_form})
+    return render(request, 'GroupUp/login_page.html', {'login_form': login_form, "signup_form": signup_form})
 
 
 def profile_page(request):

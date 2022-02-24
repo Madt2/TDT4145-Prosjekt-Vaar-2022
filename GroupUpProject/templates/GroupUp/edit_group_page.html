@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'GroupUp/my_groups/edit_group_style.css' %}">
+    <script src="{% static 'GroupUp/my_groups/groups_script.js' %}"></script>
+</head>
+<body>
+    <div class="page">
+        <nav>
+            <button class="back_button" onclick="location.href='http://127.0.0.1:8000/GroupUp/groups/group_page'" type="button">
+                &#8592; Back</button>
+        </nav>
+        <div class="page_container">
+            <div id="edit_info">
+                <div id="content_container">
+                    <form id="edit_group_form" method="post">
+                        <label>Group Title:</label><br>
+                        <input class="text_box" id="group_title"><br>
+                        <label>Group Interest:</label><br>
+                        <input class="text_box" id="group_interest"><br>
+                        <label>Contact Info:</label><br>
+                        <input class="text_box" id="group_contact"><br>
+                        <label>Image Link:</label><br>
+                        <input class="text_box" id="image_link"><br>
+                        <button type="button">Save</button>
+                    </form>
+                </div>
+            </div>
+            <div id="edit_members">
+                <div class="content_container">
+                    <form id="add_member_form">
+                        <label>Add Member (email):</label><br>
+                        <input type="email" id="add_member" class="text_box">
+                        <button type="button">Add</button>
+                    </form>
+                    <form id="remove_member_form">
+                        <label>Remove Member (email):</label><br>
+                        <input type="email" id="remove_member" class="text_box">
+                        <button type="button">Remove</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
