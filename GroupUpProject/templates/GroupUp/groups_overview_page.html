@@ -5,9 +5,19 @@
     <title>Title</title>
 </head>
 <body>
-    <header>This is where you see an overview of existing groups</header>
+    <header>Overview over all registered groups.</header>
     <br>
     <br>
+    {% for group in groups %}
+        <a href="" style="text-decoration: none; color: black">
+            <div style="border: 2px solid black; border-radius: 5px; margin: 20px; padding-left: 25px; width: 500px;">
+                <h2>{{ group.name }}</h2>
+                <label for="">Description:</label>
+                <p>{{ group.description}}</p>
+            </div>
+        </a>
+    {% endfor %}
+
     <a href="http://127.0.0.1:8000/GroupUp/front_page/"><- Back</a>
 </body>
 </html>

@@ -2,19 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'GroupUp/front_page/front_page.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>GroupUp</title>
+    </head>
+
 <body>
-    <header>This is Frontpage</header>
+    <header></header>
+    <h1>Group up</h1>
     <br>
+    <p> Her vil vi kanskje skrive noe om appen, og mulighetene man har for den.</p>
+    <div id="container1">
+        <div id="div1">
+    <a href="http://127.0.0.1:8000/GroupUp/new_group/" class= "block"> New Group</a>
     <br>
-    <a href="http://127.0.0.1:8000/GroupUp/groups/">My Groups</a>
+            </div>
+        <div id="div2">
+    <a href="http://127.0.0.1:8000/GroupUp/groups/groups_page" class= "block"> My Groups</a>
     <br>
-    <a href="http://127.0.0.1:8000/GroupUp/groups_overview/">Find Groups</a>
+            </div>
+    </div>
+
+    <div id="container2">
+        <div id="div3">
+    <a href="http://127.0.0.1:8000/GroupUp/groups_overview/" class="block">Find Groups</a>
     <br>
-    <a href="http://127.0.0.1:8000/GroupUp/profile/">Profile</a>
+            </div>
+        <div id="div4">
+    <a href="http://127.0.0.1:8000/GroupUp/profile/" class="block">Profile</a>
     <br>
+             </div>
+    </div>
     <br>
+    <div id="logout">
+        <!-- Burde legge til funksjonalitet som logger bruker ut -->
     <a href="http://127.0.0.1:8000/GroupUp/login/">Logout</a>
+    </div>
+
 </body>
 </html>

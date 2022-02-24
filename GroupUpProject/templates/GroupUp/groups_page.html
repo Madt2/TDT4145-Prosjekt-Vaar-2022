@@ -1,13 +1,48 @@
 <!DOCTYPE html>
+{% with group_name="test group" %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>My groups</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'GroupUp/my_groups/groups_style.css' %}">
+    <script src="{% static 'GroupUp/my_groups/groups_script.js' %}"></script>
 </head>
 <body>
-    <header>This is where you see the groups you are in, and group info when you click in the group.</header>
-    <br>
-    <br>
-    <a href="http://127.0.0.1:8000/GroupUp/front_page/"><- Back</a>
+    <div class="page">
+        <nav>
+            <button onclick="location.href='http://127.0.0.1:8000/GroupUp/front_page/'" type="button">
+                &#8592; Back</button>
+        </nav>
+        <div class="page_container">
+            <div id="groups">
+                <div class="content_container">
+                    {% for group in groups %}
+                        <div class="group_card">
+                            <h4>{{ group_name }}</h4>
+                            <img class="card_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
+                        </div>
+                    {% endfor %}
+                    <div class="group_card" onclick="location.href='http://127.0.0.1:8000/GroupUp/groups/group_page'">
+                        <h4>{{ group_name }}</h4>
+                        <img class="card_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
+                    </div>
+                <div class="group_card" onclick="location.href='http://127.0.0.1:8000/GroupUp/groups/group_page'">
+                            <h4>{{ group_name }}</h4>
+                            <img class="card_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
+                        </div>
+            <div class="group_card" onclick="location.href='http://127.0.0.1:8000/GroupUp/groups/group_page'">
+                            <h4>{{ group_name }}</h4>
+                            <img class="card_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
+                        </div>
+                <div class="group_card" onclick="location.href='http://127.0.0.1:8000/GroupUp/groups/group_page'">
+                            <h4>{{ group_name }}</h4>
+                            <img class="card_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
+                        </div>
+            </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
+{% endwith %}

@@ -1,41 +1,88 @@
+from datetime import date
+from pydoc import describe
 from django.db import models
-from django.utils import timezone
+import uuid
 from django.contrib.auth.models import User
 
 
-class Interests(models.Model):
-    name = models.CharField(max_length=30, primary_key=True)
-    picture = models.ImageField()
-    description = models.TextField()
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    first_name = models.CharField(default="", max_length=30)
+    last_name = models.CharField(default="", max_length=30)
+    email = models.EmailField("User's e-mail")
+    date_of_birth = models.DateField("User's birth date")
+
+    @property
+    def age(self):
+        today = date.today()
+        born = self.date_of_birth
+        return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+
+    @property
+    def name(self):
+        return self.first_name + ' ' + self.last_name
+
+    def __meta__(self):
+        db_table = 'GroupUp_profile'
+
+    def get_all_objects(self):
+        all_entries = Profile.objects.all()
+        return all_entries
+
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
+
+
+class Interest(models.Model):
+    name = models.CharField("NameOfInterest", max_length=30)
 
     def __str__(self):
         return self.name
+
 
 class Group(models.Model):
-    name = models.CharField(max_length= 50, primary_key= True)
-    description = models.TextField()
-    picture = models.ImageField()
-    average_age = models.IntegerField()
-    location = models.CharField(max_length= 30)
-    date = models.DateTimeField(default=timezone.now)
-    members = models.ManyToManyField(User, through="GroupMembers", blank=False)
-    interests = models.ManyToManyField(Interests)
+    name = models.CharField('Group Name', max_length=120)
+    group_leader = models.ForeignKey(
+        User, blank=True, null=True, on_delete=models.SET_NULL)
+    description = models.TextField("Description", blank=True)
+    members = models.ManyToManyField(
+        Profile, through="MemberOfGroup", blank=True)
+    location = models.CharField("Location", max_length=30)
+    interests = models.ManyToManyField(Interest, through="GroupHasInterest", blank=True)
+    # image = models.ImageField("GroupImage")
+
+    objects = models.Manager()
+
+    def __meta__(self):
+        db_table = 'GroupUp_group'
+
+    def get_owner_group(self):
+        all_entries = Group.objects.all()
+        return all_entries
 
     def __str__(self):
         return self.name
 
-class GroupMembers(models.Model):
+    @property
+    def numberOfMembers(self):
+        return self.members.count()
+
+
+class GroupHasInterest(models.Model):
+    interest = models.ForeignKey(Interest, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
-    member = models.ForeignKey(User, on_delete=models.CASCADE)
-    is_admin = models.BooleanField()
-
-class GroupMatches(models.Model):
-    review = models.IntegerField()
-
-class Reports(models.Model):
-    report_type = models.CharField(max_length=20)
-    description = models.TextField()
-    reported_user = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
 
 
+class GroupReport(models.Model):
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    description = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.group
+
+
+class MemberOfGroup(models.Model):
+    member = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+
+# Create your models here.

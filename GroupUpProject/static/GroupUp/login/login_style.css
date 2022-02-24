@@ -1,0 +1,137 @@
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start;
+}
+
+#page_container {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+}
+
+#login_main_title.is-visible {
+  opacity: 1;
+  transform: rotateZ(-2deg);
+}
+
+#front_page_image {
+    z-index: 1;
+    object-fit: cover;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+#welcome {
+    height: 100vh;
+    position: relative;
+}
+
+#login_main_title {
+    font-size: 10vw;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 10%;
+    text-align: center;
+    color: whitesmoke;
+    z-index: 2;
+}
+
+#login_sub_title {
+    font-size: 3vw;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 80%;
+    text-align: center;
+    color: whitesmoke;
+    z-index: 2;
+}
+
+#page_container {
+    height: 100vh;
+    position: relative;
+    background-color: whitesmoke;
+}
+
+h3 {
+    margin: 0px;
+    margin-bottom: 25px;
+    font-size: 30px;
+}
+
+.login_overlay{
+    background-color: white;
+    border-radius: 15px;
+    border-color: lightgray;
+    border-width: thin;
+    border-style: none;
+    padding: 50px;
+    width: 30%;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.button {
+    background-color: deepskyblue;
+    position: relative;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 5px 0px;
+}
+
+.first_button {
+}
+
+.last_button {
+    float: right;
+}
+
+.text_box_area {
+    margin: 10px 0px;
+}
+
+.button_area {
+}
+
+.checkbox_area {
+    display: flex;
+    flex-direction: column;
+}
+
+.text_box {
+    padding: 14px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    margin: 5px 0px;
+    font-size: 13px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.checkbox_element {
+    margin: 5px 0px;
+
+}
+
+footer {
+    height: 100px;
+    background-color: aquamarine;
+    position: absolute;
+    bottom: 0;
+    z-index: 4;
+}
