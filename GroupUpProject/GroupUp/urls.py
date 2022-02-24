@@ -21,7 +21,9 @@ from . import views
 urlpatterns = [
     path('front_page/', views.front_page, name='front_page'),
     path('groups_overview/', views.groups_overview_page, name='groups_overview_page'),
-    path('groups/', views.groups_page, name='groups_page'),
+    path('groups/groups_page', views.groups_page, name='groups_page'),
+    path('groups/group_page', views.group_page, name='group_page'),
+    path('groups/edit_group_page', views.edit_group_page, name='edit_group_page'),
     path('login/', views.login_page, name='login_page'),
     path('profile/', views.profile_page, name='profile_page'),
     path('new_group/', views.new_group_page, name='new_group_page'),
