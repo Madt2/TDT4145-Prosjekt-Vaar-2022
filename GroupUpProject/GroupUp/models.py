@@ -5,11 +5,10 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    #username = models.CharField(user.username)
     first_name = models.CharField(default="", max_length=30)
     last_name = models.CharField(default="", max_length=30)
     email = models.EmailField('User Email')
-    age = models.IntegerField()
+    date_of_birth = models.DateField("User's birth date")
 
     def __meta__(self):
         db_table = 'GroupUp_profile'
@@ -27,13 +26,13 @@ class Group(models.Model):
     activity_name = models.CharField('Activity', max_length=120)
     activity_date = models.DateTimeField(default=timezone.now)
     owner = models.ForeignKey(
-        User, blank=True, null=True, on_delete=models.SET_NULL)
+        User, null=True, on_delete=models.SET_NULL)
     description = models.TextField(blank=True)
     members = models.ManyToManyField(
         Profile, through="MemberOfGroup", blank=True)
     location = models.CharField(max_length=30)
     interests = models.ManyToManyField(Interest)
-    image = models.FileField(upload_to='images/', null=True, verbose_name="")
+    image = models.FileField(upload_to='images/', blank=True, verbose_name="")
 
     objects = models.Manager()
 

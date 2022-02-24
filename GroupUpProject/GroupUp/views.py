@@ -6,20 +6,31 @@ from django.contrib.auth.models import User
 from .forms import SignUpForm, GroupForm
 from .models import Profile, Group
 from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 
 
 # Create your views here.
 def front_page(request):
     return render(request, "GroupUp/front_page.html")
 
+class GroupsListView(ListView):
+    model = Group
 
-class GroupDetailView(DetailView):
+    def get(self, request, *args, **kwargs):
+        groups = Group.objects.values().all().exclude(owner_id=request.user.id)
+        context = {'groups': groups}
+        return render(request, 'GroupUp/view_groups.html', context)
+
+class MyGroupsListView(ListView):
     model = Group
 
     def get(self, request, *args, **kwargs):
         groups = Group.objects.values().filter(owner_id=request.user.id)
         context = {'groups': groups}
         return render(request, 'GroupUp/groups_page.html', context)
+
+class GroupDetailView(DetailView):
+    pass
 
 
 def groups_overview_page(request):
