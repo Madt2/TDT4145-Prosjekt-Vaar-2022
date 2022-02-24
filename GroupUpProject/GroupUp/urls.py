@@ -15,15 +15,16 @@ Including another URLconf
 """
 from django.urls import path
 from . import views
+from django.views.generic.base import TemplateView
 
 # What does name= do??
 
 urlpatterns = [
     path('front_page/', views.front_page, name='front_page'),
     path('groups_overview/', views.groups_overview_page, name='groups_overview_page'),
-    path('groups/groups_page', views.groups_page, name='groups_page'),
-    path('groups/group_page', views.group_page, name='group_page'),
-    path('groups/edit_group_page', views.edit_group_page, name='edit_group_page'),
+    path('groups_page/', views.MyGroupsListView.as_view(), name='groups_page'),
+    path('group_page/', views.group_page, name='group_page'),
+    path('edit_group_page/', views.edit_group_page, name='edit_group_page'),
     path('login/', views.login_page, name='login_page'),
     path('profile/', views.profile_page, name='profile_page'),
     path('new_group/', views.new_group_page, name='new_group_page'),

@@ -3,6 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.views.generic.list import ListView
 
 from .forms import GroupForm, SignUpForm
 from .models import Profile, Group
@@ -32,11 +33,14 @@ def groups_overview_page(request):
     return render(request, "GroupUp/groups_overview_page.html", {"groups": all_groups})
 
 
-def groups_page(request):
-    # Temporarily disabled logic
-    # user_group = Group.objects.all()
-    # user_group.filter(user_group.group_leader, request.user)
-    return render(request, "GroupUp/groups_page.html")
+class MyGroupsListView(ListView):
+    model = Group
+
+    def get(self, request, *args, **kwargs):
+        groups = Group.objects.values().filter(group_leader_id=request.user.id)
+        context = {'groups': groups}
+        return render(request, 'GroupUp/groups_page.html', context)
+
 
 
 def group_page(request):
@@ -76,15 +80,10 @@ def profile_page(request):
 
 def signup(request):
     if request.method == 'POST':
-        print("1")
         form = SignUpForm(data=request.POST)
-        print("2")
         if form.is_valid():
-            print("3")
             # Changed temporarily to only save Users and not profiles
-            user = form.save()
-            print("4")
+            user, profile = form.save()
             login(request, user)
-            print("5")
             return redirect('front_page')
     return redirect('login_page')

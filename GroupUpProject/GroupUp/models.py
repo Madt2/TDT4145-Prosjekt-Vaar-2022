@@ -11,6 +11,7 @@ class Profile(models.Model):
     last_name = models.CharField(default="", max_length=30)
     email = models.EmailField("User's e-mail")
     date_of_birth = models.DateField("User's birth date")
+    description = models.TextField(default="", blank=True)
 
     @property
     def age(self):
@@ -48,7 +49,7 @@ class Group(models.Model):
     members = models.ManyToManyField(
         Profile, through="MemberOfGroup", blank=True)
     location = models.CharField("Location", max_length=30)
-    interests = models.ManyToManyField(Interest, through="GroupHasInterest", blank=True)
+    #interests = models.ManyToManyField(Interest, through="GroupHasInterest", blank=True)
     # image = models.ImageField("GroupImage")
 
     objects = models.Manager()

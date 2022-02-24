@@ -4,61 +4,63 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm, widgets
 from .models import Group, Profile, GroupReport
+import datetime
 
 
 class SignUpForm(UserCreationForm):
-    # first_name = forms.CharField(max_length=30, required=True)
-    # last_name = forms.CharField(max_length=30, required=True)
-    # email = forms.EmailField(max_length=320, required=True)
-    # date_of_birth = forms.DateField(required=True)
+    def year_choices():
+        return [r for r in range(1950, datetime.date.today().year+1)]
+    DATE_INPUT_FORMATS = ('%d-%m-%Y','%Y-%m-%d')
+    
+    first_name = forms.CharField(
+        max_length=30, required=True)
+    last_name = forms.CharField(
+        max_length=30, required=True)
+    email = forms.EmailField(
+        max_length=254, help_text='Required. Inform a valid email address.')
+    date_of_birth = forms.DateField(required=True, input_formats=DATE_INPUT_FORMATS, widget=forms.SelectDateWidget(years=year_choices()))
+    description = forms.CharField(max_length=300, help_text='Optional.')
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'email', 'password1', 'password2')
-        labels = {
-            'first_name': 'First Name',
-            'last_name': 'Last Name',
-            'username': 'username',
-            'email': 'E-mail',
-            'password1': 'Password',
-            'password2': 'Repeat Password',
-        }
-        widgets = {
-            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}),
-            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'}),
-            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'E-mail'}),
-            'password1': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}),
-            'password2': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Repeat Password'}),
-        }
+        fields = ('username', 'first_name', 'last_name', 'description',
+                  'email', 'date_of_birth', 'password1', 'password2', )
 
     def save(self, commit=True):
         if not commit:
-            raise NotImplementedError("Can't create User and UserProfile without database save")
+            raise NotImplementedError(
+                "Can't create User and UserProfile without database save")
         user = super(SignUpForm, self).save(commit=True)
-        # Changed to only make Users and not profiles for now
-        # user_profile = Profile(user=user, age=self.cleaned_data['age'])
-        # user_profile.save()
-        return user  # user_profile
+        user_profile = Profile(user=user, first_name=self.cleaned_data['first_name'], last_name=self.cleaned_data['last_name'], 
+                                email=self.cleaned_data['email'], date_of_birth=self.cleaned_data['date_of_birth'], description=self.cleaned_data['description'])
+        user_profile.save()
+        return user, user_profile
+
 
 
 class GroupForm(ModelForm):
-    # Removed image from fields and labels to attempt to successfully create group
     class Meta:
         model = Group
-        fields = ['name', 'description', 'location', 'interests']
+        fields = ('name', 'group_leader',
+                  'members', 'location', 'description')
         labels = {
-            'name': 'Name',
-            'description': 'Group Description',
+            'name': '',
+            #'activity_name': 'Activity',
+            #'activity_date': 'YYYY-MM-DD HH:MM:SS',
+            'members': 'Members',
             'location': 'Location',
-            'interests': 'Interests',
+            'description': 'Group Description',
+            'image': 'Group Image'
         }
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Group Name'}),
-            'description': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Description'}),
-            'location': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Location'}),
-            'interests': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Interests'}),
+            #'activity_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Activity'}),
+            #'activity_date': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Activity Date'}),
+            'members': forms.SelectMultiple(attrs={'class': 'form-control', 'placeholder': 'Members'}),
+            'location': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Trondheim'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description'}),
         }
+
 
 
 """

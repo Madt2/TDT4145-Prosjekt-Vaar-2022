@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{% with group_name="test group" %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,30 +18,13 @@
                 <div class="content_container">
                     {% for group in groups %}
                         <div class="group_card">
-                            <h4>{{ group_name }}</h4>
+                            <h4>{{ group.name }}</h4>
                             <img class="card_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
                         </div>
                     {% endfor %}
-                    <div class="group_card" onclick="location.href='http://127.0.0.1:8000/GroupUp/groups/group_page'">
-                        <h4>{{ group_name }}</h4>
-                        <img class="card_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
-                    </div>
-                <div class="group_card" onclick="location.href='http://127.0.0.1:8000/GroupUp/groups/group_page'">
-                            <h4>{{ group_name }}</h4>
-                            <img class="card_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
-                        </div>
-            <div class="group_card" onclick="location.href='http://127.0.0.1:8000/GroupUp/groups/group_page'">
-                            <h4>{{ group_name }}</h4>
-                            <img class="card_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
-                        </div>
-                <div class="group_card" onclick="location.href='http://127.0.0.1:8000/GroupUp/groups/group_page'">
-                            <h4>{{ group_name }}</h4>
-                            <img class="card_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
-                        </div>
-            </div>
+                </div>
             </div>
         </div>
     </div>
 </body>
 </html>
-{% endwith %}
