@@ -17,10 +17,12 @@
             <div id="groups">
                 <div class="content_container">
                     {% for group in groups %}
+                    <a href="{% url ''}">
                         <div class="group_card">
                             <h4>{{ group.name }}</h4>
                             <img class="card_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
-                        </div>
+                        </div> 
+                    </a>
                     {% endfor %}
                 </div>
             </div>

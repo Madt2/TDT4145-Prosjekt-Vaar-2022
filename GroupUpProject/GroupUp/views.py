@@ -24,13 +24,14 @@ def new_group_page(request):
         form = GroupForm()
     return render(request, 'GroupUp/new_group.html', {'form': form})
 
+class GroupsListView(ListView):
+    model = Group
 
-def groups_overview_page(request):
-    # Temporarily disabled logic
-    # user_groups = Group.objects.all()
-    # user_groups.filter(user_groups.members, request.user)
-    all_groups = Group.objects.all()
-    return render(request, "GroupUp/groups_overview_page.html", {"groups": all_groups})
+    def get(self, request, *args, **kwargs):
+        groups = Group.objects.values().all().exclude(group_leader_id=request.user.id)
+        context = {'groups': groups}
+        return render(request, 'GroupUp/groups_overview_page.html', context)
+
 
 
 class MyGroupsListView(ListView):
