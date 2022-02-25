@@ -1,0 +1,148 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.page {
+    background-color: whitesmoke;
+    position: relative;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+nav {
+    height: 75px;
+    display: flex;
+    align-items: center;
+}
+
+#options {
+    width: 100%;
+    height: 50px;
+    background: grey;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#options > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-right-style: solid;
+    border-right-color: white;
+    border-right-width: thin;
+    height: 50%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#options > div:last-of-type {
+    border-right-style: none;
+}
+
+#options > div > label {
+    color: white;
+    padding: 5px;
+}
+
+#options > div > select {
+    padding: 5px;
+}
+
+button {
+    margin-left: 10px;
+    padding: 10px;
+    background: #04AA6D;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: dimgray;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+#group_card_container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 300px);
+    grid-auto-rows: 650px;
+    grid-gap: 20px;
+
+}
+
+.group_card {
+    padding: 5px;
+    box-sizing: border-box;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    background: #DDDDDD;
+    width: 300px;
+    height: 650px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #AAAAAA;
+    border-radius: 10px;
+}
+
+.group_card:hover {
+    transform: scale(1.02);
+    transition-duration: 0.5s;
+}
+
+.match_card_title {
+    height: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+.match_card_image {
+    height: 150px;
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.match_card_image > img {
+    height: 130px;
+    width: 130px;
+    object-fit: cover;
+}
+
+.match_card_info {
+    margin-right: auto;
+    margin-left: auto;
+    height: 350px;
+    width: 80%;
+}
+
+.match_card_info > label {
+    font-weight: bold;
+}
+
+.match_card_info > p {
+    margin-bottom: 25px;
+    word-wrap: break-word;
+}
+
+.match_card_button {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.match_card_button > button {
+
+}
+
+.match_card_button > button:hover {
+    transform: scale(1.02);
+    transition-duration: 0.25s;
+}
