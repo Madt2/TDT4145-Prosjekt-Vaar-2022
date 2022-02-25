@@ -2,22 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'GroupUp/match_page/match_page_style.css' %}">
+    <title>Find Match</title>
 </head>
 <body>
-    <header>Overview over all registered groups.</header>
-    <br>
-    <br>
-    {% for group in groups %}
-        <a href="" style="text-decoration: none; color: black">
-            <div style="border: 2px solid black; border-radius: 5px; margin: 20px; padding-left: 25px; width: 500px;">
-                <h2>{{ group.name }}</h2>
-                <label for="">Description:</label>
-                <p>{{ group.description}}</p>
-            </div>
-        </a>
-    {% endfor %}
 
-    <a href="http://127.0.0.1:8000/GroupUp/front_page/"><- Back</a>
+<div class="page">
+    <nav>
+        <button onclick="location.href='http://127.0.0.1:8000/GroupUp/front_page/'" type="button">
+            &#8592; Back</button>
+    </nav>
+    <div id="options">
+
+        <div>
+            <label for="groups">Select group to match for:</label>
+            <select name="group" id="groups">
+                <option value="value1">group1</option>
+                <option value="value2">group2</option>
+                <option value="value3">group3</option>
+                <option value="value4">group4</option>
+            </select>
+        </div>
+        <div>
+            <label for="interests">Sort interest after:</label>
+                <select name="interest" id="interests">
+                <option value="value1">interest1</option>
+                <option value="value2">interest2</option>
+                <option value="value3">interest3</option>
+                <option value="value4">interest4</option>
+            </select>
+        </div>
+    </div>
+    <div id="group_card_container">
+        {% for group in groups %}
+            <div class="group_card">
+                <div class="match_card_title">
+                    <h2>{{ group.name }}</h2>
+                </div>
+                <div class="match_card_image">
+                    <img class="card_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
+                </div>
+                <div class="match_card_info">
+                    <label>Description:</label>
+                    <p>{{ group.description}}</p>
+                    <label>Interest:</label>
+                    <p>interest variable</p>
+                    <label>Number of Members:</label>
+                    <p>member count variable</p>
+                    <label>Age Range:</label>
+                    <p>Age range variable</p>
+                    <label>Location:</label>
+                    <p>Location variable</p>
+                </div>
+                <div class="match_card_button">
+                    <button>GroupUp!</button>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 </body>
 </html>
