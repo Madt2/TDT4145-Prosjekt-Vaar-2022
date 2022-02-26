@@ -29,7 +29,6 @@ class SignUpForm(UserCreationForm):
     def clean_date_of_birth(self):
         date_of_birth = self.cleaned_data['date_of_birth']
         age = (datetime.date.today() - date_of_birth).days / 365
-        print(age)
         if age < 18:
             raise forms.ValidationError("You need to be 18 or above to register a user")
         return date_of_birth
