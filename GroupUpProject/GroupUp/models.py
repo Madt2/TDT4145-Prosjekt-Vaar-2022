@@ -49,17 +49,13 @@ class Group(models.Model):
     members = models.ManyToManyField(
         Profile, through="MemberOfGroup", blank=True)
     location = models.CharField("Location", max_length=30)
-    #interests = models.ManyToManyField(Interest, through="GroupHasInterest", blank=True)
-    # image = models.ImageField("GroupImage")
+    interest = models.OneToOneField(Interest, blank=True, null=True, on_delete=models.SET_NULL)
+    image = models.ImageField("GroupImage")
 
     objects = models.Manager()
 
     def __meta__(self):
         db_table = 'GroupUp_group'
-
-    def get_owner_group(self):
-        all_entries = Group.objects.all()
-        return all_entries
 
     def __str__(self):
         return self.name
@@ -67,12 +63,6 @@ class Group(models.Model):
     @property
     def numberOfMembers(self):
         return self.members.count()
-
-
-class GroupHasInterest(models.Model):
-    interest = models.ForeignKey(Interest, on_delete=models.CASCADE)
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
-
 
 class GroupReport(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
@@ -86,4 +76,4 @@ class MemberOfGroup(models.Model):
     member = models.ForeignKey(Profile, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
 
-# Create your models here.
+
