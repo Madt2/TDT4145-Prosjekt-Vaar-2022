@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 from .forms import GroupForm, SignUpForm
 from .models import Profile, Group
@@ -32,7 +33,9 @@ class GroupsListView(ListView):
         context = {'groups': groups}
         return render(request, 'GroupUp/groups_overview_page.html', context)
 
-
+class GroupDetailView(DetailView):
+    model = Group
+    template_name = "GroupUp/group_page.html"
 
 class MyGroupsListView(ListView):
     model = Group
