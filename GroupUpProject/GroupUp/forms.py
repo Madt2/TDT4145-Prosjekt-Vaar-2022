@@ -17,9 +17,9 @@ class SignUpForm(UserCreationForm):
     last_name = forms.CharField(
         max_length=30, required=True)
     email = forms.EmailField(
-        max_length=254, help_text='Required. Inform a valid email address.')
+        max_length=254, help_text='Required. Inform a valid email address.', required=True)
     date_of_birth = forms.DateField(required=True, input_formats=DATE_INPUT_FORMATS, widget=forms.SelectDateWidget(years=year_choices()))
-    description = forms.CharField(max_length=300, help_text='Optional.')
+    description = forms.CharField(max_length=300, help_text='Optional.', required=False)
 
     class Meta:
         model = User
