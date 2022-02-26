@@ -87,7 +87,6 @@ def signup(request):
             login(request, user)
             return redirect('front_page')
         else:
-            print(form.errors)
             return render(request, "GroupUp/age_error_page.html", {'errors' : form.errors})
     return redirect('login_page')
 
