@@ -19,20 +19,28 @@ class SignUpForm(UserCreationForm):
     email = forms.EmailField(
         max_length=254, help_text='Required. Inform a valid email address.')
     date_of_birth = forms.DateField(required=True, input_formats=DATE_INPUT_FORMATS, widget=forms.SelectDateWidget(years=year_choices()))
-    description = forms.CharField(max_length=300, help_text='Optional.')
+    description = forms.CharField(max_length=300, help_text='Optional.', required=False)
 
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'description',
                   'email', 'date_of_birth', 'password1', 'password2', )
-
+    
+    def clean_date_of_birth(self):
+        date_of_birth = self.cleaned_data['date_of_birth']
+        age = (datetime.date.today() - date_of_birth).days / 365
+        print(age)
+        if age < 18:
+            raise forms.ValidationError("You need to be 18 or above to register a user")
+        return date_of_birth
+    
     def save(self, commit=True):
         if not commit:
             raise NotImplementedError(
                 "Can't create User and UserProfile without database save")
         user = super(SignUpForm, self).save(commit=True)
         user_profile = Profile(user=user, first_name=self.cleaned_data['first_name'], last_name=self.cleaned_data['last_name'], 
-                                email=self.cleaned_data['email'], date_of_birth=self.cleaned_data['date_of_birth'], description=self.cleaned_data['description'])
+                                email=self.cleaned_data['email'], date_of_birth=self.cleaned_data['first_name'], description=self.cleaned_data['description'])
         user_profile.save()
         return user, user_profile
 
