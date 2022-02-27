@@ -4,11 +4,22 @@ function getId(id) {
 }
 
 function handleNoGroups() {
-    const container = getId("content_container");
-    const hasGroupCard = container.classList.contains('match_card');
+    let containerElements = getId("content_container").children;
+    let hasGroupCard = false;
+    for (let i = 0; i < containerElements.length; i++) {
+        if (containerElements[i].classList.contains('group_card')) {
+            hasGroupCard = true;
+        }
+    }
+    console.log(containerElements);
+
+    console.log(hasGroupCard);
     if (!hasGroupCard) {
+        const container = getId("content_container");
+        container.style.display = "flex";
         const text = getId("noGroupText");
         text.style.display = "block";
+
     }
 }
 

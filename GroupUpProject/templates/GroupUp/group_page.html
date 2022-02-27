@@ -20,28 +20,19 @@
         <nav>
             <button onclick="location.href='http://127.0.0.1:8000/GroupUp/groups/groups_page'" type="button">
                 &#8592; Back</button>
-            <button id="edit_button" onclick="location.href='http://127.0.0.1:8000/GroupUp/groups/edit_group_page'" type="button">
+            <button class="group_button" onclick="location.href='http://127.0.0.1:8000/GroupUp/edit_group_page'" type="button">
                 Edit Group Page</button>
+            <button class="group_button" onclick="location.href='http://127.0.0.1:8000/GroupUp/group_matches_page'" type="button">
+                Matches</button>
         </nav>
         <div class="page_container">
+        <h1> {{ group_name }} </h1>
             <div id="group_top">
                 <div class="content_container">
-                    <h2> {{ group_name }} </h2>
                     <div class="group_info">
                         <!--- plain info display on group's page, left, middle and right part --->
                         <div class="group_info_left">
-                            <h4>Common-interest:</h4>
-                            <p>{{ interest }}</p>
-                            <h4>Members age range:</h4>
-                            <p>{{ min_age }} - {{ max_age }}</p>
-                            <h4>Contact information:</h4>
-                            <p>{{ contact_info }}</p>
-                        </div>
-                        <div class="group_info_middle">
                             <img id="group_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
-                            <h4>{{ group_description }}</h4>
-                        </div>
-                        <div class="group_info_right">
                             <h4>Members({{ member_count }}):</h4>
                             <div id="group_members">
                                 <ul class="list_style">
@@ -54,36 +45,21 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="group_info_right">
+                            <h4>Description:</h4>
+                            <p>{{ group_description }}</p>
+                            <h4>Common-interest:</h4>
+                            <p>{{ interest }}</p>
+                            <h4>Members age range:</h4>
+                            <p>{{ min_age }} - {{ max_age }}</p>
+                            <h4>Contact information:</h4>
+                            <p>{{ contact_info }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
                 <!--- groups matches section --->
-            <div id="group_match">
-                <div class="content_container">
-                    <h4>Group Matches:</h4>
-                    <div id="match_list">
-                        <ul class="list_style">
-                            {% for match in matches %}
-                                <li class="list_element match_list">
-                                    <div class="match_list_element">{{ match.title }}</div>
-                                    <div class="match_list_element">{{ match.interest }}</div>
-                                    <div Class="match_list_element">{{ match.contact }}</div>
-                                </li>
-                            {% endfor %}
-                                <li class="list_element match_list">
-                                    <div class="match_list_element">title</div>
-                                    <div class="match_list_element">interest</div>
-                                    <div Class="match_list_element">contact</div>
-                                </li>
-                                <li class="list_element match_list">
-                                    <div class="match_list_element">title</div>
-                                    <div class="match_list_element">interest</div>
-                                    <div Class="match_list_element">contact</div>
-                                </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 </body>

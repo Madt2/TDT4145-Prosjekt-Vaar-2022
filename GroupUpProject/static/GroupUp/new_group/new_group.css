@@ -1,9 +1,15 @@
 .page{
-    background-color:
+    background-color: whitesmoke;
 }
 
 h2{
    text-align: center;
+}
+
+nav {
+    height: 75px;
+    display: flex;
+    align-items: center;
 }
 
 .form_group{

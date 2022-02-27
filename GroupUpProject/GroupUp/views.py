@@ -50,6 +50,11 @@ def group_page(request):
     # user_group.filter(user_group.group_leader, request.user)
     return render(request, "GroupUp/group_page.html")
 
+def group_matches_page(request):
+    # Temporarily disabled logic
+    # user_group = Group.objects.all()
+    # user_group.filter(user_group.group_leader, request.user)
+    return render(request, "GroupUp/group_matches_page.html")
 
 def edit_group_page(request):
     # Temporarily disabled logic

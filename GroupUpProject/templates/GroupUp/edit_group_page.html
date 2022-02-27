@@ -13,10 +13,13 @@
             <button class="back_button" onclick="location.href='http://127.0.0.1:8000/GroupUp/group_page'" type="button">
                 &#8592; Back</button>
         </nav>
+        <h1>Edit Group</h1>
         <div class="page_container">
             <div id="edit_info">
+
                 <div class="content_container">
-                    <form id="edit_group_form" method="post">
+                    <div>
+                        <form id="edit_group_form" method="post">
                         <label>Group Title:</label><br>
                         <input class="text_box" id="group_title"><br>
                         <label>Group Interest:</label><br>
@@ -27,20 +30,19 @@
                         <input class="text_box" id="image_link"><br>
                         <button type="button">Save</button>
                     </form>
-                </div>
-            </div>
-            <div id="edit_members">
-                <div class="content_container">
-                    <form id="add_member_form">
-                        <label>Add Member (email):</label><br>
-                        <input type="email" id="add_member" class="text_box">
-                        <button type="button">Add</button>
-                    </form>
-                    <form id="remove_member_form">
-                        <label>Remove Member (email):</label><br>
-                        <input type="email" id="remove_member" class="text_box">
-                        <button type="button">Remove</button>
-                    </form>
+                    </div>
+                    <div>
+                        <form id="add_member_form">
+                            <label>Add Member (email):</label><br>
+                            <input type="email" id="add_member" class="text_box">
+                            <button type="button">Add</button>
+                        </form>
+                        <form id="remove_member_form">
+                            <label>Remove Member (email):</label><br>
+                            <input type="email" id="remove_member" class="text_box">
+                            <button type="button">Remove</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
