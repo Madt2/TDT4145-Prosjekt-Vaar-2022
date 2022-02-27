@@ -25,6 +25,7 @@ def new_group_page(request):
         form = GroupForm()
     return render(request, 'GroupUp/new_group.html', {'form': form})
 
+
 class GroupsListView(ListView):
     model = Group
 
@@ -33,9 +34,12 @@ class GroupsListView(ListView):
         context = {'groups': groups}
         return render(request, 'GroupUp/groups_overview_page.html', context)
 
+
 class GroupDetailView(DetailView):
     model = Group
     template_name = "GroupUp/group_page.html"
+    pk_url_kwarg = 'pk'
+
 
 class MyGroupsListView(ListView):
     model = Group
@@ -44,7 +48,6 @@ class MyGroupsListView(ListView):
         groups = Group.objects.values().filter(group_leader_id=request.user.id)
         context = {'groups': groups}
         return render(request, 'GroupUp/groups_page.html', context)
-
 
 
 def group_page(request):

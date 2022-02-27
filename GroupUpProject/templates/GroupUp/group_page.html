@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-{% with group_name="Test Group" %}
-{% with group_description="We are a group that likes to eat pizza on sondays" %}
-{% with interest="Eating pizza" %}
-{% with min_age="19" %}
-{% with max_age="38" %}
-{% with contact_info="eat.pizza@gmail.com" %}
-{% with member_count="8" %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -26,28 +19,28 @@
         <div class="page_container">
             <div id="group_top">
                 <div class="content_container">
-                    <h2> {{ group_name }} </h2>
+                    <h2> {{ group.name }} </h2>
                     <div class="group_info">
                         <!--- plain info display on group's page, left, middle and right part --->
                         <div class="group_info_left">
                             <h4>Common-interest:</h4>
-                            <p>{{ interest }}</p>
+                            <p>{{ group.interest }}</p>
                             <h4>Members age range:</h4>
-                            <p>{{ min_age }} - {{ max_age }}</p>
+                            <!-- <p>{{ min_age }} - {{ max_age }}</p> -->
                             <h4>Contact information:</h4>
-                            <p>{{ contact_info }}</p>
+                            <!-- <p>{{ contact_info }}</p> -->
                         </div>
                         <div class="group_info_middle">
                             <img id="group_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
-                            <h4>{{ group_description }}</h4>
+                            <h4>{{ group.description }}</h4>
                         </div>
                         <div class="group_info_right">
-                            <h4>Members({{ member_count }}):</h4>
+                            <!-- <h4>Members({{ member_count }}):</h4> -->
                             <div id="group_members">
                                 <ul class="list_style">
-                                    {% for member in members %}
+                                    <!-- {% for member in members %}
                                     <li class="list_element">{{member}}</li>
-                                    {% endfor %}
+                                    {% endfor %} -->
                                     <li class="list_element">Hei</li>
                                     <li class="list_element">Hei</li>
                                     <li class="list_element">Hei</li>
@@ -63,13 +56,13 @@
                     <h4>Group Matches:</h4>
                     <div id="match_list">
                         <ul class="list_style">
-                            {% for match in matches %}
+                            <!-- {% for match in matches %}
                                 <li class="list_element match_list">
                                     <div class="match_list_element">{{ match.title }}</div>
                                     <div class="match_list_element">{{ match.interest }}</div>
                                     <div Class="match_list_element">{{ match.contact }}</div>
                                 </li>
-                            {% endfor %}
+                            {% endfor %} -->
                                 <li class="list_element match_list">
                                     <div class="match_list_element">title</div>
                                     <div class="match_list_element">interest</div>
@@ -88,10 +81,3 @@
     </div>
 </body>
 </html>
-{% endwith %}
-{% endwith %}
-{% endwith %}
-{% endwith %}
-{% endwith %}
-{% endwith %}
-{% endwith %}
