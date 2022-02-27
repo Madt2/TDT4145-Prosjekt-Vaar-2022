@@ -1,16 +1,33 @@
 
-/* Variables */
+function getId(id) {
+    return document.getElementById(id);
+}
+
+function handleNoGroups() {
+    const container = getId("content_container");
+    const hasGroupCard = container.classList.contains('match_card');
+    if (!hasGroupCard) {
+        const text = getId("noGroupText");
+        text.style.display = "block";
+    }
+}
+
+//old code:
+
+/*
+
+// Variables
 
 let activeGroup = null;
 let activeEditMember = null;
 let groupList = new Array();
 
-/* Mock variables */
+// Mock variables
 const groupAmount = 20;
 const memberAmount = 35;
 const matchAmount = 20;
 
-/* "Classes" */
+// "Classes"
 
 //Member "class", use this to create a member object with "new member(string name, string id(email), int age, boolean isLeader)".
 function member(memberName, memberId, memberAge, isLeader) {
@@ -51,7 +68,7 @@ function group(groupName, groupInterest, contactInfo, memberList, groupMatchList
    }
 }
 
-/* Functions */
+// Functions
 
 //function for creating fake group items to test/demonstrate how the gui displays items:
 function initMockGroups() {
@@ -72,9 +89,7 @@ function initMockGroups() {
 }
 
 //helper method
-function getId(id) {
-    return document.getElementById(id);
-}
+
 
 //function for adding html elements to display a list of the user's groups. This is displayed on the left of groups page.
 //groups input is a list of group objects.
@@ -267,3 +282,5 @@ function init() {
     addGroupsToList(groupList);
     drawGroupPage("0");
 }
+
+*/
