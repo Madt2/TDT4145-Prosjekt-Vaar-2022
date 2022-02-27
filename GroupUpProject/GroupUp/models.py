@@ -13,7 +13,6 @@ class Profile(models.Model):
     date_of_birth = models.DateField("User's birth date")
     description = models.TextField(default="", blank=True)
 
-    @property
     def age(self):
         today = date.today()
         born = self.date_of_birth
@@ -60,6 +59,21 @@ class Group(models.Model):
 
     def __str__(self):
         return self.name
+
+    # Veldig dårlig kode, dette må fikses
+    def get_age_range(self):
+        members = self.members.all()
+        min_age = 100
+        max_age = 0
+        for member in members:
+            if member.age() > max_age:
+                max_age = member.age()
+            if member.age() < min_age:
+                min_age = member.age()
+        return {"min_age": min_age, "max_age": max_age}
+
+    def get_group_leader(self):
+        return Profile.objects.filter(user_id=self.group_leader).first()
 
     @property
     def numberOfMembers(self):
