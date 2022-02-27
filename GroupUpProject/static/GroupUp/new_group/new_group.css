@@ -1,0 +1,35 @@
+.page{
+    background-color:
+}
+
+h2{
+   text-align: center;
+}
+
+.form_group{
+    position:center;
+    background-color: white;
+    border-radius: 15px;
+    border-color: lightgray;
+    border-width: thin;
+    border-style: none;
+    padding: 25px;
+    width: 50%;
+    height: 100%;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    box-sizing: border-box;
+    margin: auto;
+}
+nav {
+    height: 75px;
+}
+
+button {
+    padding: 10px;
+    background: #04AA6D;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: dimgray;
+    margin: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
