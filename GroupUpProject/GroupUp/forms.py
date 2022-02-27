@@ -10,16 +10,18 @@ import datetime
 class SignUpForm(UserCreationForm):
     def year_choices():
         return [r for r in range(1950, datetime.date.today().year+1)]
-    DATE_INPUT_FORMATS = ('%d-%m-%Y','%Y-%m-%d')
-    
+    DATE_INPUT_FORMATS = ('%d-%m-%Y', '%Y-%m-%d')
+
     first_name = forms.CharField(
         max_length=30, required=True)
     last_name = forms.CharField(
         max_length=30, required=True)
     email = forms.EmailField(
         max_length=254, help_text='Required. Inform a valid email address.', required=True)
-    date_of_birth = forms.DateField(required=True, input_formats=DATE_INPUT_FORMATS, widget=forms.SelectDateWidget(years=year_choices()))
-    description = forms.CharField(max_length=300, help_text='Optional.', required=False)
+    date_of_birth = forms.DateField(
+        required=True, input_formats=DATE_INPUT_FORMATS, widget=forms.SelectDateWidget(years=year_choices()))
+    description = forms.CharField(
+        max_length=300, help_text='Optional.', required=False)
 
     class Meta:
         model = User
@@ -31,24 +33,24 @@ class SignUpForm(UserCreationForm):
             raise NotImplementedError(
                 "Can't create User and UserProfile without database save")
         user = super(SignUpForm, self).save(commit=True)
-        user_profile = Profile(user=user, first_name=self.cleaned_data['first_name'], last_name=self.cleaned_data['last_name'], 
-                                email=self.cleaned_data['email'], date_of_birth=self.cleaned_data['date_of_birth'], description=self.cleaned_data['description'])
+        user_profile = Profile(user=user, first_name=self.cleaned_data['first_name'], last_name=self.cleaned_data['last_name'],
+                               email=self.cleaned_data['email'], date_of_birth=self.cleaned_data['date_of_birth'], description=self.cleaned_data['description'])
         user_profile.save()
         return user, user_profile
-
 
 
 class GroupForm(ModelForm):
     class Meta:
         model = Group
         fields = ('name', 'group_leader',
-                  'members', 'location', 'description')
+                  'members', 'location', 'description', 'interest')
         labels = {
             'name': '',
             'members': 'Members',
             'location': 'Location',
             'description': 'Group Description',
-            'image': 'Group Image'
+            'image': 'Group Image',
+            'interest': "Interest"
         }
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Group Name'}),
@@ -56,7 +58,6 @@ class GroupForm(ModelForm):
             'location': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Trondheim'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description'}),
         }
-
 
 
 """

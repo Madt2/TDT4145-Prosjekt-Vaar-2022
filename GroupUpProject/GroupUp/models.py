@@ -49,7 +49,8 @@ class Group(models.Model):
     members = models.ManyToManyField(
         Profile, through="MemberOfGroup", blank=True)
     location = models.CharField("Location", max_length=30)
-    interest = models.OneToOneField(Interest, blank=True, null=True, on_delete=models.SET_NULL)
+    interest = models.ForeignKey(
+        Interest, blank=True, null=True, on_delete=models.SET_NULL)
     image = models.ImageField("GroupImage")
 
     objects = models.Manager()
@@ -64,6 +65,7 @@ class Group(models.Model):
     def numberOfMembers(self):
         return self.members.count()
 
+
 class GroupReport(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     description = models.CharField(max_length=200)
@@ -75,5 +77,3 @@ class GroupReport(models.Model):
 class MemberOfGroup(models.Model):
     member = models.ForeignKey(Profile, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
-
-
