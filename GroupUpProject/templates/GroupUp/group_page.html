@@ -13,10 +13,12 @@
         <nav>
             <button onclick="location.href='http://127.0.0.1:8000/GroupUp/front_page/'" type="button">
                 &#8592; Back to frontpage</button>
+            {% if user == group.group_leader%}
             <a href="{% url 'update_group' pk=group.id %}">
             <button id="edit_button" type="button">
                 Edit Group Page</button>
             </a>
+            {% endif%}
         </nav>
         <div class="page_container">
             <div id="group_top">
