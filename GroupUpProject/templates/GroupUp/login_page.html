@@ -28,14 +28,7 @@
                         {{ field.label_tag }}<br>
                         {{ field }}
 
-                            {% endfor %}
-
-                    <!--
-                    <div class="text_box_area">
-                        <input class="text_box" type="email" placeholder="Email address" autocomplete required/>
-                        <input class="text_box" type="password" maxlength="64" placeholder="Password" autocomplete required/>
-                    </div>
-                    -->
+                    {% endfor %}
 
                     <p class="feedback" id="feedback_reg" style="display: none"></p>
                     <div class="button_area">
@@ -59,29 +52,7 @@
                               <p style="color: red">{{ error }}</p>
                             {% endfor %}
                           </p>
-                        {% endfor %}
-
-                    <!--{{ signup_form }}-->
-
-                    <!--
-                    <div class="text_box_area">
-                        <input class="text_box" id="reg_email" type="email" placeholder="Email address" required/>
-                        <input class="text_box" id="fname" type="text" maxlength="64" placeholder="First name" autocomplete required/>
-                        <input class="text_box" id="lname" type="text" maxlength="64" placeholder="Last name" autocomplete required/>
-                        <input class="text_box" id="reg_password" type="password" minlength="8" maxlength="64" placeholder="Password" required/>
-                        <input class="text_box" id="confirm_password" type="password" minlength="8" maxlength="64" placeholder="Confirm password" required/>
-                    </div>
-                    <div class="checkbox_area">
-                        <div>
-                            <label for="date_of_birth">Date of birth:</label>
-                            <input type="date">
-                        </div>
-                        <div class="checkbox_element">
-                            <input class="checkbox" type="checkbox" required>
-                            <label for="terms_and_service">I agree with terms of service.</label>
-                        </div>
-                    </div>
-                    -->
+                    {% endfor %}
                     <p class="feedback" id="feedback_reg" style="display: none"></p>
                     <div class="button_area">
                         <input class="button first_button" type="submit" form="register_form" value="Register">
