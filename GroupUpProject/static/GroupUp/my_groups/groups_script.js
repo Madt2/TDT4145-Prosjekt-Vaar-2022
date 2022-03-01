@@ -7,8 +7,12 @@ function handleNoGroups() {
     let containerElements = getId("content_container").children;
     let hasGroupCard = false;
     for (let i = 0; i < containerElements.length; i++) {
-        if (containerElements[i].classList.contains('group_card')) {
-            hasGroupCard = true;
+        let a_href = containerElements.children;
+        for (let i = 0; i < a_href.length; i++) {
+            if (containerElements[i].classList.contains('group_card')) {
+                console.log("hei");
+                hasGroupCard = true;
+            }
         }
     }
     console.log(containerElements);

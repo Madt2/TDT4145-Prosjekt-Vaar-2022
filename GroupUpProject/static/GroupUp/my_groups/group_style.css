@@ -99,7 +99,6 @@ button {
 .group_info_left {
     width: 50%;
     height: 100%;
-    border: none gray;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -120,6 +119,7 @@ button {
     width: 200px;
     height: 200px;
     border: solid #04AA6D;
+    margin-bottom: 20%;
 }
 
 #group_members {
