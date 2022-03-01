@@ -11,7 +11,7 @@
     <div class="page">
         <nav>
             <button onclick="location.href='http://127.0.0.1:8000/GroupUp/front_page/'" type="button">
-                &#8592; Back</button>
+                &#8592; Back to frontpage</button>
         </nav>
         <div class="page_container">
                     <h1>My Groups</h1>
@@ -21,7 +21,7 @@
                         to create a group, or contact a group leader to get invited to an existing group.</p>
                 <!--
                     {% for group in groups %}
-                   <a href="{% url ''}">
+                    <a href="{% url 'group_page' pk=group.id %}">
                         <div class="group_card">
                             <h4>{{ group.name }}</h4>
                             <img class="card_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">

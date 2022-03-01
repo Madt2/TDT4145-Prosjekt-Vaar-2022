@@ -21,10 +21,12 @@ from django.views.generic.base import TemplateView
 
 urlpatterns = [
     path('front_page/', views.front_page, name='front_page'),
-    path('groups_overview/', views.GroupsListView.as_view(), name='groups_overview_page'),
+    path('groups_overview/', views.GroupsListView.as_view(),
+         name='groups_overview_page'),
     path('groups_page/', views.MyGroupsListView.as_view(), name='groups_page'),
-    path('group_page/', views.group_page, name='group_page'),
-    path('group_matches_page/', views.group_matches_page, name='group_matches_page'),
+    path('group_page/<int:pk>', views.GroupDetailView.as_view(), name='group_page'),
+    path('update_group/<int:pk>',
+         views.UpdateGroupView.as_view(), name="update_group"),
     path('edit_group_page/', views.edit_group_page, name='edit_group_page'),
     path('login/', views.login_page, name='login_page'),
     path('profile/', views.profile_page, name='profile_page'),

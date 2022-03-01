@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-{% with group_name="Test Group" %}
-{% with group_description="We are a group that likes to eat pizza on sondays" %}
-{% with interest="Eating pizza" %}
-{% with min_age="19" %}
-{% with max_age="38" %}
-{% with contact_info="eat.pizza@gmail.com" %}
-{% with member_count="8" %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,30 +11,43 @@
 
     <div class="page">
         <nav>
-            <button onclick="location.href='http://127.0.0.1:8000/GroupUp/groups/groups_page'" type="button">
-                &#8592; Back</button>
-            <button class="group_button" onclick="location.href='http://127.0.0.1:8000/GroupUp/edit_group_page'" type="button">
+            <button onclick="location.href='http://127.0.0.1:8000/GroupUp/front_page/'" type="button">
+                &#8592; Back to frontpage</button>
+            {% if user == group.group_leader%}
+            <a href="{% url 'update_group' pk=group.id %}">
+            <button id="edit_button" type="button">
                 Edit Group Page</button>
-            <button class="group_button" onclick="location.href='http://127.0.0.1:8000/GroupUp/group_matches_page'" type="button">
-                Matches</button>
+            </a>
+            {% endif%}
         </nav>
         <div class="page_container">
         <h1> {{ group_name }} </h1>
             <div id="group_top">
                 <div class="content_container">
+                    <h2> {{ group.name }} </h2>
                     <div class="group_info">
                         <!--- plain info display on group's page, left, middle and right part --->
                         <div class="group_info_left">
+                            <h4>Group Leader</h4>
+                            <p>{{ group.get_group_leader }}</p>
+                            <h4>Common-interest:</h4>
+                            <p>{{ group.interest }}</p>
+                            <h4>Members age range:</h4>
+                            <p>{{ group.get_age_range.min_age}} - {{ group.get_age_range.max_age}}</p>
+                            <h4>Contact information:</h4>
+                            <p>{{ group.get_group_leader.email }}</p>
+                        </div>
+                        <div class="group_info_middle">
                             <img id="group_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
-                            <h4>Members({{ member_count }}):</h4>
+                            <h4>{{ group.description }}</h4>
+                        </div>
+                        <div class="group_info_right">
+                            <!-- <h4>Members({{ member_count }}):</h4> -->
                             <div id="group_members">
                                 <ul class="list_style">
-                                    {% for member in members %}
-                                    <li class="list_element">{{member}}</li>
+                                    {% for member in group.members.all %}
+                                        <li class="list_element">{{member}}</li>
                                     {% endfor %}
-                                    <li class="list_element">Hei</li>
-                                    <li class="list_element">Hei</li>
-                                    <li class="list_element">Hei</li>
                                 </ul>
                             </div>
                         </div>
@@ -64,10 +70,3 @@
     </div>
 </body>
 </html>
-{% endwith %}
-{% endwith %}
-{% endwith %}
-{% endwith %}
-{% endwith %}
-{% endwith %}
-{% endwith %}
