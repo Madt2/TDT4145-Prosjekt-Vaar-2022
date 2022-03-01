@@ -60,10 +60,20 @@ class GroupForm(ModelForm):
             'interest': "Interest"
         }
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Group Name'}),
-            'members': forms.SelectMultiple(attrs={'class': 'form-control', 'placeholder': 'Members'}),
-            'location': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Trondheim'}),
-            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description'}),
+            'name': forms.TextInput(attrs={'class': 'form-control form-control-lg',
+                                           'style': 'max-width: 500px;',
+                                           'placeholder': 'Group Name'}),
+            # 'activity_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Activity'}),
+            # 'activity_date': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Activity Date'}),
+            'members': forms.SelectMultiple(attrs={'class': 'form-control',
+                                                   'style': 'max-width: 500px;',
+                                                   'placeholder': 'Members'}),
+            'location': forms.TextInput(attrs={'class': 'form-control',
+                                               'style': 'max-width: 500px;',
+                                               'placeholder': 'Trondheim'}),
+            'description': forms.Textarea(attrs={'class': 'form-control',
+                                                 'style': 'max-width: 500px;', 'rows': '3',
+                                                 'placeholder': 'Description'}),
         }
 
 
