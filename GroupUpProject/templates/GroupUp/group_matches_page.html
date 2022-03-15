@@ -16,20 +16,21 @@
         <div class="page_container">
             {% for group in groups %}
                 <div class="group_top">
-
-                    <div class="content_container">
-                        <h2> {{ group.name }} </h2>
-                        <div class="group_info">
-                            <!--- plain info display on group's page, left, middle and right part --->
-                            <div class="group_info_left">
-                                <img id="group_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
-                            </div>
-                            <div class="group_info_right">
-                                <h4>Description:</h4>
-                                <p>{{ group.description }}</p>
+                    <a class="group_link" href="{% url 'group_page' pk=group.id %}">
+                        <div class="content_container">
+                            <h2> {{ group.name }} </h2>
+                            <div class="group_info">
+                                <!--- plain info display on group's page, left, middle and right part --->
+                                <div class="group_info_left">
+                                    <img id="group_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
+                                </div>
+                                <div class="group_info_right">
+                                    <h4>Description:</h4>
+                                    <p>{{ group.description }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             {% endfor %}
         </div>
