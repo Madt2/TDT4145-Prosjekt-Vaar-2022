@@ -94,8 +94,8 @@ button {
     background: darkgray;
 }
 
-#group_top {
-    width: 80%;
+.group_top {
+    max-width: 625px;
     height: 70vh;
     position: relative;
 }

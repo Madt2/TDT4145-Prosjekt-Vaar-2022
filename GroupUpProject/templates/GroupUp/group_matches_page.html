@@ -22,7 +22,7 @@
         <h1>Group's Matches</h1>
         <div class="page_container">
             {% for group in matches %}
-                <div id="group_top">
+                <div class="group_top">
                     <div class="content_container">
                         <h2> {{ group.name }} </h2>
                         <div class="group_info">
@@ -35,9 +35,6 @@
                                         {% for member in group.members %}
                                         <li class="list_element">{{member}}</li>
                                         {% endfor %}
-                                        <li class="list_element">Hei</li>
-                                        <li class="list_element">Hei</li>
-                                        <li class="list_element">Hei</li>
                                     </ul>
                                 </div>
                             </div>
@@ -55,7 +52,7 @@
                     </div>
                 </div>
             {% endfor %}
-            <div id="group_top">
+            <div class="group_top">
                 <div class="content_container">
                     <h2> {{ group_name }} </h2>
                     <div class="group_info">
@@ -87,7 +84,7 @@
                     </div>
                 </div>
             </div>
-            <div id="group_top">
+            <div class="group_top">
                 <div class="content_container">
                     <h2> {{ group_name }} </h2>
                     <div class="group_info">
@@ -119,7 +116,7 @@
                     </div>
                 </div>
             </div>
-            <div id="group_top">
+            <div class="group_top">
                 <div class="content_container">
                     <h2> {{ group_name }} </h2>
                     <div class="group_info">
