@@ -12,6 +12,7 @@ class Profile(models.Model):
     email = models.EmailField("User's e-mail")
     date_of_birth = models.DateField("User's birth date")
     description = models.TextField(default="", blank=True)
+    profile_picture = models.ImageField(null=True, blank =True)
 
     def age(self):
         today = date.today()
@@ -91,3 +92,12 @@ class GroupReport(models.Model):
 class MemberOfGroup(models.Model):
     member = models.ForeignKey(Profile, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
+
+
+class Image(models.Model):
+    title = models.CharField(max_length=200)
+    #image = models.ImageField(upload_to='images')
+    image = models.ImageField(upload_to='GroupUp/users_pictures', blank=True)
+
+    def __str__(self):
+        return self.title

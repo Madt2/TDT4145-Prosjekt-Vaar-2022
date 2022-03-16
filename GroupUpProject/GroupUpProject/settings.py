@@ -138,3 +138,9 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Base url to serve media files
+MEDIA_URL = '/images/'
+
+# Path where media is stored
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/GroupUp/profile/images')

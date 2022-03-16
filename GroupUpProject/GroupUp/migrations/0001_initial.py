@@ -42,6 +42,7 @@ class Migration(migrations.Migration):
                 ('date_of_birth', models.DateField(verbose_name="User's birth date")),
                 ('description', models.TextField(blank=True, default='')),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('profile_picture', models.ImageField(blank=True, default='')),
             ],
         ),
         migrations.CreateModel(
