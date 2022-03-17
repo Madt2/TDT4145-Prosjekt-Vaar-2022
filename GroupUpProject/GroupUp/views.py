@@ -35,7 +35,7 @@ class GroupsListView(ListView):
         groups = Group.objects.values().all().exclude(group_leader_id = request.user.id)
         filter_interest = request.GET.get('interest')
         filter_location = request.GET.get('location')
-        bossing_group = request.GET.get('boss')
+        boss_groups = request.GET.get('boss_groups')
         if filter_interest != "" and filter_interest is not None:
             groups = groups.filter(interest__icontains = filter_interest)
 
