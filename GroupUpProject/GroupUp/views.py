@@ -9,7 +9,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
 
 from .forms import GroupForm, SignUpForm
-from .models import Profile, Group
+from .models import Interest, MemberOfGroup, Profile, Group
 
 
 # Create your views here.
@@ -32,9 +32,34 @@ class GroupsListView(ListView):
     model = Group
 
     def get(self, request, *args, **kwargs):
+        groups = Group.objects.values().all().exclude(group_leader_id = request.user.id)
+        filter_interest = request.GET.get('interest')
+        filter_location = request.GET.get('location')
+        bossing_group = request.GET.get('boss')
+        if filter_interest != "" and filter_interest is not None:
+            groups = groups.filter(interest__icontains = filter_interest)
+
+
+        #for memberOfGroupLine in MemberOfGroup.objects.values().all():
+            #for group in groups:
+               # if (memberOfGroupLine.group_id == group.group_id):
+                  #  groups.delete(group)
+
+                    
+        boss_groups = Group.objects.values().all().filter(group_leader_id = request.user.id)
+        interests = Interest.objects.values().all()
+        context = {'groups': groups, 'interests': interests, 'boss_groups': boss_groups}
+        return render(request, 'GroupUp/groups_overview_page.html', context)
+
+
+
+'''class GroupsListView(ListView):
+    model = Group
+
+    def get(self, request, *args, **kwargs):
         groups = Group.objects.values().all().exclude(group_leader_id=request.user.id)
         context = {'groups': groups}
-        return render(request, 'GroupUp/groups_overview_page.html', context)
+        return render(request, 'GroupUp/groups_overview_page.html', context)'''
 
 
 class GroupDetailView(DetailView):

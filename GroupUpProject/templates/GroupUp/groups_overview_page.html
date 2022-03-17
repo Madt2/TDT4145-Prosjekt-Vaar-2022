@@ -16,6 +16,35 @@
     </nav>
     <h1>Find Other Groups</h1>
     <div id="options">
+        <div style="display: all">
+            <label for="groups"> Select group to match for:</label>
+            <select name = "group" id="group">
+                {% for group in boss_groups%}
+                    <option value="group">group</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div style="display: all">
+            <label for="interest"> Select interest to filter by:</label>
+            <select name = "interest" id="interest">
+                {% for interest in interests %}
+                    <option value=interest>interest.</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div style="display: all">
+            <label for="location"> Select location to filter by:</label>
+            <input type="text" id="location" name="location">
+        </div>
+        <button name="filter" onclick="filterGroups()" type="button">
+            Filter
+        </button>     
+        <script>
+            function filterGroups(){
+                <!-- TODO Need to update groups-->>
+            }
+            
+        </script>  
         <div style="display: none">
             <label for="groups">Select group to match for:</label>
             <select name="group" id="groups">
