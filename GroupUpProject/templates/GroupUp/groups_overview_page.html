@@ -48,14 +48,14 @@
                     <div class="match_card_info">
                         <label>Description:</label>
                         <p>{{ group.description}}</p>
-                        <!-- <label>Interest:</label>
-                        <p>interest variable</p>
+                        <label>Interest:</label>
+                        <p>{{ group.interest }}</p>
                         <label>Number of Members:</label>
-                        <p>member count variable</p>
+                        <p>{{group.numberOfMembers}}</p>
                         <label>Age Range:</label>
-                        <p>Age range variable</p>
+                        <p>{{ group.get_age_range.min_age}} - {{ group.get_age_range.max_age}}</p>
                         <label>Location:</label>
-                        <p>Location variable</p> -->
+                        <p>{{ group.location }}</p>
                     <div class="match_card_button">
                         <button style="display: none" onclick="removeMatchCard(this)">GroupUp!</button>
                     </div>

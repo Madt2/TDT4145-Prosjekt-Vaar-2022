@@ -45,6 +45,8 @@ class SignUpForm(UserCreationForm):
         user_profile.save()
         return user, user_profile
 
+class ButtonForm(forms.Form):
+    btn = forms.CharField()
 
 class GroupForm(ModelForm):
     class Meta:

@@ -2,15 +2,15 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
 
-from .forms import GroupForm, SignUpForm
+from .forms import GroupForm, SignUpForm, ButtonForm
 from .models import Profile, Group
-
+from django.db.models import Q
 
 # Create your views here.
 def front_page(request):
@@ -41,13 +41,23 @@ class GroupDetailView(DetailView):
     model = Group
     template_name = "GroupUp/group_page.html"
     pk_url_kwarg = 'pk'
+    form = ButtonForm
+    def post(self, request, *args, **kwargs):
+        if request.method == "POST":
+            btn_form = ButtonForm(request.POST)
+            if btn_form.is_valid():
+                btn_form.save()
+                return HttpResponseRedirect("") 
 
 
 class MyGroupsListView(ListView):
     model = Group
 
     def get(self, request, *args, **kwargs):
+        # profile = Profile.objects.get(pk=request.user.id)
+        # print("Profile: ", profile)
         groups = Group.objects.values().filter(group_leader_id=request.user.id)
+
         context = {'groups': groups}
         return render(request, 'GroupUp/groups_page.html', context)
 

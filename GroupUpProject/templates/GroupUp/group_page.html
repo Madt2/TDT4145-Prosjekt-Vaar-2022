@@ -49,6 +49,11 @@
                             <p>{{ group.get_age_range.min_age}} - {{ group.get_age_range.max_age}}</p>
                             <h4>Contact information:</h4>
                             <p>{{ group.get_group_leader.email }}</p>
+                            <form action="/your-name/" method="post">
+                                {% csrf_token %}
+                                {{ form }}
+                                <input type="submit" value="Submit">
+                            </form>
                         </div>
                     </div>
                 </div>
