@@ -51,8 +51,8 @@ class Group(models.Model):
     interest = models.ForeignKey(
         Interest, blank=True, null=True, on_delete=models.SET_NULL)
     image = models.ImageField("GroupImage")
-    myLikes = models.ManyToManyField('self', through="Likes", blank=True)
-    likedBy = models.ManyToManyField('self', through="LikedBy", blank=True)
+    myLikes = models.ManyToManyField('self', related_name="my_likes", blank=True, symmetrical=False)
+    likedBy = models.ManyToManyField('self', related_name="liked_by", blank=True, symmetrical=False)
 
     objects = models.Manager()
 
@@ -81,11 +81,13 @@ class Group(models.Model):
     def numberOfMembers(self):
         return self.members.count()
 
-class Likes(models.Model):
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+# class Likes(models.Model):
+#     group_liked = models.ForeignKey(Group, on_delete=models.CASCADE, related_name='group_liked_name')
+#     my_group = models.ForeignKey(Group, on_delete=models.CASCADE)
 
-class LikedBy(models.Model):
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+# class LikedBy(models.Model):
+#     my_group = models.ForeignKey(Group, on_delete=models.CASCADE)
+#     group_liked_by = models.ForeignKey(Group, on_delete=models.CASCADE, related_name='group_liked_by_name')
 
 class GroupReport(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)

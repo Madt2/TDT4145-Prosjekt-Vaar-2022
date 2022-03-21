@@ -6,9 +6,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, FormView
 
-from .forms import GroupForm, SignUpForm, ButtonForm
+from .forms import GroupForm, SignUpForm, MatchForm
 from .models import Profile, Group
 from django.db.models import Q
 
@@ -37,17 +37,41 @@ class GroupsListView(ListView):
         return render(request, 'GroupUp/groups_overview_page.html', context)
 
 
-class GroupDetailView(DetailView):
+class GroupDetailView(FormView, DetailView):
     model = Group
     template_name = "GroupUp/group_page.html"
     pk_url_kwarg = 'pk'
-    form = ButtonForm
+    form_class = MatchForm
+    def get_context_data(self, **kwargs):
+        context = super(GroupDetailView, self).get_context_data(**kwargs)
+        context["match_form"] = self.get_form()
+        return context
+
+    def get_form_kwargs(self):
+        kwargs = super(GroupDetailView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
     def post(self, request, *args, **kwargs):
-        if request.method == "POST":
-            btn_form = ButtonForm(request.POST)
-            if btn_form.is_valid():
-                btn_form.save()
-                return HttpResponseRedirect("") 
+        self.object = None
+        return FormView.post(self, request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse('front_page')
+
+    def form_valid(self, form):
+        print("do")
+        user = self.request.user
+        form.save(commit=False)
+        liked_group= Group.objects.get(pk=self.kwargs.get('pk'))
+        liked_by_group = Group.objects.get(group_leader=user)
+        print("liked by group: ", liked_by_group)
+        liked_group.likedBy.add(liked_by_group)
+        liked_by_group.myLikes.add(liked_group)
+        form.save_m2m()
+
+
+        return super(GroupDetailView, self).form_valid(form)
 
 
 class MyGroupsListView(ListView):

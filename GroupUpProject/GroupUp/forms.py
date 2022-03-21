@@ -2,7 +2,7 @@ from dataclasses import fields
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.forms import ModelForm, widgets
+from django.forms import ChoiceField, ModelForm, Select, widgets
 from .models import Group, Profile, GroupReport
 import datetime
 
@@ -45,8 +45,22 @@ class SignUpForm(UserCreationForm):
         user_profile.save()
         return user, user_profile
 
-class ButtonForm(forms.Form):
-    btn = forms.CharField()
+class MatchForm(ModelForm):
+    groups = forms.ModelMultipleChoiceField(queryset=Group.objects.filter(group_leader=1))
+    def __init__(self, user, *args, **kwargs):
+        super(MatchForm, self).__init__(*args, **kwargs)
+        self.fields['groups'].queryset = Group.objects.filter(group_leader=user)
+
+    class Meta:
+        model = Group
+        fields = ['groups']
+
+class MatchForm2(forms.Form):
+    code = forms.ModelChoiceField(queryset=Group.objects.all(),
+                                  required=False,
+                                  widget=forms.Select(
+                                  )
+                                  )
 
 class GroupForm(ModelForm):
     class Meta:
