@@ -22,7 +22,7 @@
 		<div class="account-settings">
 			<div class="user-profile">
 				<div class="user-avatar">
-					<img src="{% static 'GroupUp/profile/images/GroupUp/users_pictures/profile.jpg' %}" alt="default profile picture">
+					<img src="{{request.user.profile.profile_picture.url}}">
 					<!--<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin"> -->
 				</div>
                 {% for current_user in users %}
