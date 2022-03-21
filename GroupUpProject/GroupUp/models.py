@@ -76,6 +76,10 @@ class Group(models.Model):
 
     def get_group_leader(self):
         return Profile.objects.filter(user_id=self.group_leader).first()
+    
+    def is_liked_by(self, user):
+        user_groups = Group.objects.filter(group_leader=user)
+        Group.objects.filter(likedBy__in=user_groups)
 
     @property
     def numberOfMembers(self):

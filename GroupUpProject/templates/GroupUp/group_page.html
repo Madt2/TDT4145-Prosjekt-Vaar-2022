@@ -48,11 +48,13 @@
                             <p>{{ group.get_age_range.min_age}} - {{ group.get_age_range.max_age}}</p>
                             <h4>Contact information:</h4>
                             <p>{{ group.get_group_leader.email }}</p>
+                            {% if user != group.group_leader%}
                             <form method="post" action="{% url 'group_page' pk=group.id %}">
                                 {% csrf_token %}
                                 {{ match_form }}
                                 <button type="submit">Like</button>
                             </form>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
