@@ -5,14 +5,6 @@ import uuid
 from django.contrib.auth.models import User
 
 
-class Image(models.Model):
-    # image = models.ImageField(upload_to='images')
-    image = models.ImageField(upload_to='GroupUp/users_pictures', blank=True)
-
-    def __str__(self):
-        return self.title
-
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(default="", max_length=30)
@@ -20,7 +12,7 @@ class Profile(models.Model):
     email = models.EmailField("User's e-mail")
     date_of_birth = models.DateField("User's birth date")
     description = models.TextField(default="", blank=True)
-    profile_picture = models.ImageField(null=True, blank=True)
+    profile_picture = models.ImageField(null=True, blank=True, default='GroupUp/users_pictures/profile.jpg')
 
     def age(self):
         today = date.today()

@@ -25,11 +25,11 @@
 					<img src="{{request.user.profile.profile_picture.url}}">
 					<!--<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin"> -->
 				</div>
-                {% for current_user in users %}
-				<h5 class="user-name">{{current_user.username}}</h5>
-				<h6 class="user-email-and-years">{{current_user.email}}
-					<br> 22 years</h6>
-                {% endfor %}
+                {% if user.is_authenticated %}
+				<h5 class="user-name">{{user.username}}</h5>
+				<h6 class="user-email-and-years">{{user.profile.email}}
+					<br> {{user.profile.age}}</h6>
+                {% endif %}
 			</div>
 			<div class="about">
 				<h5>Interests</h5>
@@ -73,16 +73,11 @@
 		</div>
 		<div class="row gutters">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-				<form method="post" enctype="multipart/form-data">
+				<form method="POST" action="" enctype="multipart/form-data">
   						{% csrf_token %}
    							{{ form.as_p }}
  					 	<button type="submit" class="btn btn-secondary">Upload</button>
 					</form>
-
-					{% if img_obj %}
- 						<h3>Succesfully uploaded : {{img_obj.title}}</h3>
-  						<img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
-					{% endif %}
 			</div>
 			<br>
 			<br>

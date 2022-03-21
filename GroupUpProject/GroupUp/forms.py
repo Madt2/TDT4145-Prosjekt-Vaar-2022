@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm, widgets
-from .models import Group, Profile, GroupReport, Image
+from .models import Group, Profile, GroupReport
 import datetime
 
 
@@ -107,9 +107,9 @@ class LoginForm(ModelForm):
         }
 
 
-class ImageForm(forms.ModelForm):
-    """Form for the image model"""
-
+class ProfileForm(ModelForm):
     class Meta:
-        model = Image
-        fields = ('image',)
+        model = Profile
+        fields = '__all__'
+        exclude = ['user']
+

@@ -8,7 +8,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
 
-from .forms import GroupForm, SignUpForm, ImageForm
+from .forms import GroupForm, SignUpForm, ProfileForm
 from .models import Profile, Group
 
 
@@ -101,21 +101,17 @@ def login_page(request):
 
 
 def profile_page(request):
-    user = request.user
+    profile = request.user.profile
     # Not sure how to send single object instead of list into a html file
     # Seems as though the argument in render has to be a dict
-    users = [user]
-    """Process images uploaded by users"""
+    form = ProfileForm(instance=profile)
+
     if request.method == 'POST':
-        form = ImageForm(request.POST, request.FILES)
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
-            # Get the current instance object to display in the template
-            img_obj = form.instance
-            return render(request, 'GroupUp/profile_page.html', {'users': users, 'form': form, 'img_obj': img_obj})
-    else:
-        form = ImageForm()
-    return render(request, "GroupUp/profile_page.html", {'users': users,'form': form} )
+    context = {'form': form}
+    return render(request, "GroupUp/profile_page.html", context)
 
 
 def signup(request):
