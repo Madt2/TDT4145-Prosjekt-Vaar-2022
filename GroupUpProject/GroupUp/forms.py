@@ -120,11 +120,11 @@ class UpdateUserForm(forms.ModelForm):
 
 
 class UpdateProfileForm(forms.ModelForm):
-    first_name = forms.CharField(widget=forms.CharField(attrs={'class': 'form-control'}))
-    last_name = forms.CharField(widget=forms.CharField(attrs={'class': 'form-control'}))
+    first_name = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
+    last_name = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
     date_of_birth = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control'}))
-    description = forms.Textarea(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Profile
