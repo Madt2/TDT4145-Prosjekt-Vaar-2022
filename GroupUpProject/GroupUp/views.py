@@ -106,10 +106,18 @@ def group_page(request):
     # user_group.filter(user_group.group_leader, request.user)
     return render(request, "GroupUp/group_page.html")
 
+class MatchedGroupsListView(ListView):
+    model = Group
+
+    def get(self, request, *args, **kwargs):
+        groups = Group.objects.values().all()
+        context = {'groups': groups}
+        return render(request, 'GroupUp/group_matches_page.html', context)
+
 def group_matches_page(request):
-    # Temporarily disabled logic
-    # user_group = Group.objects.all()
-    # user_group.filter(user_group.group_leader, request.user)
+    # Fix so that only matched groups are shown, not all
+    groups = Group.objects.values().all()
+    context = {'groups': groups}
     return render(request, "GroupUp/group_matches_page.html")
 
 def edit_group_page(request):

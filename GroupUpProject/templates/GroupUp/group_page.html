@@ -8,7 +8,6 @@
     <script src="{% static 'GroupUp/my_groups/groups_script.js' %}"></script>
 </head>
 <body>
-
     <div class="page">
         <nav>
             <button onclick="location.href='http://127.0.0.1:8000/GroupUp/front_page/'" type="button">
@@ -17,6 +16,10 @@
             <a href="{% url 'update_group' pk=group.id %}">
             <button id="edit_button" type="button">
                 Edit Group Page</button>
+            </a>
+                <a href="{% url 'group_matches' pk=group.id %}">
+                <button id="match_button" type="button">
+                    View Matches</button>
             </a>
             {% endif%}
         </nav>
