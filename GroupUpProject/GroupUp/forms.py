@@ -9,7 +9,8 @@ import datetime
 
 class SignUpForm(UserCreationForm):
     def year_choices():
-        return [r for r in range(1950, datetime.date.today().year+1)]
+        return [r for r in range(1950, datetime.date.today().year + 1)]
+
     DATE_INPUT_FORMATS = ('%d-%m-%Y', '%Y-%m-%d')
 
     first_name = forms.CharField(
@@ -26,22 +27,24 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'description',
-                  'email', 'date_of_birth', 'password1', 'password2', )
-    
+                  'email', 'date_of_birth', 'password1', 'password2',)
+
     def clean_date_of_birth(self):
         date_of_birth = self.cleaned_data['date_of_birth']
         age = (datetime.date.today() - date_of_birth).days / 365
         if age < 18:
             raise forms.ValidationError("You need to be 18 or above to register a user")
         return date_of_birth
-    
+
     def save(self, commit=True):
         if not commit:
             raise NotImplementedError(
                 "Can't create User and UserProfile without database save")
         user = super(SignUpForm, self).save(commit=True)
-        user_profile = Profile(user=user, first_name=self.cleaned_data['first_name'], last_name=self.cleaned_data['last_name'],
-                               email=self.cleaned_data['email'], date_of_birth=self.cleaned_data['date_of_birth'], description=self.cleaned_data['description'])
+        user_profile = Profile(user=user, first_name=self.cleaned_data['first_name'],
+                               last_name=self.cleaned_data['last_name'],
+                               email=self.cleaned_data['email'], date_of_birth=self.cleaned_data['date_of_birth'],
+                               description=self.cleaned_data['description'])
         user_profile.save()
         return user, user_profile
 
@@ -102,3 +105,11 @@ class LoginForm(ModelForm):
             'email': forms.EmailInput(),
             'password': forms.PasswordInput()
         }
+
+
+class ProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = '__all__'
+        exclude = ['user']
+

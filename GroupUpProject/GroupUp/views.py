@@ -8,7 +8,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
 
-from .forms import GroupForm, SignUpForm
+from .forms import GroupForm, SignUpForm, ProfileForm
 from .models import Profile, Group
 
 
@@ -72,11 +72,13 @@ def group_page(request):
     # user_group.filter(user_group.group_leader, request.user)
     return render(request, "GroupUp/group_page.html")
 
+
 def group_matches_page(request):
     # Temporarily disabled logic
     # user_group = Group.objects.all()
     # user_group.filter(user_group.group_leader, request.user)
     return render(request, "GroupUp/group_matches_page.html")
+
 
 def edit_group_page(request):
     # Temporarily disabled logic
@@ -99,11 +101,17 @@ def login_page(request):
 
 
 def profile_page(request):
-    user = request.user
+    profile = request.user.profile
     # Not sure how to send single object instead of list into a html file
     # Seems as though the argument in render has to be a dict
-    users = [user]
-    return render(request, "GroupUp/profile_page.html", {'users': users})
+    form = ProfileForm(instance=profile)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+    context = {'form': form}
+    return render(request, "GroupUp/profile_page.html", context)
 
 
 def signup(request):
@@ -114,8 +122,23 @@ def signup(request):
             login(request, user)
             return redirect('front_page')
         else:
-            return render(request, "GroupUp/age_error_page.html", {'errors' : form.errors})
+            return render(request, "GroupUp/age_error_page.html", {'errors': form.errors})
     return redirect('login_page')
+
 
 def age_error(request):
     return render(request, "GroupUp/age_error_page.html")
+
+
+'''def image_upload_view(request):
+    """Process images uploaded by users"""
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            # Get the current instance object to display in the template
+            img_obj = form.instance
+            return render(request, 'GroupUp/profile_page.html', {'form': form, 'img_obj': img_obj})
+    else:
+        form = ImageForm()
+    return render(request, 'GroupUp/profile_page.html', {'form': form})'''

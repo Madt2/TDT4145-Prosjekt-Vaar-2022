@@ -12,6 +12,7 @@ class Profile(models.Model):
     email = models.EmailField("User's e-mail")
     date_of_birth = models.DateField("User's birth date")
     description = models.TextField(default="", blank=True)
+    profile_picture = models.ImageField(null=True, blank=True, default='GroupUp/users_pictures/profile.jpg')
 
     def age(self):
         today = date.today()

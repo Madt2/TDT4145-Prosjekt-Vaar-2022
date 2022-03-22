@@ -33,5 +33,6 @@ urlpatterns = [
     path('profile/', views.profile_page, name='profile_page'),
     path('new_group/', views.new_group_page, name='new_group_page'),
     path('register/', views.signup, name='signup_page'),
-    path("age_error/", views.age_error, name='age_error')
+    path("age_error/", views.age_error, name='age_error'),
+    # path('profile/', views.image_upload_view)
 ]
