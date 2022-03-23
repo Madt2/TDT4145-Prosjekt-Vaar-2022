@@ -1,3 +1,20 @@
+.container{
+
+}
+
+.card h-100{
+}
+.profile-now{
+    width:140px;
+   float:left;
+   height:100%;
+}
+.profile-update{
+    margin-left:140px;
+}
+body {
+background-color: red;
+}
 
 
 /*body {
@@ -42,7 +59,7 @@
 }
 .account-settings .about p {
     font-size: 0.825rem;
-} */
+}
 .form-control {
     border: 1px solid #cfd1d8;
     -webkit-border-radius: 2px;
@@ -74,5 +91,9 @@ button {
     margin: 10px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
+*/
+
+
+
 
 
