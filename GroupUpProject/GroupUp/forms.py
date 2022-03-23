@@ -112,4 +112,15 @@ class ProfileForm(ModelForm):
         model = Profile
         fields = '__all__'
         exclude = ['user']
-
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'form-control',
+                                                 'style': 'max-width: 500px;'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control',
+                                                'style': 'max-width: 500px;'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control',
+                                             'style': 'max-width: 700px;'}),
+            'date_of_birth': forms.DateInput(attrs={'class': 'form-control',
+                                                    'style': 'max-width: 500px;'}),
+            'description': forms.Textarea(attrs={'class': 'form-control',
+                                                 'style': 'max-width: 500px;', 'rows': '3'}),
+        }
