@@ -6,18 +6,17 @@
     <meta charset="UTF-8">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'GroupUp/profile/profile.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <title>Title</title>
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    --><title>UpdateProfile</title>
 </head>
 <body>
 <nav>
   <button onclick="location.href='http://127.0.0.1:8000/GroupUp/front_page/'" type="button">
     &#8592; Back</button>
 </nav>
-    <div class="container">
-<div class="row gutters">
-<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+<div class="container">
 <div class="card h-100">
+	<div class="profile-now">
 	<div class="card-body">
 		<div class="account-settings">
 			<div class="user-profile">
@@ -27,48 +26,22 @@
 				</div>
                 {% if user.is_authenticated %}
 				<h5 class="user-name">{{user.username}}</h5>
-				<h6 class="user-email-and-years">{{user.profile.email}}
-					<br> {{user.profile.age}}</h6>
+				<h6 class="user-email-and-years">{{user.profile.first_name}} {{user.profile.last_name}}
+					<br> {{user.profile.email}}
+					<br> Age: {{user.profile.age}}
+				<br> {{user.profile.description}}</h6>
                 {% endif %}
-			</div>
-			<div class="about">
-				<h5>Interests</h5>
-				<p>Football, volleyball. hiking</p>
+
 			</div>
 		</div>
-	</div>
+	</div></div>
 </div>
-</div>
-<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
 <div class="card h-100">
+	<div class="profile-update">
 	<div class="card-body">
 		<div class="row gutters">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 				<h6 class="mb-2 text-primary">Personal Details</h6>
-			</div>
-			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-				<div class="form-group">
-					<label for="fullName">Full Name</label>
-					<input type="text" class="form-control" id="fullName" placeholder="Enter full name">
-				</div>
-			</div>
-			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-				<div class="form-group">
-					<label for="eMail">Email</label>
-					<input type="email" class="form-control" id="eMail" placeholder="Enter email ID">
-				</div>
-			</div>
-			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-				<div class="form-group">
-					<label for="phone">Phone</label>
-					<input type="text" class="form-control" id="phone" placeholder="Enter phone number">
-				</div>
-			</div>
-			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-				<div class="form-group">
-					<label for="birthday">Date of birth</label>
-					<input type="date" class="form-control" id="birthday" >
-				</div>
 			</div>
 		</div>
 		<div class="row gutters">
@@ -79,35 +52,9 @@
  					 	<button type="submit" class="btn btn-secondary">Upload</button>
 					</form>
 			</div>
+		</div>
 			<br>
 			<br>
-			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-				<div class="form-group">
-					<label for="Town">Town</label>
-					<input type="name" class="form-control" id="Town" placeholder="Enter Town">
-				</div>
-			<!--</div>
-			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-				<div class="form-group">
-					<label for="ciTy">City</label>
-					<input type="name" class="form-control" id="ciTy" placeholder="Enter City">
-				</div>
-			</div>
-			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-				<div class="form-group">
-					<label for="sTate">State</label>
-					<input type="text" class="form-control" id="sTate" placeholder="Enter State">
-				</div>
-			</div>
-			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-				<div class="form-group">
-					<label for="zIp">Zip Code</label>
-					<input type="text" class="form-control" id="zIp" placeholder="Zip Code">
-				</div>
-			</div>
-		</div> -->
-
-
 		<div class="row gutters">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 				<div class="text-right" style=" position: absolute; right: 10px; ">
@@ -117,8 +64,7 @@
 			</div>
 		</div>
 	</div>
-</div>
-</div>
+		</div>
 </div>
 </div>
 
