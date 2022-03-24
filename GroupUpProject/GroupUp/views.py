@@ -8,6 +8,9 @@ from django.urls import reverse
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
+from django.contrib.auth import get_user_model
+from django.urls import reverse_lazy
+from django.views.generic.edit import DeleteView
 
 from .forms import GroupForm, SignUpForm
 from .models import Interest, MemberOfGroup, Profile, Group
@@ -139,6 +142,13 @@ def profile_page(request):
     # Seems as though the argument in render has to be a dict
     users = [user]
     return render(request, "GroupUp/profile_page.html", {'users': users})
+
+
+class UserDelete(DeleteView):
+    model = User
+    template_name = 'user_confirm_delete.html'
+    pk_url_kwarg = 'pk'
+
 
 
 def signup(request):

@@ -112,6 +112,9 @@
 </div>
 </div>
 </div>
-
+<a href="{% url 'user_confirm_delete' pk=request.user.id %}">
+    <button type="button">
+        delete my user</button>
+</a>
 </body>
 </html>

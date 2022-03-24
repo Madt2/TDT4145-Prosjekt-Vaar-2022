@@ -26,7 +26,7 @@
             </select>
         </div>
         <form method="GET" action=".">
-            <div style="display: all">
+            <div>
                 <label for="interest"> Select interest to filter by:</label>
                 <select name = "filter_interest" id="filter_interest" type="search">
                     <option value = "none" selected disabled hidden> </option>
@@ -35,7 +35,7 @@
                     {% endfor %}
                 </select>
             </div>
-            <div style="display: all">
+            <div>
                 <label for="location"> Select location to filter by:</label>
                 <input type="text" id="filter_location" name="filter_location" type="search">
             </div>
@@ -43,27 +43,6 @@
                 Filter
             </button>     
         </form>
-
-        <hr />
-
-        <div style="display: none">
-        <label for="groups">Select group to match for:</label>
-        <select name="group" id="groups">
-            <option value="value1">group1</option>
-            <option value="value2">group2</option>
-            <option value="value3">group3</option>
-            <option value="value4">group4</option>
-        </select>
-        </div>
-        <div style="display: none">
-            <label for="interests">Sort interest after:</label>
-                <select name="interest" id="interests">
-                <option value="value1">interest1</option>
-                <option value="value2">interest2</option>
-                <option value="value3">interest3</option>
-                <option value="value4">interest4</option>
-            </select>
-        </div>
     </div>
     <div id="group_card_container">
         {% for group in groups %}
