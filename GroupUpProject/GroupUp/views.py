@@ -19,7 +19,7 @@ def front_page(request):
 
 def new_group_page(request):
     if request.method == 'POST':
-        form = GroupForm(data=request.POST)
+        form = GroupForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('front_page')
@@ -32,7 +32,7 @@ class GroupsListView(ListView):
     model = Group
 
     def get(self, request, *args, **kwargs):
-        groups = Group.objects.values().all().exclude(group_leader_id=request.user.id)
+        groups = Group.objects.all().exclude(group_leader_id=request.user.id)
         context = {'groups': groups}
         return render(request, 'GroupUp/groups_overview_page.html', context)
 
@@ -47,7 +47,7 @@ class MyGroupsListView(ListView):
     model = Group
 
     def get(self, request, *args, **kwargs):
-        groups = Group.objects.values().filter(group_leader_id=request.user.id)
+        groups = Group.objects.filter(group_leader_id=request.user.id)
         context = {'groups': groups}
         return render(request, 'GroupUp/groups_page.html', context)
 
@@ -59,7 +59,8 @@ class UpdateGroupView(UpdateView):
         "name",
         "description",
         "members",
-        "interest"
+        "interest",
+        "image"
     ]
 
     def get_success_url(self, **kwargs):
