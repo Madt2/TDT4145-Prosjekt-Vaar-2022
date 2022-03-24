@@ -32,7 +32,7 @@ class GroupsListView(ListView):
     model = Group
 
     def get(self, request, *args, **kwargs):
-        groups = Group.objects.values().all().exclude(group_leader_id=request.user.id)
+        groups = Group.objects.all().exclude(group_leader_id=request.user.id)
         context = {'groups': groups}
         return render(request, 'GroupUp/groups_overview_page.html', context)
 
@@ -47,7 +47,7 @@ class MyGroupsListView(ListView):
     model = Group
 
     def get(self, request, *args, **kwargs):
-        groups = Group.objects.values().filter(group_leader_id=request.user.id)
+        groups = Group.objects.filter(group_leader_id=request.user.id)
         context = {'groups': groups}
         return render(request, 'GroupUp/groups_page.html', context)
 
