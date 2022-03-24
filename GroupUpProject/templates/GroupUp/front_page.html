@@ -9,7 +9,16 @@
     </head>
 
 <body>
-    <header></header>
+    <div class="navbar">
+        <div class="logout-button">
+  <button onclick="location.href='http://127.0.0.1:8000/GroupUp/login/'" class="logout" type="button"> Log out</button>
+        </div>
+        <div class="user"
+        {% if user.is_authenticated %}
+				<h4 class="user-name"> Logged in as {{user.username}}</h4>
+        {% endif %}
+    </div>
+    </div>
     <h1 class="h">GroupUp</h1>
     <br>
     <div class="container1">
@@ -35,10 +44,8 @@
     <br>
              </div>
     </div>
-    <br>
-    <!--div id="logout">
-         Burde legge til funksjonalitet som logger bruker ut -->
-     <a href="http://127.0.0.1:8000/GroupUp/login/">Logout</a>
+
+
     </div>
 
 </body>
