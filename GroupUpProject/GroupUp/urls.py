@@ -29,6 +29,7 @@ urlpatterns = [
          views.UpdateGroupView.as_view(), name="update_group"),
     path('edit_group_page/', views.edit_group_page, name='edit_group_page'),
     path('group_matches/', views.group_matches_page),
+    path('report_group/<int:pk>', views.reportGroupPage.as_view(), name="report_group"),
     path('login/', views.login_page, name='login_page'),
     path('profile/', views.profile_page, name='profile_page'),
     path('new_group/', views.new_group_page, name='new_group_page'),

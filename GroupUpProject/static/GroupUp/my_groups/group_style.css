@@ -30,6 +30,7 @@ h1 {
     font-size: 40px;
     font-family: Didot;
     color: gray;
+    margin-bottom: 10px;
 }
 
 nav {
@@ -113,6 +114,10 @@ button {
     flex-direction: column;
     box-sizing: border-box;
     padding-left: 10%;
+}
+
+.menu_button {
+    float: right;
 }
 
 #group_image {

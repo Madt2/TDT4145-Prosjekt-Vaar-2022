@@ -8,20 +8,22 @@
     <script src="{% static 'GroupUp/my_groups/groups_script.js' %}"></script>
 </head>
 <body>
-
     <div class="page">
         <nav>
             <button onclick="location.href='http://127.0.0.1:8000/GroupUp/front_page/'" type="button">
                 &#8592; Back to frontpage</button>
             {% if user == group.group_leader%}
             <a href="{% url 'update_group' pk=group.id %}">
-            <button id="edit_button" type="button">
+            <button class="menu_button" type="button">
                 Edit Group Page</button>
             </a>
             {% endif%}
+            <a href="{% url 'report_group' pk=group.id %}">
+            <button class="menu_button" type="button">
+                Report Group</button>
+            </a>
         </nav>
         <div class="page_container">
-        <h1> {{ group_name }} </h1>
             <div id="group_top">
                 <h1> {{ group.name }} </h1>
                 <div class="content_container">

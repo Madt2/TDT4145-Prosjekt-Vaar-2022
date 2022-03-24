@@ -87,6 +87,12 @@ def edit_group_page(request):
     return render(request, "GroupUp/edit_group_page.html")
 
 
+class reportGroupPage(DetailView):
+    model = Group
+    template_name = "GroupUp/report_group_page.html"
+    pk_url_kwarg = 'pk'
+
+
 def login_page(request):
     login_form = AuthenticationForm()
     signup_form = SignUpForm()
