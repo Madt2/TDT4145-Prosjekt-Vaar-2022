@@ -59,7 +59,8 @@ class UpdateGroupView(UpdateView):
         "name",
         "description",
         "members",
-        "interest"
+        "interest",
+        "image"
     ]
 
     def get_success_url(self, **kwargs):
