@@ -19,7 +19,7 @@ def front_page(request):
 
 def new_group_page(request):
     if request.method == 'POST':
-        form = GroupForm(data=request.POST)
+        form = GroupForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('front_page')
