@@ -82,10 +82,17 @@ WSGI_APPLICATION = 'GroupUpProject.wsgi.application'
 
 DATABASES = {
 
-'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
-    }
+    'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'emilpa_groupup_db1',
+            'USER': 'emilpa_groupup_user',
+            'PASSWORD': 'groupup',
+            'HOST': 'mysql.stud.ntnu.no',
+            'PORT': '3306',
+            'OPTIONS': {
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+            }
+        }
 
 
 }
