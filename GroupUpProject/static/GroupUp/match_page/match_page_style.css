@@ -38,7 +38,7 @@ h1 {
     align-items: center;
 }
 
-#options > div {
+#options > form {
     display: flex;
     flex-direction: row;
     justify-content: center;

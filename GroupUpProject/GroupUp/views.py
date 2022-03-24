@@ -1,6 +1,7 @@
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
+from django.db import connection
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.urls import reverse
@@ -30,14 +31,22 @@ def new_group_page(request):
 
 class GroupsListView(ListView):
     model = Group
-
+    
     def get(self, request, *args, **kwargs):
-        groups = Group.objects.values().all().exclude(group_leader_id = request.user.id)
-        filter_interest = request.GET.get('interest')
-        filter_location = request.GET.get('location')
-        boss_groups = request.GET.get('boss_groups')
-        if filter_interest != "" and filter_interest is not None:
-            groups = groups.filter(interest__icontains = filter_interest)
+        groups = Group.objects.all().exclude(group_leader_id = request.user.id)
+        interests = Interest.objects.values().all()
+        filter_interests = Interest.objects.values().all()
+        filter_interest = request.GET.get('filter_interest')
+        filter_location = request.GET.get('filter_location')
+        b_group = request.GET.get('b_group')
+        if (filter_location != None and filter_location != ""):
+           groups = groups.filter(location__icontains = filter_location)
+        if (filter_interest != None and filter_interest != ""):
+            filter_interests = filter_interests.get(name=filter_interest)
+            interestID = filter_interests['id']
+            groups = groups.filter(interest_id = interestID)
+        #if filter_interest != "" and filter_interest is not None:
+        #    groups = groups.filter(interest__icontains = filter_interest)
 
 
         #for memberOfGroupLine in MemberOfGroup.objects.values().all():
@@ -53,7 +62,8 @@ class GroupsListView(ListView):
 
 
 
-'''class GroupsListView(ListView):
+'''
+    class GroupsListView(ListView):
     model = Group
 
     def get(self, request, *args, **kwargs):
