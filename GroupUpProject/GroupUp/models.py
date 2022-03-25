@@ -80,6 +80,9 @@ class Group(models.Model):
     def is_liked_by(self, user):
         user_groups = Group.objects.filter(group_leader=user)
         Group.objects.filter(likedBy__in=user_groups)
+    
+    def matches(self):
+        pass
 
     @property
     def numberOfMembers(self):

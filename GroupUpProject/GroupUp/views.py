@@ -111,7 +111,19 @@ class MatchedGroupsListView(ListView):
 
     def get(self, request, *args, **kwargs):
         groups = Group.objects.values().all()
-        context = {'groups': groups}
+        myGroup = Group.objects.get(pk=self.kwargs.get('pk'))
+        myLikes = myGroup.myLikes.all()
+        likedBy = myGroup.likedBy.all()
+        print(myLikes)
+        print(likedBy)
+        matches = Group.objects.filter(myLikes__in=likedBy)
+        
+        print(matches)
+        #myLikes = Group.myLikes.all()
+        #matched = Group.objects.filter(myLikes__in=myGroup)
+        #print(matched)
+        context = {'groups': groups,
+                   'myGroup': myGroup }
         return render(request, 'GroupUp/group_matches_page.html', context)
 
 def group_matches_page(request):
