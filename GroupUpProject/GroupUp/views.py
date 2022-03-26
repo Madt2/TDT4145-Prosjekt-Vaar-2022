@@ -6,10 +6,10 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, CreateView
 
 from .forms import GroupForm, SignUpForm, ProfileForm
-from .models import Profile, Group
+from .models import Profile, Group, GroupReport
 
 
 # Create your views here.
@@ -19,7 +19,7 @@ def front_page(request):
 
 def new_group_page(request):
     if request.method == 'POST':
-        form = GroupForm(data=request.POST)
+        form = GroupForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('front_page')
@@ -32,7 +32,7 @@ class GroupsListView(ListView):
     model = Group
 
     def get(self, request, *args, **kwargs):
-        groups = Group.objects.values().all().exclude(group_leader_id=request.user.id)
+        groups = Group.objects.all().exclude(group_leader_id=request.user.id)
         context = {'groups': groups}
         return render(request, 'GroupUp/groups_overview_page.html', context)
 
@@ -47,7 +47,7 @@ class MyGroupsListView(ListView):
     model = Group
 
     def get(self, request, *args, **kwargs):
-        groups = Group.objects.values().filter(group_leader_id=request.user.id)
+        groups = Group.objects.filter(group_leader_id=request.user.id)
         context = {'groups': groups}
         return render(request, 'GroupUp/groups_page.html', context)
 
@@ -59,7 +59,8 @@ class UpdateGroupView(UpdateView):
         "name",
         "description",
         "members",
-        "interest"
+        "interest",
+        "image"
     ]
 
     def get_success_url(self, **kwargs):
@@ -85,6 +86,16 @@ def edit_group_page(request):
     # user_group = Group.objects.all()
     # user_group.filter(user_group.group_leader, request.user)
     return render(request, "GroupUp/edit_group_page.html")
+
+
+class ReportGroupPage(CreateView):
+    model = GroupReport
+    template_name = "GroupUp/report_group_page.html"
+    pk_url_kwarg = 'pk'
+    fields = '__all__'
+
+    def get_success_url(self, **kwargs):
+        return reverse("group_page", kwargs={'pk': self.object.pk})
 
 
 def login_page(request):
