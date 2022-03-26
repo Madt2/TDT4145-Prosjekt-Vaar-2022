@@ -8,13 +8,9 @@ function handleNoGroups() {
     let hasGroupCard = false;
     for (let i = 0; i < containerElements.length; i++) {
         if (containerElements[i].classList.contains('group_link')) {
-                console.log("hei");
                 hasGroupCard = true;
         }
     }
-    console.log(containerElements);
-
-    console.log(hasGroupCard);
     if (!hasGroupCard) {
         const container = getId("content_container");
         container.style.display = "flex";
