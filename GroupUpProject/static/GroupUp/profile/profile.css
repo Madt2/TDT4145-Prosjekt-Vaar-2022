@@ -76,6 +76,7 @@ button {
 }
 
 #delete_window_title {
+    margin-top: 20px;
     font-size: 20px;
     text-align: center;
 }
@@ -95,23 +96,32 @@ button {
 }
 
 #delete_window_content {
+    position: relative;
     width: 35%;
     height: 20%;
     background-color: white;
     border-style: solid;
     border-color: #04AA6D;
-    padding: 10px;
+    box-sizing: border-box;
 }
 
 #delete_window_buttons {
+    position: absolute;
+    display: block;
     width: 100%;
-    display: inline;
+    bottom: 10px;
+
+    box-sizing: border-box;
 }
 
 #confirm {
-    float: right;
+    position: absolute;
+    right: 10px;
+    bottom: 0;
 }
 
 #cancel {
-
+    position: absolute;
+    left: 10px;
+    bottom: 0;
 }

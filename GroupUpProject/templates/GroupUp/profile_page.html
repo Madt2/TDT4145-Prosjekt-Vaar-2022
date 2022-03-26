@@ -129,9 +129,9 @@
         <h2 id="delete_window_title">Are you sure you want to delete your account?</h2>
         <div id="delete_window_buttons">
             <button id="cancel" onclick="close_delete_window()">Cancel</button>
-            <form action="{% url 'delete_user' user.id %}" method="post">
+            <form id="confirm" action="{% url 'delete_user' user.id %}" method="post">
                 {% csrf_token %}
-                <button id="confirm" type="submit">Confirm</button>
+                <button type="submit">Confirm</button>
             </form>
         </div>
     </div>
