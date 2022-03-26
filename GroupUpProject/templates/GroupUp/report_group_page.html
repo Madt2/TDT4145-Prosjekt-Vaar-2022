@@ -9,7 +9,7 @@
 <body>
     <div class="page">
         <nav>
-            <a href="{% url 'group_page' pk=group.id %}">
+            <a href="{% url 'front_page'  %}">
                 <button type="button">
                 &#8592; Back to Group Page</button>
             </a>
@@ -17,9 +17,14 @@
         <div class="page_container">
             <h1> Report: {{ group.name }} </h1>
             <div class="content_container">
-
+            <form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save">
+</form>
             </div>
+
         </div>
+
     </div>
 </body>
 </html>

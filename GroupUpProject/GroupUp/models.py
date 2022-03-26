@@ -83,10 +83,13 @@ class Group(models.Model):
 
 class GroupReport(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
-    description = models.CharField(max_length=200)
+    title = models.CharField(blank=True, max_length=100)
+    description = models.TextField()
 
     def __str__(self):
-        return self.group
+        return self.title
+
+
 
 
 class MemberOfGroup(models.Model):
