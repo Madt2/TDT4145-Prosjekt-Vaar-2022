@@ -53,7 +53,7 @@ class GroupForm(ModelForm):
     class Meta:
         model = Group
         fields = ('name', 'group_leader',
-                  'members', 'location', 'description', 'interest')
+                  'members', 'location', 'description', 'interest', 'image')
         labels = {
             'name': '',
             'members': 'Members',

@@ -3,40 +3,42 @@
 <head>
     <meta charset="UTF-8">
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'GroupUp/front_page/front_page.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <title>GroupUp</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'GroupUp/front_page/frontpage.css' %}">
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    --><title>GroupUp</title>
     </head>
 
 <body>
     <header></header>
-    <h1 class="h">Group up</h1>
+    <h1 class="h">GroupUp</h1>
     <br>
-    <div id="container1">
+    <div class="container1">
         <div class="div1">
     <a href="http://127.0.0.1:8000/GroupUp/new_group/" class= "block"> New Group</a>
     <br>
             </div>
-        <div class="div1">
+        <div class="div2">
     <a href="http://127.0.0.1:8000/GroupUp/groups_page/" class= "block"> My Groups</a>
     <br>
             </div>
     </div>
+    <br>
+    <br>
 
-    <div id="container2">
-        <div class="div1">
+ <div class="container2">
+        <div class="div3">
     <a href="http://127.0.0.1:8000/GroupUp/groups_overview/" class="block">Find Groups</a>
     <br>
             </div>
-        <div class="div1">
+        <div class="div4">
     <a href="http://127.0.0.1:8000/GroupUp/profile/" class="block">Profile</a>
     <br>
              </div>
     </div>
     <br>
-    <div id="logout">
-        <!-- Burde legge til funksjonalitet som logger bruker ut -->
-    <a href="http://127.0.0.1:8000/GroupUp/login/">Logout</a>
+    <!--div id="logout">
+         Burde legge til funksjonalitet som logger bruker ut -->
+     <a href="http://127.0.0.1:8000/GroupUp/login/">Logout</a>
     </div>
 
 </body>

@@ -24,7 +24,7 @@
                     <a class="group_link" href="{% url 'group_page' pk=group.id %}">
                         <div class="group_card">
                             <h4>{{ group.name }}</h4>
-                            <img class="card_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
+                            <img class="card_image" src="{{group.image.url}}">
                         </div> 
                     </a>
                     {% endfor %}

@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+    padding-top: 20px;
+    color: #2e323c;
+    background: #f5f6fa;
+    position: relative;
+    height: 100%;
+}
+
+.h {
+      font-size: 80px;
+      text-align: center;
+    }
+
+ .block {
+        display: block;
+        width: 100%;
+        color: black;
+        background: white;
+        padding: 40px 28px;
+        font-size: 25px;
+        cursor: pointer;
+        text-align: center;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+        text-decoration:none;
+       }
+.container1{
+    width: 100%;
+    overflow: hidden;
+        }
+.div1{
+margin-left:5%;
+    width: 40%;
+    float: left;
+}
+
+.div2{
+    width:40%;
+    margin-left: 52%
+}
+.container1{
+    width: 100%;
+    overflow: hidden;
+        }
+.div3{
+    margin-left:5%;
+    width: 40%;
+    float: left;
+}
+.div4{
+    width:40%;
+    margin-left: 52%
+}
