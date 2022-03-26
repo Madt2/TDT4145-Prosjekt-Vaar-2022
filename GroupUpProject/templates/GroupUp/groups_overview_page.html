@@ -52,7 +52,7 @@
                         <h2>{{ group.name }}</h2>
                     </div>
                     <div class="match_card_image">
-                        <img class="card_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
+                        <img class="card_image" src="{{group.image.url}}">
                     </div>
                     <div class="match_card_info">
                         <label>Description:</label>

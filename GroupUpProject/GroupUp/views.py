@@ -2,18 +2,18 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import connection
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.urls import reverse
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView
 from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView
+from django.views.generic.edit import UpdateView, CreateView
+from .forms import GroupForm, SignUpForm, ProfileForm
+from .models import Profile, Interest, Group, GroupReport
 
-from .forms import GroupForm, SignUpForm
-from .models import Interest, MemberOfGroup, Profile, Group
 
 
 # Create your views here.
@@ -23,7 +23,7 @@ def front_page(request):
 
 def new_group_page(request):
     if request.method == 'POST':
-        form = GroupForm(data=request.POST)
+        form = GroupForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('front_page')
@@ -70,7 +70,7 @@ class GroupsListView(ListView):
     model = Group
 
     def get(self, request, *args, **kwargs):
-        groups = Group.objects.values().all().exclude(group_leader_id=request.user.id)
+        groups = Group.objects.all().exclude(group_leader_id=request.user.id)
         context = {'groups': groups}
         return render(request, 'GroupUp/groups_overview_page.html', context)'''
 
@@ -85,7 +85,7 @@ class MyGroupsListView(ListView):
     model = Group
 
     def get(self, request, *args, **kwargs):
-        groups = Group.objects.values().filter(group_leader_id=request.user.id)
+        groups = Group.objects.filter(group_leader_id=request.user.id)
         context = {'groups': groups}
         return render(request, 'GroupUp/groups_page.html', context)
 
@@ -97,7 +97,8 @@ class UpdateGroupView(UpdateView):
         "name",
         "description",
         "members",
-        "interest"
+        "interest",
+        "image"
     ]
 
     def get_success_url(self, **kwargs):
@@ -110,17 +111,29 @@ def group_page(request):
     # user_group.filter(user_group.group_leader, request.user)
     return render(request, "GroupUp/group_page.html")
 
+
 def group_matches_page(request):
     # Temporarily disabled logic
     # user_group = Group.objects.all()
     # user_group.filter(user_group.group_leader, request.user)
     return render(request, "GroupUp/group_matches_page.html")
 
+
 def edit_group_page(request):
     # Temporarily disabled logic
     # user_group = Group.objects.all()
     # user_group.filter(user_group.group_leader, request.user)
     return render(request, "GroupUp/edit_group_page.html")
+
+
+class ReportGroupPage(CreateView):
+    model = GroupReport
+    template_name = "GroupUp/report_group_page.html"
+    pk_url_kwarg = 'pk'
+    fields = '__all__'
+
+    def get_success_url(self, **kwargs):
+        return reverse("group_page", kwargs={'pk': self.object.pk})
 
 
 def login_page(request):
@@ -137,12 +150,25 @@ def login_page(request):
 
 
 def profile_page(request):
-    user = request.user
+    profile = request.user.profile
     # Not sure how to send single object instead of list into a html file
     # Seems as though the argument in render has to be a dict
-    users = [user]
-    return render(request, "GroupUp/profile_page.html", {'users': users})
+    form = ProfileForm(instance=profile)
 
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+    context = {'form': form}
+    return render(request, "GroupUp/profile_page.html", context)
+
+
+def delete_user(request, pk):
+    user = get_object_or_404(User, pk=pk)
+
+    if request.method == 'POST':
+        user.delete()
+        return redirect('login_page')
 
 class UserDelete(DeleteView):
     model = User
@@ -159,8 +185,23 @@ def signup(request):
             login(request, user)
             return redirect('front_page')
         else:
-            return render(request, "GroupUp/age_error_page.html", {'errors' : form.errors})
+            return render(request, "GroupUp/age_error_page.html", {'errors': form.errors})
     return redirect('login_page')
+
 
 def age_error(request):
     return render(request, "GroupUp/age_error_page.html")
+
+
+'''def image_upload_view(request):
+    """Process images uploaded by users"""
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            # Get the current instance object to display in the template
+            img_obj = form.instance
+            return render(request, 'GroupUp/profile_page.html', {'form': form, 'img_obj': img_obj})
+    else:
+        form = ImageForm()
+    return render(request, 'GroupUp/profile_page.html', {'form': form})'''

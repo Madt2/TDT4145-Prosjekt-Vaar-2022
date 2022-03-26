@@ -30,10 +30,12 @@ urlpatterns = [
          views.UpdateGroupView.as_view(), name="update_group"),
     path('edit_group_page/', views.edit_group_page, name='edit_group_page'),
     path('group_matches/', views.group_matches_page),
+    path('report_group/<int:pk>', views.ReportGroupPage.as_view(), name="report_group"),
     path('login/', views.login_page, name='login_page'),
     path('profile/', views.profile_page, name='profile_page'),
     path('new_group/', views.new_group_page, name='new_group_page'),
     path('register/', views.signup, name='signup_page'),
     path("age_error/", views.age_error, name='age_error'),
-    path("delete_user/<int:pk>", views.UserDelete.as_view(), name='user_confirm_delete')
+    path('delete_user/<int:pk>', views.delete_user, name='delete_user')
+    # path('profile/', views.image_upload_view)
 ]

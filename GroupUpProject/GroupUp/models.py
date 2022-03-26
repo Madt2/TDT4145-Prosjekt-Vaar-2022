@@ -12,6 +12,8 @@ class Profile(models.Model):
     email = models.EmailField("User's e-mail")
     date_of_birth = models.DateField("User's birth date")
     description = models.TextField(default="", blank=True)
+    profile_picture = models.ImageField(null=True, blank=True, default='users_pictures/profile.jpg',
+                                        upload_to='users_pictures')
 
     def age(self):
         today = date.today()
@@ -50,7 +52,7 @@ class Group(models.Model):
     location = models.CharField("Location", max_length=30)
     interest = models.ForeignKey(
         Interest, blank=True, null=True, on_delete=models.SET_NULL)
-    image = models.ImageField("GroupImage")
+    image = models.ImageField(null=True, blank=True, default='group_pictures/profile.jpg', upload_to='group_pictures')
 
     objects = models.Manager()
 
@@ -82,10 +84,13 @@ class Group(models.Model):
 
 class GroupReport(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
-    description = models.CharField(max_length=200)
+    title = models.CharField(blank=True, max_length=100)
+    description = models.TextField()
 
     def __str__(self):
-        return self.group
+        return self.title
+
+
 
 
 class MemberOfGroup(models.Model):

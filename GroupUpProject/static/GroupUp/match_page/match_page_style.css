@@ -99,7 +99,7 @@ button {
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(auto-fill, 350px);
-    grid-auto-rows: 650px;
+    grid-auto-rows: 350px;
     grid-gap: 20px;
 }
 
@@ -109,7 +109,7 @@ button {
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     background: #DDDDDD;
     width: 350px;
-    height: 650px;
+    height: 350px;
     border-style: solid;
     border-width: 2px;
     border-color: #AAAAAA;
