@@ -95,6 +95,12 @@ class ReportForm(ModelForm):
         }
 """
 
+class ReportForm(ModelForm):
+    class Meta:
+        model = GroupReport
+        fields = '__all__'
+
+
 
 # Probably not necessary, as django has an authentication form built-in
 class LoginForm(ModelForm):

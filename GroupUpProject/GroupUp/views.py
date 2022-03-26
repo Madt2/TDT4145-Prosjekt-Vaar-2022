@@ -6,10 +6,10 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, CreateView
 
 from .forms import GroupForm, SignUpForm, ProfileForm
-from .models import Profile, Group
+from .models import Profile, Group, GroupReport
 
 
 # Create your views here.
@@ -86,6 +86,16 @@ def edit_group_page(request):
     # user_group = Group.objects.all()
     # user_group.filter(user_group.group_leader, request.user)
     return render(request, "GroupUp/edit_group_page.html")
+
+
+class ReportGroupPage(CreateView):
+    model = GroupReport
+    template_name = "GroupUp/report_group_page.html"
+    pk_url_kwarg = 'pk'
+    fields = '__all__'
+
+    def get_success_url(self, **kwargs):
+        return reverse("group_page", kwargs={'pk': self.object.pk})
 
 
 def login_page(request):
