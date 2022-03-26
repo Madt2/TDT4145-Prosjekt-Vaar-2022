@@ -9,7 +9,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, CreateView
 
 from .forms import GroupForm, SignUpForm, ProfileForm
-from .models import Profile, Group, GroupReport
+from .models import Profile, Group, GroupReport, MemberOfGroup
 
 
 # Create your views here.
@@ -41,6 +41,25 @@ class GroupDetailView(DetailView):
     model = Group
     template_name = "GroupUp/group_page.html"
     pk_url_kwarg = 'pk'
+
+    """
+    def get(self, request, *args, **kwargs):
+        context = {}
+        context['members_of_group'] = MemberOfGroup.objects.filter(group_id=self.kwargs.get('pk'))
+        for key, value in context.items():
+            print (key, ' : ', value)
+        return render(request, 'GroupUp/group_page.html', context)
+        """
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['members_of_group'] = MemberOfGroup.objects.all().filter(group_id=self.kwargs.get('pk')).values()
+        for key, value in context.items():
+            print(key, ' : ', value)
+        return context
+
 
 
 class MyGroupsListView(ListView):
