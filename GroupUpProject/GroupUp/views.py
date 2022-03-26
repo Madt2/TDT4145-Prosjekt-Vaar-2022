@@ -1,7 +1,7 @@
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.urls import reverse
 from django.views.generic.list import ListView
@@ -113,6 +113,13 @@ def profile_page(request):
     context = {'form': form}
     return render(request, "GroupUp/profile_page.html", context)
 
+
+def delete_user(request, pk):
+    user = get_object_or_404(User, pk=pk)
+
+    if request.method == 'POST':
+        user.delete()
+        return redirect('login_page')
 
 def signup(request):
     if request.method == 'POST':
