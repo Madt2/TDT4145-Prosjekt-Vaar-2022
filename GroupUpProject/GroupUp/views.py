@@ -1,15 +1,19 @@
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
+from django.db import connection
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.urls import reverse
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.contrib.auth import get_user_model
+from django.urls import reverse_lazy
+from django.views.generic.edit import DeleteView
 from django.views.generic.edit import UpdateView, CreateView
-
 from .forms import GroupForm, SignUpForm, ProfileForm
-from .models import Profile, Group, GroupReport
+from .models import Profile, Interest, Group, GroupReport
+
 
 
 # Create your views here.
@@ -30,11 +34,45 @@ def new_group_page(request):
 
 class GroupsListView(ListView):
     model = Group
+    
+    def get(self, request, *args, **kwargs):
+        groups = Group.objects.all().exclude(group_leader_id = request.user.id)
+        interests = Interest.objects.values().all()
+        filter_interests = Interest.objects.values().all()
+        filter_interest = request.GET.get('filter_interest')
+        filter_location = request.GET.get('filter_location')
+        b_group = request.GET.get('b_group')
+        if (filter_location != None and filter_location != ""):
+           groups = groups.filter(location__icontains = filter_location)
+        if (filter_interest != None and filter_interest != ""):
+            filter_interests = filter_interests.get(name=filter_interest)
+            interestID = filter_interests['id']
+            groups = groups.filter(interest_id = interestID)
+        #if filter_interest != "" and filter_interest is not None:
+        #    groups = groups.filter(interest__icontains = filter_interest)
+
+
+        #for memberOfGroupLine in MemberOfGroup.objects.values().all():
+            #for group in groups:
+               # if (memberOfGroupLine.group_id == group.group_id):
+                  #  groups.delete(group)
+
+                    
+        boss_groups = Group.objects.values().all().filter(group_leader_id = request.user.id)
+        interests = Interest.objects.values().all()
+        context = {'groups': groups, 'interests': interests, 'boss_groups': boss_groups}
+        return render(request, 'GroupUp/groups_overview_page.html', context)
+
+
+
+'''
+    class GroupsListView(ListView):
+    model = Group
 
     def get(self, request, *args, **kwargs):
         groups = Group.objects.all().exclude(group_leader_id=request.user.id)
         context = {'groups': groups}
-        return render(request, 'GroupUp/groups_overview_page.html', context)
+        return render(request, 'GroupUp/groups_overview_page.html', context)'''
 
 
 class GroupDetailView(DetailView):
@@ -131,6 +169,13 @@ def delete_user(request, pk):
     if request.method == 'POST':
         user.delete()
         return redirect('login_page')
+
+class UserDelete(DeleteView):
+    model = User
+    template_name = 'user_confirm_delete.html'
+    pk_url_kwarg = 'pk'
+
+
 
 def signup(request):
     if request.method == 'POST':
