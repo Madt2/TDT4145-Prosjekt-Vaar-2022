@@ -45,7 +45,7 @@ class Interest(models.Model):
 class Group(models.Model):
     name = models.CharField('Group Name', max_length=120)
     group_leader = models.ForeignKey(
-        User, blank=True, null=True, on_delete=models.SET_NULL)
+        User, blank=True, null=True, on_delete=models.CASCADE)
     description = models.TextField("Description", blank=True)
     members = models.ManyToManyField(
         Profile, through="MemberOfGroup", blank=True)
