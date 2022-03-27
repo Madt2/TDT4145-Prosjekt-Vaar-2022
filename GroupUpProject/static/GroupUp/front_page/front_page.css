@@ -6,6 +6,20 @@
         text-align: center;
     }
 
+    nav {
+    height: 75px;
+}
+
+button {
+    padding: 10px;
+    background: #04AA6D;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: dimgray;
+    margin: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
     .block {
         display: block;
         width: 700px;
