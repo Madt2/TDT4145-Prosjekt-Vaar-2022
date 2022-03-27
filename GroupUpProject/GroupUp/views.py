@@ -52,14 +52,18 @@ class GroupDetailView(DetailView):
         """
 
     def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
+        # Logic whether to display 'leave group' button.
         context = super().get_context_data(**kwargs)
-        # Add in a QuerySet of all the books
-        context['members_of_group'] = MemberOfGroup.objects.all().filter(group_id=self.kwargs.get('pk')).values()
+        # Only contains an item if user is member of relevant group
+        members_of_group = MemberOfGroup.objects.filter(group_id=self.kwargs.get('pk'),
+                                                        member = self.request.user.profile)
+        context['group_member'] = members_of_group
+        # Empties context if user is group leader
+        if Group.objects.filter(id = self.kwargs.get('pk'), group_leader= self.request.user):
+            context['group_member'] = MemberOfGroup.objects.none()
         for key, value in context.items():
             print(key, ' : ', value)
         return context
-
 
 
 class MyGroupsListView(ListView):

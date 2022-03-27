@@ -22,13 +22,11 @@
             <button class="menu_button" type="button">
                 Report Group</button>
             </a>
-            {% for group_members in members_of_group %}
-            {% if user.profile.id == group_members.member.id %}
+            {% for group_member in group_member %}
             <a href="{% url 'update_group' pk=group.id %}">
             <button class="menu_button" type="button">
                 Leave Group</button>
             </a>
-            {% endif%}
             {% endfor %}
         </nav>
         <div class="page_container">
