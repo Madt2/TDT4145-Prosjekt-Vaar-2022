@@ -94,5 +94,6 @@ class GroupReport(models.Model):
 
 
 class MemberOfGroup(models.Model):
+    objects = models.Manager()
     member = models.ForeignKey(Profile, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
