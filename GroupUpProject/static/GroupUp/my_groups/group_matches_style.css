@@ -1,7 +1,10 @@
 * {
     margin: 0;
     padding: 0;
+    text-decoration: none;
 }
+
+a { color: inherit; }
 
 .page {
     background-color: whitesmoke;
@@ -28,12 +31,21 @@ h1 {
     margin-bottom: 2%;
 }
 
+p {
+    height: 100px;
+    width: 150px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
 h4 {
     margin: 20px 0px 10px 0px;
 }
 
 h2 {
-    margin: 30px;
+    margin-bottom: 15px;
     text-align: center
 }
 
@@ -95,20 +107,25 @@ button {
 }
 
 .group_top {
-    max-width: 625px;
-    height: 70vh;
+    width: 700px;
+    height: 150px;
     position: relative;
 }
 
+.group_top:hover {
+    transform: scale(1.02);
+    transition-duration: 0.5s;
+}
+
 .group_info {
-    height: 50%;
+    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: row;
 }
 
 .group_info_left {
-    width: 50%;
+    width: 33%;
     height: 100%;
     border: none gray;
     display: flex;
@@ -117,8 +134,19 @@ button {
     box-sizing: border-box;
 }
 
+.group_info_middle {
+    width: 33%;
+    height: 100%;
+    border: none gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
 .group_info_right {
-    width: 50%;
+    width: 33%;
     min-height: 100%;
     border: none gray;
     display: flex;
@@ -127,13 +155,8 @@ button {
     padding-left: 10%;
 }
 
-#group_image {
-    width: 200px;
-    height: 200px;
-    border: solid #04AA6D;
-}
-
-#group_members {
-    width: 60%;
+.group_image {
+    width: 100px;
     height: 100px;
+    border: solid #04AA6D;
 }

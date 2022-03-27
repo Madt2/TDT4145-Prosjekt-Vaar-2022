@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-{% with group_name="Test Group" %}
-{% with group_description="We are a group that likes to eat pizza on sondays" %}
-{% with interest="Eating pizza" %}
-{% with min_age="19" %}
-{% with max_age="38" %}
-{% with contact_info="eat.pizza@gmail.com" %}
-{% with member_count="8" %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,141 +13,30 @@
                 &#8592; Back</button>
         </nav>
         <h1>Group's Matches</h1>
+        
+        
         <div class="page_container">
-            {% for group in matches %}
+            {% for match in matches%}
                 <div class="group_top">
-                    <div class="content_container">
-                        <h2> {{ group.name }} </h2>
-                        <div class="group_info">
-                            <!--- plain info display on group's page, left, middle and right part --->
-                            <div class="group_info_left">
-                                <img id="group_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
-                                <h4>Members({{ group.member_count }}):</h4>
-                                <div id="group_members">
-                                    <ul class="list_style">
-                                        {% for member in group.members %}
-                                        <li class="list_element">{{member}}</li>
-                                        {% endfor %}
-                                    </ul>
+                    <a class="group_link" href="{% url 'group_page' pk=match.id %}">
+                        <div class="content_container">
+                            <div class="group_info">
+                                <div class="group_info_left">
+                                    <img class="group_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
+                                </div>
+                                <div class="group_info_middle">
+                                    <h2> {{ match.name }} </h2>
+                                </div>
+                                <div class="group_info_right">
+                                    <h4>Description:</h4>
+                                    <p>{{ match.description }}</p>
                                 </div>
                             </div>
-                            <div class="group_info_right">
-                                <h4>Description:</h4>
-                                <p>{{ group.description }}</p>
-                                <h4>Common-interest:</h4>
-                                <p>{{ group.interest }}</p>
-                                <h4>Members age range:</h4>
-                                <p>{{ group.min_age }} - {{ group.max_age }}</p>
-                                <h4>Contact information:</h4>
-                                <p>{{ group.contact_info }}</p>
-                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             {% endfor %}
-            <div class="group_top">
-                <div class="content_container">
-                    <h2> {{ group_name }} </h2>
-                    <div class="group_info">
-                        <!--- plain info display on group's page, left, middle and right part --->
-                        <div class="group_info_left">
-                            <img id="group_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
-                            <h4>Members({{ member_count }}):</h4>
-                            <div id="group_members">
-                                <ul class="list_style">
-                                    {% for member in members %}
-                                        <li class="list_element">{{member}}</li>
-                                    {% endfor %}
-                                    <li class="list_element">Hei</li>
-                                    <li class="list_element">Hei</li>
-                                    <li class="list_element">Hei</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="group_info_right">
-                            <h4>Description:</h4>
-                            <p>{{ group_description }}</p>
-                            <h4>Common-interest:</h4>
-                            <p>{{ interest }}</p>
-                            <h4>Members age range:</h4>
-                            <p>{{ min_age }} - {{ max_age }}</p>
-                            <h4>Contact information:</h4>
-                            <p>{{ contact_info }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="group_top">
-                <div class="content_container">
-                    <h2> {{ group_name }} </h2>
-                    <div class="group_info">
-                        <!--- plain info display on group's page, left, middle and right part --->
-                        <div class="group_info_left">
-                            <img id="group_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
-                            <h4>Members({{ member_count }}):</h4>
-                            <div id="group_members">
-                                <ul class="list_style">
-                                    {% for member in members %}
-                                        <li class="list_element">{{member}}</li>
-                                    {% endfor %}
-                                    <li class="list_element">Hei</li>
-                                    <li class="list_element">Hei</li>
-                                    <li class="list_element">Hei</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="group_info_right">
-                            <h4>Description:</h4>
-                            <p>{{ group_description }}</p>
-                            <h4>Common-interest:</h4>
-                            <p>{{ interest }}</p>
-                            <h4>Members age range:</h4>
-                            <p>{{ min_age }} - {{ max_age }}</p>
-                            <h4>Contact information:</h4>
-                            <p>{{ contact_info }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="group_top">
-                <div class="content_container">
-                    <h2> {{ group_name }} </h2>
-                    <div class="group_info">
-                        <div class="group_info_left">
-                            <img id="group_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
-                            <h4>Members({{ member_count }}):</h4>
-                            <div id="group_members">
-                                <ul class="list_style">
-                                    {% for member in members %}
-                                        <li class="list_element">{{member}}</li>
-                                    {% endfor %}
-                                    <li class="list_element">Hei</li>
-                                    <li class="list_element">Hei</li>
-                                    <li class="list_element">Hei</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="group_info_right">
-                            <h4>Description:</h4>
-                            <p>{{ group_description }}</p>
-                            <h4>Common-interest:</h4>
-                            <p>{{ interest }}</p>
-                            <h4>Members age range:</h4>
-                            <p>{{ min_age }} - {{ max_age }}</p>
-                            <h4>Contact information:</h4>
-                            <p>{{ contact_info }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </body>
 </html>
-{% endwith %}
-{% endwith %}
-{% endwith %}
-{% endwith %}
-{% endwith %}
-{% endwith %}
-{% endwith %}

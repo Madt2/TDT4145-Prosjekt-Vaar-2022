@@ -1,8 +1,9 @@
+from cProfile import label
 from dataclasses import fields
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.forms import ModelForm, widgets
+from django.forms import ChoiceField, ModelForm, Select, widgets
 from .models import Group, Profile, GroupReport
 import datetime
 
@@ -47,6 +48,17 @@ class SignUpForm(UserCreationForm):
                                description=self.cleaned_data['description'])
         user_profile.save()
         return user, user_profile
+
+class MatchForm(ModelForm):
+    groups = forms.ModelChoiceField(queryset=None, required=True, label="Match As")
+    def __init__(self, user, current_group_pk, *args, **kwargs):
+        super(MatchForm, self).__init__(*args, **kwargs)
+        myGroups = Group.objects.filter(group_leader=user).exclude(myLikes__in=current_group_pk)
+        self.fields['groups'].queryset = Group.objects.filter(group_leader=user).exclude(myLikes__in=current_group_pk)
+
+    class Meta:
+        model = Group
+        fields = ['groups']
 
 
 class GroupForm(ModelForm):
