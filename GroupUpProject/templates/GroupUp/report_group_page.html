@@ -15,12 +15,13 @@
             </a>
         </nav>
         <div class="page_container">
-            <h1> Report: {{ group.name }} </h1>
+            <h1> Report a Group </h1>
             <div class="content_container">
-            <form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save">
-</form>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+            <input type="submit" value="Save">
+            </form>
             </div>
 
         </div>
