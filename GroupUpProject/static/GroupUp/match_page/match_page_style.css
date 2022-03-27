@@ -38,24 +38,38 @@ h1 {
     align-items: center;
 }
 
-#options > div {
+#filter {
+    color: black;
+    background-color: whitesmoke;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+select {
+    margin-right: 5px;
+}
+
+#options > form {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border-right-style: solid;
-    border-right-color: white;
-    border-right-width: thin;
     height: 50%;
     padding-left: 10px;
     padding-right: 10px;
 }
 
-#options > div:last-of-type {
+#options > form > div {
+    border-right-style: solid;
+    border-right-color: white;
+    border-right-width: thin;
+}
+
+#options > form > div:last-of-type {
     border-right-style: none;
 }
 
-#options > div > label {
+#options > form > div > label {
     color: white;
     padding: 5px;
 }
@@ -85,7 +99,7 @@ button {
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(auto-fill, 350px);
-    grid-auto-rows: 650px;
+    grid-auto-rows: 350px;
     grid-gap: 20px;
 }
 
@@ -95,7 +109,7 @@ button {
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     background: #DDDDDD;
     width: 350px;
-    height: 650px;
+    height: 350px;
     border-style: solid;
     border-width: 2px;
     border-color: #AAAAAA;

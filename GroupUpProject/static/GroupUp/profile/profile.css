@@ -1,6 +1,23 @@
+.container{
 
+}
 
+.card h-100{
+}
+.profile-now{
+    width:140px;
+   float:left;
+   height:100%;
+}
+.profile-update{
+    margin-left:140px;
+}
 body {
+background-color: red;
+}
+
+
+/*body {
     margin: 0;
     padding-top: 40px;
     color: #2e323c;
@@ -73,4 +90,4 @@ button {
     border-color: dimgray;
     margin: 10px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-}
+}*/

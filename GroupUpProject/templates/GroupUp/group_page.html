@@ -14,7 +14,7 @@
                 &#8592; Back to frontpage</button>
             {% if user == group.group_leader%}
             <a href="{% url 'update_group' pk=group.id %}">
-            <button id="edit_button" type="button">
+            <button class="menu_button" type="button">
                 Edit Group Page</button>
             </a>
                 <a href="{% url 'group_matches' pk=group.id %}">
@@ -22,15 +22,24 @@
                     View Matches</button>
             </a>
             {% endif%}
+            <a href="{% url 'report_group' pk=group.id %}">
+            <button class="menu_button" type="button">
+                Report Group</button>
+            </a>
+            {% for group_member in group_member %}
+            <a href="{% url 'leave_group' pk=record_pk %}">
+            <button class="menu_button" type="button">
+                Leave Group</button>
+            </a>
+            {% endfor %}
         </nav>
         <div class="page_container">
-        <h1> {{ group_name }} </h1>
             <div id="group_top">
                 <h1> {{ group.name }} </h1>
                 <div class="content_container">
                     <div class="group_info">
                         <div class="group_info_left">
-                            <img id="group_image" src="{% static 'GroupUp/my_groups/images/user_icon_007.jpg' %}">
+                            <img id="group_image" src="{{group.image.url}}">
                             <div id="group_members">
                                 <ul class="list_style">
                                     {% for member in group.members.all %}
