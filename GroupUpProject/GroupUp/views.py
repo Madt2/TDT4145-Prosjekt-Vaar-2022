@@ -3,10 +3,10 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView, CreateView
+from django.views.generic.edit import UpdateView, CreateView, DeleteView
 
 from .forms import GroupForm, SignUpForm, ProfileForm
 from .models import Profile, Group, GroupReport, MemberOfGroup
@@ -56,10 +56,19 @@ class GroupDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         # Only contains an item if user is member of relevant group
         members_of_group = MemberOfGroup.objects.filter(group_id=self.kwargs.get('pk'),
-                                                        member = self.request.user.profile)
+                                                        member=self.request.user.profile)
+        record_pk = list(MemberOfGroup.objects.filter(group_id=self.kwargs.get('pk'),
+                                                             member=self.request.user.profile).values_list())
+        # Need to check if queryset is empty, as indexing an empty list gives error
+        if not record_pk:
+            record_pk = 0
+        else:
+            record_pk = record_pk[0][0]
+        print(record_pk)
         context['group_member'] = members_of_group
+        context['record_pk'] = record_pk
         # Empties context if user is group leader
-        if Group.objects.filter(id = self.kwargs.get('pk'), group_leader= self.request.user):
+        if Group.objects.filter(id=self.kwargs.get('pk'), group_leader=self.request.user):
             context['group_member'] = MemberOfGroup.objects.none()
         for key, value in context.items():
             print(key, ' : ', value)
@@ -162,6 +171,20 @@ def signup(request):
 
 def age_error(request):
     return render(request, "GroupUp/age_error_page.html")
+
+
+class LeaveGroup(DeleteView):
+    model = MemberOfGroup
+    success_url = reverse_lazy('front_page')
+    template_name = "GroupUp/leave_group_page.html"
+
+    def get(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['record_pk'] = self.kwargs.get('pk')
+        return context
 
 
 '''def image_upload_view(request):
