@@ -54,11 +54,6 @@ class MatchForm(ModelForm):
     def __init__(self, user, current_group_pk, *args, **kwargs):
         super(MatchForm, self).__init__(*args, **kwargs)
         myGroups = Group.objects.filter(group_leader=user).exclude(myLikes__in=current_group_pk)
-        #test = Group.objects.filter(myLikes__in=current_group_pk)
-        #test = myGroups.filter(MyLikes__in=current_group_pk)
-        print(myGroups)
-        #groups_that_can_like = 
-
         self.fields['groups'].queryset = Group.objects.filter(group_leader=user).exclude(myLikes__in=current_group_pk)
 
     class Meta:

@@ -34,6 +34,7 @@ class GroupsListView(ListView):
     
     def get(self, request, *args, **kwargs):
         groups = Group.objects.all().exclude(group_leader_id = request.user.id)
+        group_count = Group.objects.all().exclude(group_leader_id = request.user.id).count()
         interests = Interest.objects.values().all()
         filter_interests = Interest.objects.values().all()
         filter_interest = request.GET.get('filter_interest')
@@ -41,10 +42,12 @@ class GroupsListView(ListView):
         b_group = request.GET.get('b_group')
         if (filter_location != None and filter_location != ""):
            groups = groups.filter(location__icontains = filter_location)
+           group_count = groups.filter(location__icontains = filter_location).count()
         if (filter_interest != None and filter_interest != ""):
             filter_interests = filter_interests.get(name=filter_interest)
             interestID = filter_interests['id']
             groups = groups.filter(interest_id = interestID)
+            group_count = groups.filter(interest_id = interestID).count()
         #if filter_interest != "" and filter_interest is not None:
         #    groups = groups.filter(interest__icontains = filter_interest)
 
@@ -57,7 +60,7 @@ class GroupsListView(ListView):
                     
         boss_groups = Group.objects.values().all().filter(group_leader_id = request.user.id)
         interests = Interest.objects.values().all()
-        context = {'groups': groups, 'interests': interests, 'boss_groups': boss_groups}
+        context = {'groups': groups, 'interests': interests, 'boss_groups': boss_groups, 'group_count': group_count}
         return render(request, 'GroupUp/groups_overview_page.html', context)
 
 
@@ -118,6 +121,15 @@ class GroupDetailView(FormView, DetailView):
             record_pk = 0
         else:
             record_pk = record_pk[0][0]
+
+        context["groups_list_is_empty"] = False
+
+        current_group= Group.objects.filter(pk=self.kwargs.get('pk'))
+        if not Group.objects.filter(group_leader=self.request.user).exclude(myLikes__in=current_group):
+            print("HELOOOOOOOOOOOOOOOOOO")
+            print(Group.objects.filter(group_leader=self.request.user).exclude(myLikes__in=current_group))
+            context["groups_list_is_empty"] = True
+
         context['group_member'] = members_of_group
         context['record_pk'] = record_pk
         context["match_form"] = self.get_form()

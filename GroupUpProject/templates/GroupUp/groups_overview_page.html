@@ -25,6 +25,9 @@
                 {% endfor %}
             </select>
         </div>
+        <div>
+            <label for="groups" style="color: white"> Number of groups: {{ group_count }}</label>
+        </div>
         <form method="GET" action=".">
             <div>
                 <label for="interest"> Select interest to filter by:</label>
@@ -57,14 +60,14 @@
                     <div class="match_card_info">
                         <label>Description:</label>
                         <p>{{ group.description}}</p>
-                        <label>Interest:</label>
+                        {% comment %} <label>Interest:</label>
                         <p>{{ group.interest }}</p>
                         <label>Number of Members:</label>
                         <p>{{group.numberOfMembers}}</p>
                         <label>Age Range:</label>
                         <p>{{ group.get_age_range.min_age}} - {{ group.get_age_range.max_age}}</p>
                         <label>Location:</label>
-                        <p>{{ group.location }}</p>
+                        <p>{{ group.location }}</p> {% endcomment %}
                     <div class="match_card_button">
                         <button style="display: none" onclick="removeMatchCard(groups, filter_location, filter_interest)">GroupUp!</button>
                     </div>
