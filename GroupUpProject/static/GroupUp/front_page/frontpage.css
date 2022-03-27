@@ -2,9 +2,10 @@ body {
     margin: 0;
     padding-top: 20px;
     color: #2e323c;
-    background: #f5f6fa;
+    background: #cae7df;
     position: relative;
     height: 100%;
+
 }
 
 .h {
@@ -16,9 +17,9 @@ body {
         display: block;
         width: 100%;
         color: black;
-        background: white;
+        background: #fcfdfd;
         padding: 40px 28px;
-        font-size: 25px;
+        font-size: 30px;
         cursor: pointer;
         text-align: center;
         box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
@@ -33,6 +34,10 @@ margin-left:5%;
     width: 40%;
     float: left;
 }
+.block:hover{
+    background: grey;
+}
+
 
 .div2{
     width:40%;
@@ -63,17 +68,16 @@ margin-left:5%;
 .user-name{
 
 }
-.navbar{
-    border: 3px solid #fff;
-    overflow: hidden;
-}
+
 
 .logout-button{
     width: 360px;
     float:left; /* add this */
 }
 .user {
-    margin-left:80px;
+    position:absolute;
+    top:0;
+    right:0;
     overflow: hidden;
 }
 

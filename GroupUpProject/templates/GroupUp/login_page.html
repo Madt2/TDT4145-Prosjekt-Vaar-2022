@@ -17,7 +17,13 @@
                 <h2 id="login_sub_title">Your hobbies, New friends - Group up!</h2>
             </div>
         </section>
+
         <section id="login">
+             <div class="volleyball">
+            <img id="volleyball" src="{% static 'GroupUp/login/images/volleyball.jpg' %}" alt="Picture of friends playing volleyball.">
+                </div>
+
+
             <div class="login_overlay" id="login_module">
                 <h3>Login</h3>
                 <form id="login_form" action= "" method="post">
@@ -36,6 +42,7 @@
                         <input class="button first_button" type="submit" form="login_form" value="Login">
                     </div>
                 </form>
+
             </div>
             <div class="login_overlay" id="register_module" style="display: none">
                 <h3>Register User</h3>
@@ -60,6 +67,10 @@
                     </div>
                 </form>
             </div>
+            <div class="boardgames">
+            <img id="boardgames" src="{% static 'GroupUp/login/images/boardgames.jpg' %}" alt="Picture of friends playing boardgames.">
+            </div>
+
         </section>
     </div>
 </body>

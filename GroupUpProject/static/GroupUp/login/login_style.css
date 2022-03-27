@@ -2,6 +2,7 @@
 body {
     margin: 0px;
     padding: 0px;
+
 }
 
 section {
@@ -45,6 +46,30 @@ section {
     color: whitesmoke;
     z-index: 2;
 }
+.boardgames{
+    position:relative;
+    left:0;
+    margin-right:5px;
+
+}
+/*#boardgames{
+    position:relative;
+    left:0;
+    border-width:5px;
+    width:450px;
+}
+.volleyball{
+position: absolute;
+bottom: 0;
+left:0;}*/
+#boardgames{
+width:400px;
+margin-left:20px;
+}
+#volleyball{
+width:400px;
+margin-right:20px;
+}
 
 #login_sub_title {
     font-size: 3vw;
@@ -60,7 +85,7 @@ section {
 #page_container {
     height: 100vh;
     position: relative;
-    background-color: whitesmoke;
+    background: #cae7df;
 }
 
 h3 {
@@ -79,6 +104,7 @@ h3 {
     width: 30%;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
+
 
 .button {
     background-color: deepskyblue;

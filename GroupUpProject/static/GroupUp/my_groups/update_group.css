@@ -1,18 +1,7 @@
-.page{
-    background: #cae7df;
+body{
+background: #cae7df;
 }
-
-h2{
-   text-align: center;
-}
-
-nav {
-    height: 75px;
-    display: flex;
-    align-items: center;
-}
-
-.form_group{
+.formclass{
     position:center;
     background-color: white;
     border-radius: 15px;
@@ -26,14 +15,14 @@ nav {
     box-sizing: border-box;
     margin: auto;
 }
-.user {
-    position:absolute;
-    top:0;
-    right:0;
-    overflow: hidden;
+h2{
+   text-align: center;
 }
-
-
+nav {
+    height: 75px;
+    display: flex;
+    align-items: center;
+}
 button {
     padding: 10px;
     background: #04AA6D;
@@ -42,4 +31,10 @@ button {
     border-color: dimgray;
     margin: 10px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.user {
+    position:absolute;
+    top:0;
+    right:0;
+    overflow: hidden;
 }
