@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.urls import reverse, reverse_lazy
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView, CreateView, DeleteView
+from django.views.generic.edit import UpdateView, CreateView, DeleteView, FormView
 
 from .forms import GroupForm, SignUpForm, MatchForm
 from .forms import GroupForm, SignUpForm, ProfileForm
@@ -77,14 +77,11 @@ class GroupDetailView(FormView, DetailView):
     template_name = "GroupUp/group_page.html"
     pk_url_kwarg = 'pk'
     form_class = MatchForm
-    def get_context_data(self, **kwargs):
-        context = super(GroupDetailView, self).get_context_data(**kwargs)
-        context["match_form"] = self.get_form()
-        return context
 
     def get_form_kwargs(self):
         kwargs = super(GroupDetailView, self).get_form_kwargs()
         kwargs['user'] = self.request.user
+        kwargs['current_group_pk'] = Group.objects.filter(pk=self.kwargs['pk'])
         return kwargs
 
     def post(self, request, *args, **kwargs):
@@ -95,17 +92,16 @@ class GroupDetailView(FormView, DetailView):
         return reverse('front_page')
 
     def form_valid(self, form):
-        print("do")
         user = self.request.user
         form.save(commit=False)
         liked_group= Group.objects.get(pk=self.kwargs.get('pk'))
-        liked_by_group = Group.objects.get(group_leader=user)
+        liked_by_group = form.cleaned_data["groups"]
         print("liked by group: ", liked_by_group)
         liked_group.likedBy.add(liked_by_group)
         liked_by_group.myLikes.add(liked_group)
         form.save_m2m()
 
-
+        #return reverse("group_page", kwargs={'pk': self.object.pk})
         return super(GroupDetailView, self).form_valid(form)
 
 
@@ -122,14 +118,12 @@ class GroupDetailView(FormView, DetailView):
             record_pk = 0
         else:
             record_pk = record_pk[0][0]
-        print(record_pk)
         context['group_member'] = members_of_group
         context['record_pk'] = record_pk
+        context["match_form"] = self.get_form()
         # Empties context if user is group leader
         if Group.objects.filter(id=self.kwargs.get('pk'), group_leader=self.request.user):
             context['group_member'] = MemberOfGroup.objects.none()
-        for key, value in context.items():
-            print(key, ' : ', value)
         return context
 
 
@@ -171,8 +165,6 @@ class MatchedGroupsListView(ListView):
         myLikes = myGroup.myLikes.all()
         likedBy = myGroup.likedBy.all()
         matches = set(myLikes) & set(likedBy)
-        print("_________________________________")
-        print(matches)
         context = { 'matches': matches }
         return render(request, 'GroupUp/group_matches_page.html', context)
 

@@ -1,3 +1,4 @@
+from cProfile import label
 from dataclasses import fields
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
@@ -49,21 +50,21 @@ class SignUpForm(UserCreationForm):
         return user, user_profile
 
 class MatchForm(ModelForm):
-    groups = forms.ModelMultipleChoiceField(queryset=Group.objects.filter(group_leader=1))
-    def __init__(self, user, *args, **kwargs):
+    groups = forms.ModelChoiceField(queryset=None, required=True, label="Match As")
+    def __init__(self, user, current_group_pk, *args, **kwargs):
         super(MatchForm, self).__init__(*args, **kwargs)
-        self.fields['groups'].queryset = Group.objects.filter(group_leader=user)
+        myGroups = Group.objects.filter(group_leader=user).exclude(myLikes__in=current_group_pk)
+        #test = Group.objects.filter(myLikes__in=current_group_pk)
+        #test = myGroups.filter(MyLikes__in=current_group_pk)
+        print(myGroups)
+        #groups_that_can_like = 
+
+        self.fields['groups'].queryset = Group.objects.filter(group_leader=user).exclude(myLikes__in=current_group_pk)
 
     class Meta:
         model = Group
         fields = ['groups']
 
-class MatchForm2(forms.Form):
-    code = forms.ModelChoiceField(queryset=Group.objects.all(),
-                                  required=False,
-                                  widget=forms.Select(
-                                  )
-                                  )
 
 class GroupForm(ModelForm):
     class Meta:
