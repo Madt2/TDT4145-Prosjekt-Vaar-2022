@@ -12,11 +12,11 @@
 </head>
 <body>
 <nav>
-  <button onclick="location.href='http://127.0.0.1:8000/GroupUp/front_page/'" type="button">
+    <button onclick="location.href='http://127.0.0.1:8000/GroupUp/front_page/'" type="button">
     &#8592; Back</button>
 </nav>
-
-<div class="container">
+<div class="page_container">
+    <div class="container">
 	<h1 class="headline"> My Profile Page</h1>
 <div class="card h-100">
 	<div class="profile-now">
@@ -52,8 +52,9 @@
 				<form method="POST" action="" enctype="multipart/form-data">
   						{% csrf_token %}
    							{{ form.as_p }}
- 					 	<button type="submit" class="btn">Upload</button>
+ 					 	<button type="submit">Update Profile</button>
 					</form>
+                <button onclick="open_delete_window()">Delete Account</button>
 			</div>
 		</div>
 
@@ -66,6 +67,8 @@
 </div>
 </div>
     </div>
+</div>
+
 <div id="delete_window_container">
     <div id="delete_window_content">
         <h2 id="delete_window_title">Are you sure you want to delete your account?</h2>
@@ -78,6 +81,5 @@
         </div>
     </div>
 </div>
-    <button onclick="open_delete_window()">Delete Account</button>
 </body>
 </html>

@@ -6,7 +6,17 @@ body {
     position: relative;
     height: 100%;
 }
+
+nav {
+    position: absolute;
+    height: 75px;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
 .container{
+    margin: 5% auto auto;
     overflow: hidden;
     position:center;
     background-color: white;
@@ -19,7 +29,6 @@ body {
     height: 100%;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     box-sizing: border-box;
-    margin: auto;
 }
 .account-settings .user-profile {
     padding-bottom: 1rem;
@@ -130,4 +139,8 @@ font-size: 20px;
     position: absolute;
     left: 10px;
     bottom: 0;
+}
+
+.right_nav_button {
+    float: right;
 }
