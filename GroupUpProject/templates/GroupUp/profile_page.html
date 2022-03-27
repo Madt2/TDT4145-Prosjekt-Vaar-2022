@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'GroupUp/profile/profile_page.css' %}">
-
+	<script src="{% static 'GroupUp/profile/profile_script.js' %}"></script>
     <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     --><title>UpdateProfile</title>
 </head>
@@ -24,7 +24,7 @@
 		<div class="account-settings">
 			<div class="user-profile">
 				<div class="user-avatar">
-					<img src="{{request.user.profile.profile_picture.url}}">
+
 					<!--<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin"> -->
 				</div>
                 {% if user.is_authenticated %}
@@ -58,14 +58,26 @@
 		</div>
 
 		<div class="row gutters">
-				<div class="text-right" >
-					<button type="button" id="submit" name="submit" class="btn2 "> Update </button>
-				</div>
+
 		</div>
 	</div>
 		</div>
 </div>
 </div>
-
+</div>
+    </div>
+<div id="delete_window_container">
+    <div id="delete_window_content">
+        <h2 id="delete_window_title">Are you sure you want to delete your account?</h2>
+        <div id="delete_window_buttons">
+            <button id="cancel" onclick="close_delete_window()">Cancel</button>
+            <form id="confirm" action="{% url 'delete_user' user.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Confirm</button>
+            </form>
+        </div>
+    </div>
+</div>
+    <button onclick="open_delete_window()">Delete Account</button>
 </body>
 </html>

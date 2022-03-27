@@ -15,25 +15,34 @@
             &#8592; Back to frontpage</button>
     </nav>
     <h1>Find Other Groups</h1>
+    
     <div id="options">
         <div style="display: none">
-            <label for="groups">Select group to match for:</label>
-            <select name="group" id="groups">
-                <option value="value1">group1</option>
-                <option value="value2">group2</option>
-                <option value="value3">group3</option>
-                <option value="value4">group4</option>
+            <label for="groups"> Select group to match for:</label>
+            <select name = "group" id="group">
+                {% for group in boss_groups%}
+                    <option value="{{group.name}}">{{group.name}}</option>
+                {% endfor %}
             </select>
         </div>
-        <div style="display: none">
-            <label for="interests">Sort interest after:</label>
-                <select name="interest" id="interests">
-                <option value="value1">interest1</option>
-                <option value="value2">interest2</option>
-                <option value="value3">interest3</option>
-                <option value="value4">interest4</option>
-            </select>
-        </div>
+        <form method="GET" action=".">
+            <div>
+                <label for="interest"> Select interest to filter by:</label>
+                <select name = "filter_interest" id="filter_interest" type="search">
+                    <option value = "none" selected disabled hidden> </option>
+                    {% for interest in interests %}
+                        <option value="{{interest.name}}" >{{interest.name}} </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label for="location"> Select location to filter by:</label>
+                <input type="text" id="filter_location" name="filter_location" type="search">
+            </div>
+            <button name="filter" id="filter" type="submit" onclick="updateGroups()">
+                Filter
+            </button>     
+        </form>
     </div>
     <div id="group_card_container">
         {% for group in groups %}
@@ -53,11 +62,11 @@
                         <label>Number of Members:</label>
                         <p>member count variable</p>
                         <label>Age Range:</label>
-                        <p>Age range variable</p>
+                        <p>Age range variable</p>-->
                         <label>Location:</label>
-                        <p>Location variable</p> -->
+                        <p>{{group.location}}</p> 
                     <div class="match_card_button">
-                        <button style="display: none" onclick="removeMatchCard(this)">GroupUp!</button>
+                        <button style="display: none" onclick="removeMatchCard(groups, filter_location, filter_interest)">GroupUp!</button>
                     </div>
                     </div>
                 </div>

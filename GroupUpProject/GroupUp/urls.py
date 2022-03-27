@@ -16,6 +16,7 @@ Including another URLconf
 from django.urls import path
 from . import views
 from django.views.generic.base import TemplateView
+from .views import UserDelete
 
 # What does name= do??
 
@@ -36,5 +37,6 @@ urlpatterns = [
     path('register/', views.signup, name='signup_page'),
     path("age_error/", views.age_error, name='age_error'),
     path("leave_group/<int:pk>", views.LeaveGroup.as_view(), name='leave_group'),
+    path('delete_user/<int:pk>', views.delete_user, name='delete_user')
     # path('profile/', views.image_upload_view)
 ]
