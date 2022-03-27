@@ -9,7 +9,15 @@
     </head>
 
 <body>
-    <header></header>
+    <nav>
+        <a href="{% url 'login_page' %}">
+            <button class="menu_button" type="button">
+               &#8592; Logout</button>
+        </a>
+        <p>
+            User: {{ user.username }}
+        </p>
+    </nav>
     <h1 class="h">GroupUp</h1>
     <br>
     <div class="container1">
@@ -36,9 +44,6 @@
              </div>
     </div>
     <br>
-    <!--div id="logout">
-         Burde legge til funksjonalitet som logger bruker ut -->
-     <a href="http://127.0.0.1:8000/GroupUp/login/">Logout</a>
     </div>
 
 </body>
