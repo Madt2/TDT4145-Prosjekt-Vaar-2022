@@ -10,7 +10,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 
 from .forms import GroupForm, SignUpForm, ProfileForm
-from .models import Profile, Group, GroupReport, MemberOfGroup
+from .models import Profile, Group, GroupReport, MemberOfGroup, Interest
 
 
 # Create your views here.
