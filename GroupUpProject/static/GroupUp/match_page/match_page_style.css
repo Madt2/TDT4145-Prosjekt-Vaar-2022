@@ -4,6 +4,11 @@
     padding: 0;
     text-decoration: none;
     font-family: arial,sans-serif;
+    
+}
+
+body {
+    background: #cae7df;
 }
 
 *::-webkit-scrollbar {
@@ -103,14 +108,14 @@ button {
     padding-top: 50px;
     padding-bottom: 50px;
     width: 90%;
-    height: 60vh;
+    /* height: 60vh; */
     overflow: scroll;
     margin-left: auto;
     margin-right: auto;
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(auto-fill, 350px);
-    grid-auto-rows: 350px;
+    grid-auto-rows: auto;
     grid-gap: 20px;
 }
 
@@ -120,7 +125,7 @@ button {
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     background: #DDDDDD;
     width: 350px;
-    height: 350px;
+    height: auto;
     border-style: solid;
     border-width: 2px;
     border-color: #AAAAAA;
