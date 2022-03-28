@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     text-decoration: none;
+    font-family: arial,sans-serif;
 }
 
 *::-webkit-scrollbar {
@@ -27,7 +28,7 @@ nav {
 h1 {
     text-align: center;
     font-size: 40px;
-    font-family: Didot;
+
     color: black;
 }
 

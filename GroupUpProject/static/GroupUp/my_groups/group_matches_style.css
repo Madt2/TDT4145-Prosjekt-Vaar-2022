@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     text-decoration: none;
+    font-family: arial,sans-serif;
 }
 
 *::-webkit-scrollbar {
@@ -36,7 +37,7 @@ a { color: inherit; }
 h1 {
     text-align: center;
     font-size: 40px;
-    font-family: Didot;
+    
     color: gray;
     margin-bottom: 2%;
 }
