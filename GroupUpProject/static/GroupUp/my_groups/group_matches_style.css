@@ -4,6 +4,10 @@
     text-decoration: none;
 }
 
+*::-webkit-scrollbar {
+  display: none;
+}
+
 a { color: inherit; }
 
 .page {

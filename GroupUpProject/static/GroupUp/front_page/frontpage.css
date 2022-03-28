@@ -10,6 +10,10 @@ body {
 
 }
 
+*::-webkit-scrollbar {
+  display: none;
+}
+
 nav {
     height: 75px;
 }

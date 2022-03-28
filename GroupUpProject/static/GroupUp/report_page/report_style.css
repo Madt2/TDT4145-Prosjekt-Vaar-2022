@@ -5,6 +5,10 @@
     padding: 0;
 }
 
+*::-webkit-scrollbar {
+  display: none;
+}
+
 .page {
     background-color: whitesmoke;
     position: relative;
