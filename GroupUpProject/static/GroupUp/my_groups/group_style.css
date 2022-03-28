@@ -131,8 +131,8 @@ button {
 }
 
 #group_image {
-    width: 200px;
-    height: 200px;
+    max-width: 600px;
+    max-height: 400px;
     border: solid #04AA6D;
     margin-bottom: 20%;
 }

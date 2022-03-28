@@ -24,7 +24,7 @@ a { color: inherit; }
     width: 100vw;
 }
 .user {
-    position:absolute;
+    /* position:absolute; */
     top:0;
     right:0;
     overflow: hidden;
