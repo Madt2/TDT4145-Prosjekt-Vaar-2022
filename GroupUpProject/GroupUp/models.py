@@ -52,7 +52,7 @@ class Group(models.Model):
     location = models.CharField("Location", max_length=30)
     interest = models.ForeignKey(
         Interest, blank=True, null=True, on_delete=models.SET_NULL)
-    image = models.ImageField(null=True, blank=True, default='group_pictures/profile.jpg', upload_to='group_pictures')
+    image = models.ImageField(null=True, blank=True, default='group_pictures/user_icon_007.jpg', upload_to='group_pictures')
     myLikes = models.ManyToManyField('self', related_name="my_likes", blank=True, symmetrical=False)
     likedBy = models.ManyToManyField('self', related_name="liked_by", blank=True, symmetrical=False)
 
