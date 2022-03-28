@@ -1,21 +1,7 @@
-* {
-    margin: 0;
-    padding: 0;
+body{
+background: #cae7df;
 }
-
-.page{
-    background: #cae7df;
-}
-
-h2{
-   text-align: center;
-}
-
-nav {
-    height: 75px;
-}
-
-.form_group{
+.formclass{
     position:center;
     background-color: white;
     border-radius: 15px;
@@ -29,26 +15,26 @@ nav {
     box-sizing: border-box;
     margin: auto;
 }
-.user {
-    position:absolute;
-    top:0;
-    right:0;
-    overflow: hidden;
+h2{
+   text-align: center;
 }
-
-
+nav {
+    height: 75px;
+    display: flex;
+    align-items: center;
+}
 button {
     padding: 10px;
     background: #04AA6D;
     border-radius: 10px;
     border-style: solid;
     border-color: dimgray;
-    margin: 10px !important;
+    margin: 10px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-
-    font-style: normal !important;
-    font-weight: 400 !important;
-    font-size: 11px !important;
-    font-family: system-ui !important;
-    font-variant-caps: normal !important;
+}
+.user {
+    position:absolute;
+    top:0;
+    right:0;
+    overflow: hidden;
 }

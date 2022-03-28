@@ -7,10 +7,16 @@
 a { color: inherit; }
 
 .page {
-    background-color: whitesmoke;
+    background: #cae7df;
     position: relative;
     height: 100vh;
     width: 100vw;
+}
+.user {
+    position:absolute;
+    top:0;
+    right:0;
+    overflow: hidden;
 }
 
 .page_container {

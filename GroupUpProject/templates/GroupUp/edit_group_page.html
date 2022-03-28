@@ -13,6 +13,9 @@
             <button class="back_button" onclick="location.href='http://127.0.0.1:8000/GroupUp/group_page'" type="button">
                 &#8592; Back</button>
         </nav>
+        {% if user.is_authenticated %}
+				<h4 class="user-name"> Logged in as {{user.username}}</h4>
+        {% endif %}
         <h1>Edit Group</h1>
         <div class="page_container">
             <div id="edit_info">

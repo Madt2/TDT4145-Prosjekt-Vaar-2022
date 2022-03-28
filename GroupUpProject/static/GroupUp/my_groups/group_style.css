@@ -7,7 +7,7 @@
 }
 
 .page {
-    background-color: whitesmoke;
+    background: #cae7df;
     position: relative;
     height: 100vh;
     width: 100vw;
@@ -29,8 +29,7 @@ h1 {
     text-align: center;
     font-size: 40px;
     font-family: Didot;
-    color: gray;
-    margin-bottom: 10px;
+    color: black;
 }
 
 nav {
@@ -45,6 +44,12 @@ button {
     border-color: dimgray;
     margin: 10px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.user {
+    position:absolute;
+    top:0;
+    right:0;
+    overflow: hidden;
 }
 
 .group_button {

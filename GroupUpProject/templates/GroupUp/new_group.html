@@ -13,6 +13,11 @@
   <button onclick="location.href='http://127.0.0.1:8000/GroupUp/front_page/'">
     &#8592; Back</button>
 </nav>
+<div class="user"
+        {% if user.is_authenticated %}
+				<h4 class="user-name"> Logged in as {{user.username}}</h4>
+        {% endif %}
+    </div>
 
 <div class="form_group" >
   <h2>Create Group</h2>

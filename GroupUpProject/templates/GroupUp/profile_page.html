@@ -12,11 +12,16 @@
 </head>
 <body>
 <nav>
-    <button onclick="location.href='http://127.0.0.1:8000/GroupUp/front_page/'" type="button">
-    &#8592; Back</button>
+  <button onclick="location.href='http://127.0.0.1:8000/GroupUp/front_page/'" type="button">
+    Back</button>
 </nav>
-<div class="page_container">
-    <div class="container">
+<div class="user"
+        {% if user.is_authenticated %}
+				<h4 class="user-name"> Logged in as {{user.username}}</h4>
+        {% endif %}
+    </div>
+
+<div class="container">
 	<h1 class="headline"> My Profile Page</h1>
 <div class="card h-100">
 	<div class="profile-now">
@@ -52,15 +57,12 @@
 				<form method="POST" action="" enctype="multipart/form-data">
   						{% csrf_token %}
    							{{ form.as_p }}
- 					 	<button type="submit">Update Profile</button>
+ 					 	<button type="submit" class="btn">Update</button>
 					</form>
                 <button onclick="open_delete_window()">Delete Account</button>
 			</div>
 		</div>
 
-		<div class="row gutters">
-
-		</div>
 	</div>
 		</div>
 </div>

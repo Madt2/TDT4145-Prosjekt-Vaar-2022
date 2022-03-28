@@ -1,8 +1,8 @@
 body {
     margin: 0;
     padding-top: 40px;
-    color: #2e323c;
-    background: #f5f6fa;
+    background: #cae7df;
+    background: #cae7df;
     position: relative;
     height: 100%;
 }
@@ -82,9 +82,15 @@ font-size:150%
  font-size: 2.5em;
 }
 .btn{
-background-color: dimgray;
 border-radius: 2px;
-font-size: 10px;
+font-size: 20px;
+border-radius: 8px;
+}
+.user {
+    position:absolute;
+    top:0;
+    right:0;
+    overflow: hidden;
 }
 .btn2{
 font-size: 20px;
