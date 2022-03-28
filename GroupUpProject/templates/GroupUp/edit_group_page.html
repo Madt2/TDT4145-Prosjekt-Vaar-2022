@@ -22,15 +22,9 @@
 
                 <div class="content_container">
                     <div>
-                        <form id="edit_group_form" method="post">
-                        <label>Group Title:</label><br>
-                        <input class="text_box" id="group_title"><br>
-                        <label>Group Interest:</label><br>
-                        <input class="text_box" id="group_interest"><br>
-                        <label>Contact Info:</label><br>
-                        <input class="text_box" id="group_contact"><br>
-                        <label>Image Link:</label><br>
-                        <input class="text_box" id="image_link"><br>
+                        <form id="edit_group_form" method="POST" action="" enctype="multipart/form-data">
+                            {% csrf_token %}
+                        {{ form.as_p }}
                         <button type="button">Save</button>
                     </form>
                     </div>

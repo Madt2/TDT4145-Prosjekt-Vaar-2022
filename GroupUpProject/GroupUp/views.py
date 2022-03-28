@@ -13,6 +13,7 @@ from .forms import GroupForm, SignUpForm, MatchForm
 from .forms import GroupForm, SignUpForm, ProfileForm
 from .models import Profile, Group, GroupReport, MemberOfGroup, Interest
 
+
 # Create your views here.
 def front_page(request):
     return render(request, "GroupUp/front_page.html")
@@ -31,38 +32,35 @@ def new_group_page(request):
 
 class GroupsListView(ListView):
     model = Group
-    
+
     def get(self, request, *args, **kwargs):
-        groups = Group.objects.all().exclude(group_leader_id = request.user.id)
-        group_count = Group.objects.all().exclude(group_leader_id = request.user.id).count()
+        groups = Group.objects.all().exclude(group_leader_id=request.user.id)
+        group_count = Group.objects.all().exclude(group_leader_id=request.user.id).count()
         interests = Interest.objects.values().all()
         filter_interests = Interest.objects.values().all()
         filter_interest = request.GET.get('filter_interest')
         filter_location = request.GET.get('filter_location')
         b_group = request.GET.get('b_group')
         if (filter_location != None and filter_location != ""):
-           groups = groups.filter(location__icontains = filter_location)
-           group_count = groups.filter(location__icontains = filter_location).count()
+            groups = groups.filter(location__icontains=filter_location)
+            group_count = groups.filter(location__icontains=filter_location).count()
         if (filter_interest != None and filter_interest != ""):
             filter_interests = filter_interests.get(name=filter_interest)
             interestID = filter_interests['id']
-            groups = groups.filter(interest_id = interestID)
-            group_count = groups.filter(interest_id = interestID).count()
-        #if filter_interest != "" and filter_interest is not None:
+            groups = groups.filter(interest_id=interestID)
+            group_count = groups.filter(interest_id=interestID).count()
+        # if filter_interest != "" and filter_interest is not None:
         #    groups = groups.filter(interest__icontains = filter_interest)
 
+        # for memberOfGroupLine in MemberOfGroup.objects.values().all():
+        # for group in groups:
+        # if (memberOfGroupLine.group_id == group.group_id):
+        #  groups.delete(group)
 
-        #for memberOfGroupLine in MemberOfGroup.objects.values().all():
-            #for group in groups:
-               # if (memberOfGroupLine.group_id == group.group_id):
-                  #  groups.delete(group)
-
-                    
-        boss_groups = Group.objects.values().all().filter(group_leader_id = request.user.id)
+        boss_groups = Group.objects.values().all().filter(group_leader_id=request.user.id)
         interests = Interest.objects.values().all()
         context = {'groups': groups, 'interests': interests, 'boss_groups': boss_groups, 'group_count': group_count}
         return render(request, 'GroupUp/groups_overview_page.html', context)
-
 
 
 '''
@@ -97,16 +95,15 @@ class GroupDetailView(FormView, DetailView):
     def form_valid(self, form):
         user = self.request.user
         form.save(commit=False)
-        liked_group= Group.objects.get(pk=self.kwargs.get('pk'))
+        liked_group = Group.objects.get(pk=self.kwargs.get('pk'))
         liked_by_group = form.cleaned_data["groups"]
         print("liked by group: ", liked_by_group)
         liked_group.likedBy.add(liked_by_group)
         liked_by_group.myLikes.add(liked_group)
         form.save_m2m()
 
-        #return reverse("group_page", kwargs={'pk': self.object.pk})
+        # return reverse("group_page", kwargs={'pk': self.object.pk})
         return super(GroupDetailView, self).form_valid(form)
-
 
     def get_context_data(self, **kwargs):
         # Logic whether to display 'leave group' button.
@@ -115,7 +112,7 @@ class GroupDetailView(FormView, DetailView):
         members_of_group = MemberOfGroup.objects.filter(group_id=self.kwargs.get('pk'),
                                                         member=self.request.user.profile)
         record_pk = list(MemberOfGroup.objects.filter(group_id=self.kwargs.get('pk'),
-                                                             member=self.request.user.profile).values_list())
+                                                      member=self.request.user.profile).values_list())
         # Need to check if queryset is empty, as indexing an empty list gives error
         if not record_pk:
             record_pk = 0
@@ -124,7 +121,7 @@ class GroupDetailView(FormView, DetailView):
 
         context["groups_list_is_empty"] = False
 
-        current_group= Group.objects.filter(pk=self.kwargs.get('pk'))
+        current_group = Group.objects.filter(pk=self.kwargs.get('pk'))
         if not Group.objects.filter(group_leader=self.request.user).exclude(myLikes__in=current_group):
             print("HELOOOOOOOOOOOOOOOOOO")
             print(Group.objects.filter(group_leader=self.request.user).exclude(myLikes__in=current_group))
@@ -169,6 +166,7 @@ def group_page(request):
     # user_group.filter(user_group.group_leader, request.user)
     return render(request, "GroupUp/group_page.html")
 
+
 class MatchedGroupsListView(ListView):
     model = Group
 
@@ -177,8 +175,9 @@ class MatchedGroupsListView(ListView):
         myLikes = myGroup.myLikes.all()
         likedBy = myGroup.likedBy.all()
         matches = set(myLikes) & set(likedBy)
-        context = { 'matches': matches }
+        context = {'matches': matches}
         return render(request, 'GroupUp/group_matches_page.html', context)
+
 
 def group_matches_page(request):
     # Fix so that only matched groups are shown, not all
@@ -201,7 +200,7 @@ class ReportGroupPage(CreateView):
     fields = '__all__'
 
     def get_success_url(self, **kwargs):
-        return reverse("group_page", kwargs={'pk': self.object.pk})
+        return reverse("front_page")
 
 
 def login_page(request):
@@ -238,11 +237,11 @@ def delete_user(request, pk):
         user.delete()
         return redirect('login_page')
 
+
 class UserDelete(DeleteView):
     model = User
     template_name = 'user_confirm_delete.html'
     pk_url_kwarg = 'pk'
-
 
 
 def signup(request):
