@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Groups</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'GroupUp/my_groups/group_style.css' %}">
+    <script src="{% static 'GroupUp/my_groups/groups_script.js' %}"></script>
+</head>
+<body>
+    <div class="page">
+        <nav>
+            <button onclick="location.href='http://127.0.0.1:8000/GroupUp/front_page/'" type="button">
+                &#8592; Back to frontpage</button>
+            <div class="user"
+        {% if user.is_authenticated %}
+				<h4 class="user-name"> Logged in as {{user.username}}</h4>
+        {% endif %}
+    </div>
+            {% if user == group.group_leader%}
+            <a href="{% url 'update_group' pk=group.id %}">
+            <button class="menu_button" type="button">
+                Edit Group Page</button>
+            </a>
+                <a href="{% url 'group_matches' pk=group.id %}">
+                <button id="match_button" type="button">
+                    View Matches</button>
+            </a>
+            {% endif%}
+            <a href="{% url 'report_group' pk=group.id %}">
+            <button class="menu_button" type="button">
+                Report Group</button>
+            </a>
+            {% for group_member in group_member %}
+            <a href="{% url 'leave_group' pk=record_pk %}">
+            <button class="menu_button" type="button">
+                Leave Group</button>
+            </a>
+            {% endfor %}
+        </nav>
+        <div class="page_container">
+            <div id="group_top">
+                <h1> {{ group.name }} </h1>
+                <div class="content_container">
+                    <div class="group_info">
+                        <div class="group_info_left">
+                            <img id="group_image" src="{{group.image.url}}">
+                            <div id="group_members">
+                                <h4>Members</h4>
+                                <ul class="list_style">
+                                    {% for member in group.members.all %}
+                                        <li class="list_element">{{member}}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="group_info_right">
+                            <h4>Description:</h4>
+                            <p>{{ group.description }}</p>
+                            <h4>Group Leader</h4>
+                            <p>{{ group.get_group_leader }}</p>
+                            <h4>Common-interest:</h4>
+                            <p>{{ group.interest }}</p>
+                            <h4>Location</h4>
+                            <p>{{ group.location }}</p>
+                            <h4>Members age range:</h4>
+                            <p>{{ group.get_age_range.min_age}} - {{ group.get_age_range.max_age}}</p>
+                            <h4>Contact information:</h4>
+                            <p>{{ group.get_group_leader.email }}</p>
+                            {% if user != group.group_leader%}
+                            <h4>Matching</h4>
+                                {% if groups_list_is_empty %}
+                                    <p>No groups to match with!</p>
+                                {% else %}
+                                    <form method="post" action="{% url 'group_page' pk=group.id %}">
+                                        {% csrf_token %}
+                                        {{ match_form }}
+                                        <button type="submit">Like</button>
+                                    </form>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!--- groups matches section --->
+
+        </div>
+    </div>
+</body>
+</html>

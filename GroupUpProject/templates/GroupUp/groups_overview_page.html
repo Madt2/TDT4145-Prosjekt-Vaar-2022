@@ -2,12 +2,81 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'GroupUp/match_page/match_page_style.css' %}">
+    <script src="{% static 'GroupUp/match_page/match_page_script.js' %}"></script>
+    <title>Find Match</title>
 </head>
 <body>
-    <header>This is where you see an overview of existing groups</header>
-    <br>
-    <br>
-    <a href="http://127.0.0.1:8000/GroupUp/front_page/"><- Back</a>
+
+<div class="page">
+    <nav>
+        <button onclick="location.href='http://127.0.0.1:8000/GroupUp/front_page/'" type="button">
+            &#8592; Back to frontpage</button>
+    </nav>
+    <div class="user"
+        {% if user.is_authenticated %}
+				<h4 class="user-name"> Logged in as {{user.username}}</h4>
+        {% endif %}
+    </div>
+    <h1>Find Other Groups</h1>
+    
+    <div id="options">
+        <div style="display: none">
+            <label for="groups"> Select group to match for:</label>
+            <select name = "group" id="group">
+                {% for group in boss_groups%}
+                    <option value="{{group.name}}">{{group.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="groups" style="color: white"> Number of groups: {{ group_count }}</label>
+        </div>
+        <form method="GET" action=".">
+            <div>
+                <label for="interest"> Select interest to filter by:</label>
+                <select name = "filter_interest" id="filter_interest" type="search">
+                    <option value = "none" selected disabled hidden> </option>
+                    {% for interest in interests %}
+                        <option value="{{interest.name}}" >{{interest.name}} </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label for="location"> Select location to filter by:</label>
+                <input type="text" id="filter_location" name="filter_location" type="search">
+            </div>
+            <button name="filter" id="filter" type="submit" onclick="updateGroups()">
+                Filter
+            </button>     
+        </form>
+    </div>
+    <div id="group_card_container">
+        {% for group in groups %}
+            <a href="{% url 'group_page' pk=group.id %}">
+                <div class="group_card">
+                    <div class="match_card_title">
+                        <h2>{{ group.name }}</h2>
+                    </div>
+                    <div class="match_card_image">
+                        <img class="card_image" src="{{group.image.url}}">
+                    </div>
+                    <div class="match_card_info">
+                        <label>Description:</label>
+                        <p>{{ group.description}}</p>
+                        <label>Interest:</label>
+                        <p>{{ group.interest }}</p>
+                        <label>Location:</label>
+                        <p>{{ group.location }}</p>
+                    <div class="match_card_button">
+                        <button style="display: none" onclick="removeMatchCard(groups, filter_location, filter_interest)">GroupUp!</button>
+                    </div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</div>
 </body>
 </html>

@@ -2,19 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'GroupUp/front_page/frontpage.css' %}">
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    --><title>GroupUp</title>
+    </head>
+
 <body>
-    <header>This is Frontpage</header>
+
+    <div class="navbar">
+        <div class="logout-button">
+  <button onclick="location.href='http://127.0.0.1:8000/GroupUp/login/'" class="logout" type="button"> Log out</button>
+        </div>
+        <div class="user"
+        {% if user.is_authenticated %}
+				<h4 class="user-name"> Logged in as {{user.username}}</h4>
+        {% endif %}
+    </div>
+    </div>
+    <br>
+    <h1 class="h">GroupUp</h1>
+    <br>
+    <div class="container1">
+        <div class="div1">
+    <a href="http://127.0.0.1:8000/GroupUp/new_group/" class= "block"> New Group</a>
+    <br>
+            </div>
+        <div class="div2">
+    <a href="http://127.0.0.1:8000/GroupUp/groups_page/" class= "block"> My Groups</a>
+    <br>
+            </div>
+    </div>
     <br>
     <br>
-    <a href="http://127.0.0.1:8000/GroupUp/groups/">My Groups</a>
+
+ <div class="container2">
+        <div class="div3">
+    <a href="http://127.0.0.1:8000/GroupUp/groups_overview/" class="block">Find Groups</a>
     <br>
-    <a href="http://127.0.0.1:8000/GroupUp/groups_overview/">Find Groups</a>
+            </div>
+        <div class="div4">
+    <a href="http://127.0.0.1:8000/GroupUp/profile/" class="block">Profile</a>
     <br>
-    <a href="http://127.0.0.1:8000/GroupUp/profile/">Profile</a>
-    <br>
-    <br>
-    <a href="http://127.0.0.1:8000/GroupUp/login/">Logout</a>
+             </div>
+    </div>
+
+    </div>
+
 </body>
 </html>

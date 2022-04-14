@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'GroupUp/new_group/new_group.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+{% block content %}
+<body class="page">
+
+<nav>
+  <button onclick="location.href='http://127.0.0.1:8000/GroupUp/front_page/'">
+    &#8592; Back</button>
+</nav>
+<div class="user"
+        {% if user.is_authenticated %}
+				<h4 class="user-name"> Logged in as {{user.username}}</h4>
+        {% endif %}
+    </div>
+
+<div class="form_group" >
+  <h2>Create Group</h2>
+  <form class="form-horizontal" method="post" enctype="multipart/form-data"  >
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <button type="submit" class="btn btn-success">Create</button>
+  </form>
+</div>
+{% endblock %}
+
+
+
+</body>
+</html>
+

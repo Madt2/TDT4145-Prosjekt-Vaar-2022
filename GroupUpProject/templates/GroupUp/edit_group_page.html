@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'GroupUp/my_groups/edit_group_style.css' %}">
+    <script src="{% static 'GroupUp/my_groups/groups_script.js' %}"></script>
+</head>
+<body>
+    <div class="page">
+        <nav>
+            <button class="back_button" onclick="location.href='http://127.0.0.1:8000/GroupUp/group_page'" type="button">
+                &#8592; Back</button>
+        </nav>
+        {% if user.is_authenticated %}
+				<h4 class="user-name"> Logged in as {{user.username}}</h4>
+        {% endif %}
+        <h1>Edit Group</h1>
+        <div class="page_container">
+            <div id="edit_info">
+
+                <div class="content_container">
+                    <div>
+                        <form id="edit_group_form" method="POST" action="" enctype="multipart/form-data">
+                            {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="button">Save</button>
+                    </form>
+                    </div>
+                    <div>
+                        <form id="add_member_form">
+                            <label>Add Member (email):</label><br>
+                            <input type="email" id="add_member" class="text_box">
+                            <button type="button">Add</button>
+                        </form>
+                        <form id="remove_member_form">
+                            <label>Remove Member (email):</label><br>
+                            <input type="email" id="remove_member" class="text_box">
+                            <button type="button">Remove</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

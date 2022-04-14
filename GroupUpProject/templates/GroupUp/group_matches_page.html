@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Groups</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'GroupUp/my_groups/group_matches_style.css' %}">
+</head>
+<body>
+    <div class="page">
+        <nav>
+            <button onclick="location.href='http://127.0.0.1:8000/GroupUp/groups_page'" type="button">
+                &#8592; Back</button>
+        </nav>
+      <div class="user"
+        {% if user.is_authenticated %}
+				<h4 class="user-name"> Logged in as {{user.username}}</h4>
+        {% endif %}
+    </div>
+        <h1>Group's Matches</h1>
+        
+        
+        <div class="page_container">
+            {% for match in matches%}
+                <div class="group_top">
+                    <a class="group_link" href="{% url 'group_page' pk=match.id %}">
+                        <div class="content_container">
+                            <div class="group_info">
+                                <div class="group_info_left">
+                                    <img class="group_image" src="{{match.image.url}}">
+                                </div>
+                                <div class="group_info_middle">
+                                    <h2> {{ match.name }} </h2>
+                                </div>
+                                <div class="group_info_right">
+                                    <h4>Description:</h4>
+                                    <p>{{ match.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

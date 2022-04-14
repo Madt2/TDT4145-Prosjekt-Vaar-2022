@@ -1,0 +1,122 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: arial,sans-serif;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+a { color: inherit; }
+
+.page {
+    background: #cae7df;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+}
+
+nav {
+    height: 75px;
+    display: flex;
+    align-items: center;
+}
+
+h1 {
+    text-align: center;
+    font-size: 40px;
+
+    color: black;
+}
+
+h4 {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 25px;
+}
+
+.page_container {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 30px;
+}
+
+.content_container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(auto-fill, 350px);
+    grid-auto-rows: 300px;
+    grid-gap: 50px;
+    background-color: white;
+    border-radius: 15px;
+    border-color: lightgray;
+    border-width: thin;
+    border-style: none;
+    padding: 50px;
+    width: 100%;
+    height: 70vh;
+    overflow: scroll;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    box-sizing: border-box;
+
+}
+
+#groups {
+    height: 80%;
+    width: 80%;
+}
+
+#noGroupText {
+    display: none;
+    font-size: 2vw;
+    text-align: center;
+    color: grey;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.group_card {
+    width: 350px;
+    height: 300px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: lightgray;
+    border-style: solid;
+    border-width: 2px;
+    border-color: dimgray;
+    border-radius: 5px;
+}
+
+.group_card:hover {
+    transform: scale(1.02);
+    transition-duration: 0.5s;
+}
+
+.card_image {
+    width: 50%;
+    height: 60%;
+}
+
+button {
+    padding: 10px;
+    background: #04AA6D;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: dimgray;
+    margin: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.user {
+    position:absolute;
+    top:0;
+    right:0;
+    overflow: hidden;
+}

@@ -1,13 +1,87 @@
+<!-- Lånt endel kode fra https://www.bootdey.com/snippets/view/account-setting-or-edit-profile -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'GroupUp/profile/profile_page.css' %}">
+	<script src="{% static 'GroupUp/profile/profile_script.js' %}"></script>
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    --><title>UpdateProfile</title>
 </head>
 <body>
-    <header>This is the profile page for profile settings...</header>
-    <br>
-    <br>
-    <a href="http://127.0.0.1:8000/GroupUp/front_page/"><- Back</a>
+<nav>
+  <button onclick="location.href='http://127.0.0.1:8000/GroupUp/front_page/'" type="button">
+    Back</button>
+</nav>
+<div class="user"
+        {% if user.is_authenticated %}
+				<h4 class="user-name"> Logged in as {{user.username}}</h4>
+        {% endif %}
+    </div>
+
+<div class="container">
+	<h1 class="headline"> My Profile Page</h1>
+<div class="card h-100">
+	<div class="profile-now">
+	<div class="card-body">
+		<div class="account-settings">
+			<div class="user-profile">
+				<div class="user-avatar">
+
+					<img src="{{request.user.profile.profile_picture.url}}" >
+				</div>
+                {% if user.is_authenticated %}
+				<h3 class="user-name">{{user.username}}</h3>
+				<h5 class="user-email-and-years">{{user.profile.first_name}} {{user.profile.last_name}}
+					<br> {{user.profile.email}}
+					<br> Age: {{user.profile.age}}
+				<br> {{user.profile.description}}</h5>
+                {% endif %}
+
+			</div>
+		</div>
+	</div></div>
+</div>
+<div class="card h-100">
+	<div class="profile-update">
+	<div class="card-body">
+		<div class="row gutters">
+			<div class="headline2">
+				<h3 class="mb-2 text-primary">Edit profile info: </h3>
+			</div>
+		</div>
+		<div class="row gutters">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+				<form method="POST" action="" enctype="multipart/form-data">
+  						{% csrf_token %}
+   							{{ form.as_p }}
+ 					 	<button type="submit" class="btn">Update</button>
+					</form>
+                <button onclick="open_delete_window()">Delete Account</button>
+			</div>
+		</div>
+
+	</div>
+		</div>
+</div>
+</div>
+</div>
+    </div>
+</div>
+
+<div id="delete_window_container">
+    <div id="delete_window_content">
+        <h2 id="delete_window_title">Are you sure you want to delete your account?</h2>
+        <div id="delete_window_buttons">
+            <button id="cancel" onclick="close_delete_window()">Cancel</button>
+            <form id="confirm" action="{% url 'delete_user' user.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Confirm</button>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

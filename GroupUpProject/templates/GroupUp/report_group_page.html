@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Report a group</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'GroupUp/report_page/report_style.css' %}">
+</head>
+<body>
+    <div class="page">
+        <nav>
+            <a href="{% url 'front_page'  %}">
+                <button type="button">
+                &#8592; Back to Group Page</button>
+            </a>
+        </nav>
+        <div class="page_container">
+            <h1> Report a Group </h1>
+            <div class="content_container">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+            <input type="submit" value="Submit">
+            </form>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>

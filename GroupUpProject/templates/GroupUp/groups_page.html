@@ -2,12 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>My groups</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'GroupUp/my_groups/groups_style.css' %}">
+    <script src="{% static 'GroupUp/my_groups/groups_script.js' %}"></script>
 </head>
 <body>
-    <header>This is where you see the groups you are in, and group info when you click in the group.</header>
-    <br>
-    <br>
-    <a href="http://127.0.0.1:8000/GroupUp/front_page/"><- Back</a>
+    <div class="page">
+        <nav>
+            <button onclick="location.href='http://127.0.0.1:8000/GroupUp/front_page/'" type="button">
+                &#8592; Back to frontpage</button>
+        </nav>
+        <div class="user"
+        {% if user.is_authenticated %}
+				<h4 class="user-name"> Logged in as {{user.username}}</h4>
+        {% endif %}
+    </div>
+        <div class="page_container">
+                    <h1>My Groups</h1>
+            <div id="groups">
+                <div id="content_container" class="content_container">
+                    <p id="noGroupText">You're not part of any groups yet! Click <a href="http://127.0.0.1:8000/GroupUp/new_group/">here</a>
+                        to create a group, or contact a group leader to get invited to an existing group.</p>
+
+                    {% for group in groups %}
+                    <a class="group_link" href="{% url 'group_page' pk=group.id %}">
+                        <div class="group_card">
+                            <h4>{{ group.name }}</h4>
+                            <img class="card_image" src="{{group.image.url}}">
+                        </div> 
+                    </a>
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+    </div>
 </body>
+<script>handleNoGroups()</script>
 </html>

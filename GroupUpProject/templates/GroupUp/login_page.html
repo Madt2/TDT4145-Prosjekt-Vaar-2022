@@ -2,12 +2,76 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'GroupUp/login/login_style.css' %}">
+    <script src="{% static 'GroupUp/login/login_script.js' %}"></script>
+
 </head>
 <body>
-    <header>This is where you login</header>
-    <br>
-    <br>
-    <a href="http://127.0.0.1:8000/GroupUp/front_page/">Login</a>
+    <div id="page_container">
+        <section>
+            <div id="welcome">
+                <img id="front_page_image" src="{% static 'GroupUp/login/images/login_page_image.jpg' %}" alt="Picture of friends hanging out.">
+                <h1 id="login_main_title">GroupUp</h1>
+                <h2 id="login_sub_title">Your hobbies, New friends - Group up!</h2>
+            </div>
+        </section>
+
+        <section id="login">
+             <div class="volleyball">
+            <img id="volleyball" src="{% static 'GroupUp/login/images/volleyball.jpg' %}" alt="Picture of friends playing volleyball.">
+                </div>
+
+
+            <div class="login_overlay" id="login_module">
+                <h3>Login</h3>
+                <form id="login_form" action= "" method="post">
+
+                    {% csrf_token %}
+                    {% for field in login_form %}
+                        <p>
+                        {{ field.label_tag }}<br>
+                        {{ field }}
+
+                    {% endfor %}
+
+                    <p class="feedback" id="feedback_reg" style="display: none"></p>
+                    <div class="button_area">
+                        <input class="button last_button" type="button" onclick="show_register_overlay()" value="Register new user">
+                        <input class="button first_button" type="submit" form="login_form" value="Login">
+                    </div>
+                </form>
+
+            </div>
+            <div class="login_overlay" id="register_module" style="display: none">
+                <h3>Register User</h3>
+                <form id="register_form" action="../register/" method="post">
+                    {% csrf_token %}
+                    {% for field in signup_form %}
+                        <p>
+                            {{ field.label_tag }}<br>
+                            {{ field }}
+                            {% if field.help_text %}
+                              <small style="color: grey">{{ field.help_text }}</small>
+                            {% endif %}
+                            {% for error in field.errors %}
+                              <p style="color: red">{{ error }}</p>
+                            {% endfor %}
+                          </p>
+                    {% endfor %}
+                    <p class="feedback" id="feedback_reg" style="display: none"></p>
+                    <div class="button_area">
+                        <input class="button first_button" type="submit" form="register_form" value="Register">
+                        <input class="button last_button" type="button" onclick="show_login_overlay()" value="Back to login">
+                    </div>
+                </form>
+            </div>
+            <div class="boardgames">
+            <img id="boardgames" src="{% static 'GroupUp/login/images/boardgames.jpg' %}" alt="Picture of friends playing boardgames.">
+            </div>
+
+        </section>
+    </div>
 </body>
 </html>

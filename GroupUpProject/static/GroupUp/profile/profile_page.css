@@ -1,0 +1,157 @@
+*::-webkit-scrollbar {
+  display: none;
+  font-family: arial,sans-serif;
+}
+
+body {
+    margin: 0;
+    padding-top: 40px;
+    background: #cae7df;
+    background: #cae7df;
+    position: relative;
+    height: 100%;
+}
+
+nav {
+    position: absolute;
+    height: 75px;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+.container{
+    margin: 5% auto auto;
+    overflow: hidden;
+    position:center;
+    background-color: white;
+    border-radius: 15px;
+    border-color: lightgray;
+    border-width: thin;
+    border-style: none;
+    padding: 25px;
+    width: 60%;
+    height: 100%;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    box-sizing: border-box;
+}
+.account-settings .user-profile {
+    padding-bottom: 1rem;
+    text-align: center;
+}
+.account-settings .user-profile .user-avatar img {
+    width: 60%;
+    height: 60%;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+}
+
+.form-control {
+    border: 1px solid #cfd1d8;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    font-size: .825rem;
+    background: #ffffff;
+    color: #2e323c;
+}
+button {
+    padding: 10px;
+    background: #04AA6D;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: dimgray;
+    margin: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.profile-now{
+    width: 360px;
+    float:left; /* add this */
+
+}
+.profile-update{
+    margin-left:50px;
+    overflow: hidden;
+}
+.headline{
+font-size:150%
+}
+.text-right{
+    position: absolute;
+    right: 20px;
+    }
+.headline{
+ text-align: center;
+ font-size: 2.5em;
+}
+.btn{
+border-radius: 2px;
+font-size: 20px;
+border-radius: 8px;
+}
+.user {
+    position:absolute;
+    top:0;
+    right:0;
+    overflow: hidden;
+}
+.btn2{
+font-size: 20px;
+}
+
+
+#delete_window_title {
+    margin-top: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+#delete_window_container {
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#delete_window_content {
+    position: relative;
+    width: 35%;
+    height: 20%;
+    background-color: white;
+    border-style: solid;
+    border-color: #04AA6D;
+    box-sizing: border-box;
+}
+
+#delete_window_buttons {
+    position: absolute;
+    display: block;
+    width: 100%;
+    bottom: 10px;
+
+    box-sizing: border-box;
+}
+
+#confirm {
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+}
+
+#cancel {
+    position: absolute;
+    left: 10px;
+    bottom: 0;
+}
+
+.right_nav_button {
+    float: right;
+}

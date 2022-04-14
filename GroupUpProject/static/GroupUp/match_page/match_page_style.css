@@ -1,0 +1,190 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: arial,sans-serif;
+    
+}
+
+body {
+    background: #cae7df;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+a { color: inherit; }
+
+.page {
+    background: #cae7df;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+}
+.user {
+    /* position:absolute; */
+    top:0;
+    right:0;
+    overflow: hidden;
+}
+
+nav {
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+h1 {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 20px;
+    
+    color: gray;
+}
+
+#options {
+    width: 100%;
+    height: 50px;
+    background: grey;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#filter {
+    color: black;
+    background-color: whitesmoke;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+select {
+    margin-right: 5px;
+}
+
+#options > form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#options > form > div {
+    border-right-style: solid;
+    border-right-color: white;
+    border-right-width: thin;
+}
+
+#options > form > div:last-of-type {
+    border-right-style: none;
+}
+
+#options > form > div > label {
+    color: white;
+    padding: 5px;
+}
+
+#options > div > select {
+    padding: 5px;
+}
+
+button {
+    margin-left: 10px;
+    padding: 10px;
+    background: #04AA6D;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: dimgray;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+#group_card_container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    width: 90%;
+    /* height: 60vh; */
+    overflow: scroll;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 350px);
+    grid-auto-rows: auto;
+    grid-gap: 20px;
+}
+
+.group_card {
+    padding: 5px;
+    box-sizing: border-box;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    background: #DDDDDD;
+    width: 350px;
+    height: auto;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #AAAAAA;
+    border-radius: 10px;
+}
+
+.group_card:hover {
+    transform: scale(1.02);
+    transition-duration: 0.5s;
+}
+
+.match_card_title {
+    height: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+.match_card_image {
+    height: 150px;
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.match_card_image > img {
+    height: 130px;
+    width: 130px;
+    object-fit: cover;
+}
+
+.match_card_info {
+    margin-right: auto;
+    margin-left: auto;
+    height: 350px;
+    width: 80%;
+}
+
+.match_card_info > label {
+    font-weight: bold;
+}
+
+.match_card_info > p {
+    margin-bottom: 25px;
+    word-wrap: break-word;
+}
+
+.match_card_button {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.match_card_button > button {
+
+}
+
+.match_card_button > button:hover {
+    transform: scale(1.02);
+    transition-duration: 0.25s;
+}
